@@ -1,0 +1,25 @@
+{
+  "extends": ["eslint:recommended"],
+  "plugins": ["prettier", "import"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-console": "off"
+  },
+  "env": {
+    "browser": false,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false,
+      "generators": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

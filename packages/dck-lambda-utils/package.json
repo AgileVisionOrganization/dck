@@ -1,0 +1,43 @@
+{
+  "name": "dck-lambda-utils",
+  "version": "1.0.0",
+  "main": "lib/dck-lambda-utils.js",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "async": "^2.2.0",
+    "moment": "2.18.1",
+    "shortid": "^2.2.8",
+    "slug": "^0.9.1"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.44",
+    "@types/aws-lambda": "0.0.17",
+    "@types/jest": "^20.0.8",
+    "@types/moment": "^2.13.0",
+    "@types/shortid": "0.0.29",
+    "@types/slug": "^0.9.0",
+    "aws-sdk": "^2.32.0",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "dotenv": "^4.0.0",
+    "dts-bundle": "^0.7.3",
+    "extract-text-webpack-plugin": "2.1.2",
+    "faker": "^4.1.0",
+    "jest": "^21.1.0",
+    "jest-junit-reporter": "^1.1.0",
+    "ts-jest": "^21.1.4",
+    "ts-loader": "^2.3.7",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2",
+    "webpack": "2.6.1",
+    "webpack-dev-server": "2.5.0",
+    "webpack-node-externals": "^1.6.0",
+    "yargs": "7.1.0"
+  },
+  "scripts": {
+    "build": "webpack --env build",
+    "test": "jest --config jest.config.json",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "prepublish": "npm run build"
+  }
+}

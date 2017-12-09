@@ -1,0 +1,58 @@
+{
+  "name": "dck-redux",
+  "version": "1.0.0",
+  "main": "lib/dck-redux.js",
+  "types": "lib/index.d.ts",
+  "peerDependencies": {
+    "immutable": "^3.8.1",
+    "redux": "^3.7.1",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.5",
+    "@types/redux-immutable": "^3.0.38",
+    "@types/reselect": "^2.2.0",
+    "awesome-typescript-loader": "^3.2.3",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "dts-bundle": "^0.7.3",
+    "extract-text-webpack-plugin": "2.1.2",
+    "faker": "^4.1.0",
+    "immutable": "^3.8.2",
+    "jest-cli": "^21.2.1",
+    "jest-junit-reporter": "^1.1.0",
+    "redux": "^3.7.2",
+    "redux-mock-store": "^1.2.3",
+    "ts-jest": "^21.1.4",
+    "ts-loader": "^3.1.0",
+    "tslint": "^5.8.0",
+    "tslint-config-prettier": "^1.6.0",
+    "typescript": "^2.5.3",
+    "webpack": "2.6.1",
+    "webpack-dev-server": "2.5.0",
+    "webpack-node-externals": "^1.6.0",
+    "yargs": "7.1.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "scripts": {
+    "build": "webpack --env build",
+    "dev": "webpack --progress --colors --watch --env dev",
+    "test": "jest -c jest.config.json",
+    "test:watch": "jest -c jest.config.json --watchAll",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "lint:watch": "esw -w lib/**/*.ts",
+    "prepublish": "npm run lint && npm run build"
+  }
+}

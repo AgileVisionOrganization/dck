@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    /* Basic Options */
+    "target": "es5",
+    "module": "es2015",
+    "lib": ["es5", "es6", "dom"],
+    "strict": true,
+    "sourceMap": true,
+    "noImplicitAny": true /* Enable all strict type-checking options. */,
+    "declaration": true,
+    "moduleResolution": "node"
+  },
+  "include": ["./src/**/*"]
+}
