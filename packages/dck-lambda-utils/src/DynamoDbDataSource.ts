@@ -160,10 +160,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     const hashKey = item.getHashKey();
     const rangeKey = item.getRangeKey();
 
-    if (rangeKey) {
-      newItem[rangeKey] = shortid.generate();
-    } else {
+    if (!newItem[hashKey]) {
       newItem[hashKey] = shortid.generate();
+    }
+
+    if (rangeKey && !newItem[rangeKey]) {
+      newItem[rangeKey] = shortid.generate();
     }
 
     async.waterfall(
