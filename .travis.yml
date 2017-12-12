@@ -6,8 +6,6 @@ before_install:
 install:
 - npm install lerna
 - lerna bootstrap
-before_script:
-- git checkout master
 script: ./scripts/build.sh
 
 env:
