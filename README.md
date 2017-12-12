@@ -1,6 +1,8 @@
 # DCK
 DCK (**D**ashboard **C**onstruction **K**it) is a opinionated  way to build React-based applications.
 
+[![Build Status](https://travis-ci.org/AgileVisionCompany/dck.svg?branch=master)](https://travis-ci.org/AgileVisionCompany/dck)
+
 It's being created with several key principles in mind to simplify lives of React developers. Here are it's main principles:
 
 1. Boilerplate is boring. Everyone hates to write the same code again and again. We've got you covered. No more same-looking reducers and copy-pasting of action creators.
