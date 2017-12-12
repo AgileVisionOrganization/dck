@@ -439,6 +439,38 @@ describe("DynamoDbDataSource Tests", () => {
       );
     });
 
+    it("should generate range and hash", (done) => {
+      dataSource.addItem(
+        ChildEntity,
+        {
+          test_field: 6,
+        },
+        (err, data) => {
+          expect(err).toBe(null);
+          expect(data).not.toBe(null);
+          expect(data).toHaveProperty("parent_id");
+          expect(data).toHaveProperty("id");
+          done();
+        },
+      );
+    });
+
+    it("should generate hash", (done) => {
+      dataSource.addItem(
+        ChildEntity,
+        {
+          test_field: 6,
+          id: "TEST_CHILD",
+        },
+        (err, data) => {
+          expect(err).toBe(null);
+          expect(data).not.toBe(null);
+          expect(data).toHaveProperty("parent_id");
+          done();
+        },
+      );
+    });
+
     it("should generate hash if there is no range", (done) => {
       dataSource.addItem(
         ParentEntity,
