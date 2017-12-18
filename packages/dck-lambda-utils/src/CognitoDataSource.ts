@@ -116,7 +116,7 @@ export class CognitoDataSource implements IDckDataSource {
               );
             }
           },
-      );
+        );
     }
 
     public addItem(itemType: IDbEntity, data: any, callback: IDckCallback): void {
