@@ -78,7 +78,45 @@ export class CognitoDataSource implements IDckDataSource {
     }
 
     public getMultipleItems(itemType: IDbEntity, queryOptions: IGetMulitpleOptions, callback: IDckCallback): void {
-        callback(new Error("Unsupported operation exception"));
+        if (!queryOptions.keys || queryOptions.keys.length === 0) {
+          callback(new Error("queryOptions.keys is null or undefined"), null);
+          return;
+      }
+        async.map(
+          queryOptions.keys,
+          (key, mapCallback) => {
+            this.idp.adminGetUser(
+              {
+                UserPoolId: itemType.getDatabaseTableName(),
+                Username: key,
+              },
+              (err, data) => {
+                if (err) {
+                  if (err.code !== "UserNotFoundException") {
+                    mapCallback(err);
+                  } else {
+                    mapCallback(null);
+                  }
+                } else {
+                  const result = fromCognitoGetUser(data);
+                  mapCallback(null, result);
+                }
+              },
+            );
+          },
+          (err: Error, data) => {
+            if (err) {
+              callback(err, null);
+            } else {
+              callback(
+                null,
+                data.filter((user: any) => {
+                  return user;
+                }),
+              );
+            }
+          },
+      );
     }
 
     public addItem(itemType: IDbEntity, data: any, callback: IDckCallback): void {

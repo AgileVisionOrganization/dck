@@ -118,6 +118,48 @@ describe("CognitoDataSource Tests", () => {
         });
     });
 
+    describe("getMultipleItems", () => {
+        it("should return empty array as data when trying to get a non-existing items", (done) => {
+              dataSource.getMultipleItems(
+                UserEntity,
+                {
+                  keys: ["NOTEXIST1", "NOTEXIST2"],
+                },
+                (err, data) => {
+                  expect(err).toBe(null);
+                  expect(data).toEqual([]);
+                  done();
+                  },
+                );
+              });
+        it("should fail when trying to send empy keys", (done) => {
+              dataSource.getMultipleItems(
+                UserEntity,
+                 {
+                   keys: [],
+                  },
+                  (err, data) => {
+                    expect(err).toBeTruthy();
+                    expect(err).toBeInstanceOf(Error);
+                    done();
+                  },
+                );
+              });
+        it("should fail when trying to get an items from a non-existing table", (done) => {
+              dataSource.getMultipleItems(
+                 BrokenEntity,
+                 {
+                   keys: ["EXIST1", "EXIST2"],
+                  },
+                  (err, data) => {
+                    expect(err).toBeTruthy();
+                    expect(err).toBeInstanceOf(Error);
+                    done();
+                  },
+                );
+              });
+            });
+
     describe("updateItem", () => {
         const randomValue = shortid.generate();
         // it("should update item", (done) => {
