@@ -18,20 +18,20 @@ const createEntity = (
   tableName: string,
   hash: string,
   range?: string,
-  index?: string
+  index?: string,
 ): IDbEntity => {
   return {
     getDatabaseTableName: () => tableName,
     getHashKey: () => hash,
     getRangeKey: () => range,
-    getIndex: () => index
+    getIndex: () => index,
   };
 };
 
 const UserEntity = createEntity(
   COGNITO_USER_POOL,
   "Username",
-  "custom:team_id"
+  "custom:team_id",
 );
 const BrokenEntity = createEntity("none", "Username", "custom:team_id");
 
@@ -45,7 +45,7 @@ describe("CognitoDataSource Tests", () => {
       dataSource.getItems(
         UserEntity,
         {
-          query: {}
+          query: {},
         },
         (error: Error, data: any) => {
           expect(error).toBeFalsy();
@@ -54,7 +54,7 @@ describe("CognitoDataSource Tests", () => {
           expect(data[0].id).not.toBe(null);
           expect(data[0]).toHaveProperty("groups");
           done();
-        }
+        },
       );
     });
 
@@ -69,22 +69,22 @@ describe("CognitoDataSource Tests", () => {
   });
 
   describe("getItem", () => {
-    it("should return null as data when trying to get a non-existing item", done => {
+    it("should return null as data when trying to get a non-existing item", (done) => {
       dataSource.getItem(
         UserEntity,
         {
           query: {
-            Username: "NONEXISTINGITEM"
-          }
+            Username: "NONEXISTINGITEM",
+          },
         },
         (err, data) => {
           expect(err).toBe(null);
           expect(data).toBe(null);
           done();
-        }
+        },
       );
     });
-    it("should fail when trying to get an item from a non-existing table", done => {
+    it("should fail when trying to get an item from a non-existing table", (done) => {
       dataSource.getItem(
         BrokenEntity,
         { query: { Username: "test" } },
@@ -92,74 +92,74 @@ describe("CognitoDataSource Tests", () => {
           expect(err).toBeDefined();
           expect(err).toBeInstanceOf(Error);
           done();
-        }
+        },
       );
     });
 
-    it("should fail if no query params are present", done => {
+    it("should fail if no query params are present", (done) => {
       dataSource.getItem(
         UserEntity,
         {
-          query: {}
+          query: {},
         },
         (err, data: any) => {
           expect(err).toBeDefined();
           expect(err).toBeInstanceOf(Error);
           expect(data).toBe(null);
           done();
-        }
+        },
       );
     });
   });
 
   describe("getMultipleItems", () => {
-    it("should return empty array as data when trying to get a non-existing items", done => {
+    it("should return empty array as data when trying to get a non-existing items", (done) => {
       dataSource.getMultipleItems(
         UserEntity,
         {
-          keys: ["NOTEXIST1", "NOTEXIST2"]
+          keys: ["NOTEXIST1", "NOTEXIST2"],
         },
         (err, data) => {
           expect(err).toBe(null);
           expect(data).toEqual([]);
           done();
-        }
+        },
       );
     });
-    it("should fail when trying to send empy keys", done => {
+    it("should fail when trying to send empy keys", (done) => {
       dataSource.getMultipleItems(
         UserEntity,
         {
-          keys: []
+          keys: [],
         },
         (err, data) => {
           expect(err).toBeTruthy();
           expect(err).toBeInstanceOf(Error);
           done();
-        }
+        },
       );
     });
-    it("should fail when trying to get an items from a non-existing table", done => {
+    it("should fail when trying to get an items from a non-existing table", (done) => {
       dataSource.getMultipleItems(
         BrokenEntity,
         {
-          keys: ["EXIST1", "EXIST2"]
+          keys: ["EXIST1", "EXIST2"],
         },
         (err, data) => {
           expect(err).toBeTruthy();
           expect(err).toBeInstanceOf(Error);
           done();
-        }
+        },
       );
     });
   });
   describe("addItem", () => {
-    it("should add a new item", done => {
+    it("should add a new item", (done) => {
       dataSource.addItem(
         UserEntity,
         {
           "custom:team_id": "TEST_PARENT",
-          email: `testdck${slug(shortid.generate())}@example.com`
+          "email": `testdck${slug(shortid.generate())}@example.com`,
         },
         (err, data) => {
           expect(err).toBe(null);
@@ -168,22 +168,22 @@ describe("CognitoDataSource Tests", () => {
           expect(data).toHaveProperty("id");
           expect(data).toHaveProperty("email");
           done();
-        }
+        },
       );
     });
 
-    it("should fail if table doesn't exist", done => {
+    it("should fail if table doesn't exist", (done) => {
       dataSource.addItem(
         BrokenEntity,
         {
-          "custom:team_id": "TEST_PARENT"
+          "custom:team_id": "TEST_PARENT",
         },
         (err, data) => {
           expect(err).toBeDefined();
           expect(err).toBeInstanceOf(Error);
           expect(data).toBe(null);
           done();
-        }
+        },
       );
     });
   });
@@ -204,7 +204,7 @@ describe("CognitoDataSource Tests", () => {
     //         },
     //     ], done);
     // });
-    it("should fail if item doesn't exist", done => {
+    it("should fail if item doesn't exist", (done) => {
       dataSource.updateItem(
         UserEntity,
         { "custom:team_id": randomValue },
@@ -214,10 +214,10 @@ describe("CognitoDataSource Tests", () => {
           expect(err).toBeInstanceOf(Error);
           expect(data).toBe(null);
           done();
-        }
+        },
       );
     });
-    it("should fail if table doesn't exist", done => {
+    it("should fail if table doesn't exist", (done) => {
       dataSource.updateItem(
         BrokenEntity,
         { "custom:team_id": randomValue },
@@ -226,18 +226,18 @@ describe("CognitoDataSource Tests", () => {
           expect(err).toBeDefined();
           expect(err).toBeInstanceOf(Error);
           done();
-        }
+        },
       );
     });
   });
 
   describe("deleteItems", () => {
-    it("should delete", done => {
+    it("should delete", (done) => {
       dataSource.addItem(
         UserEntity,
         {
           "custom:team_id": "TEST_PARENT",
-          email: `testdck${slug(shortid.generate())}@example.com`
+          "email": `testdck${slug(shortid.generate())}@example.com`,
         },
         (err, data: any) => {
           expect(err).toBe(null);
@@ -251,13 +251,13 @@ describe("CognitoDataSource Tests", () => {
               expect(error).toBe(null);
               expect(res).toBeInstanceOf(Array);
               done();
-            }
+            },
           );
-        }
+        },
       );
     });
 
-    it("should fail when trying to delete an item from a non-existing table", done => {
+    it("should fail when trying to delete an item from a non-existing table", (done) => {
       dataSource.deleteItems(
         BrokenEntity,
         { keys: [{ Username: "TEST123" }] },
@@ -265,11 +265,11 @@ describe("CognitoDataSource Tests", () => {
           expect(err).toBeDefined();
           expect(err).toBeInstanceOf(Error);
           done();
-        }
+        },
       );
     });
 
-    it("should not fail on empty keys", done => {
+    it("should not fail on empty keys", (done) => {
       dataSource.deleteItems(UserEntity, { keys: [] }, (err, data) => {
         expect(err).toBe(null);
         expect(data).toBeInstanceOf(Array);
@@ -277,7 +277,7 @@ describe("CognitoDataSource Tests", () => {
       });
     });
 
-    it("should fail on null keys", done => {
+    it("should fail on null keys", (done) => {
       dataSource.deleteItems(UserEntity, { keys: null }, (err, data) => {
         expect(err).toBeDefined();
         expect(err).toBeInstanceOf(Error);

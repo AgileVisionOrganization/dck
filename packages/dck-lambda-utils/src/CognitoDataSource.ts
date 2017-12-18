@@ -10,12 +10,12 @@ import {
   IDckDataSource,
   IDeleteOptions,
   IGetMulitpleOptions,
-  IQueryOptions
+  IQueryOptions,
 } from "./BaseTypes";
 import {
   fromCognitoGetUser,
   fromCognitoUser,
-  toCognitoAttributes
+  toCognitoAttributes,
 } from "./utils";
 import { AWSError } from "aws-sdk/lib/error";
 
@@ -29,16 +29,16 @@ export class CognitoDataSource implements IDckDataSource {
   public getItems(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
-    callback: IDckCallback
+    callback: IDckCallback,
   ): void {
     async.waterfall(
       [
         (next: IDckCallback) =>
           this.idp.listUsers(
             {
-              UserPoolId: itemType.getDatabaseTableName()
+              UserPoolId: itemType.getDatabaseTableName(),
             },
-            next
+            next,
           ),
         (data: any, next: IDckCallback) => {
           const transformed = data.Users.map((x: any) => fromCognitoUser(x));
@@ -48,43 +48,43 @@ export class CognitoDataSource implements IDckDataSource {
               this.idp.adminListGroupsForUser(
                 {
                   UserPoolId: itemType.getDatabaseTableName(),
-                  Username: x.id
+                  Username: x.id,
                 },
                 (listErr: any, listData: any) => {
                   if (listErr) {
                     console.error(
                       "Failed to fetch groups for the user",
                       x.id,
-                      listErr
+                      listErr,
                     );
                     cb(null, x);
                   } else {
                     const groups = listData.Groups.sort(
-                      (a: any, b: any) => a.Precedece - b.Precedence
+                      (a: any, b: any) => a.Precedece - b.Precedence,
                     );
                     cb(null, { ...x, groups });
                   }
-                }
+                },
               );
             },
-            next
+            next,
           );
-        }
+        },
       ],
-      callback
+      callback,
     );
   }
 
   public getItem(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
-    callback: IDckCallback
+    callback: IDckCallback,
   ): void {
     this.idp.adminGetUser(
       {
         UserPoolId: itemType.getDatabaseTableName(),
         Username:
-          queryOptions.query[itemType.getHashKey()] || queryOptions.query.id
+          queryOptions.query[itemType.getHashKey()] || queryOptions.query.id,
       },
       (err, result) => {
         if (err && err.code === "UserNotFoundException") {
@@ -96,33 +96,33 @@ export class CognitoDataSource implements IDckDataSource {
           this.idp.adminListGroupsForUser(
             {
               UserPoolId: itemType.getDatabaseTableName(),
-              Username: transformed.id
+              Username: transformed.id,
             },
             (listErr: any, listData: any) => {
               if (listErr) {
                 console.error(
                   "Failed to fetch groups for the user",
                   transformed.id,
-                  listErr
+                  listErr,
                 );
                 callback(null, transformed);
               } else {
                 const groups = listData.Groups.sort(
-                  (a: any, b: any) => a.Precedece - b.Precedence
+                  (a: any, b: any) => a.Precedece - b.Precedence,
                 );
                 callback(null, { ...transformed, groups });
               }
-            }
+            },
           );
         }
-      }
+      },
     );
   }
 
   public getMultipleItems(
     itemType: IDbEntity,
     queryOptions: IGetMulitpleOptions,
-    callback: IDckCallback
+    callback: IDckCallback,
   ): void {
     if (!queryOptions.keys || queryOptions.keys.length === 0) {
       callback(new Error("queryOptions.keys is null or undefined"), null);
@@ -134,7 +134,7 @@ export class CognitoDataSource implements IDckDataSource {
         this.idp.adminGetUser(
           {
             UserPoolId: itemType.getDatabaseTableName(),
-            Username: key
+            Username: key,
           },
           (err, data) => {
             if (err) {
@@ -147,7 +147,7 @@ export class CognitoDataSource implements IDckDataSource {
               const result = fromCognitoGetUser(data);
               mapCallback(null, result);
             }
-          }
+          },
         );
       },
       (err: Error, data) => {
@@ -158,10 +158,10 @@ export class CognitoDataSource implements IDckDataSource {
             null,
             data.filter((user: any) => {
               return user;
-            })
+            }),
           );
         }
-      }
+      },
     );
   }
 
@@ -172,8 +172,8 @@ export class CognitoDataSource implements IDckDataSource {
       `${shortid.generate()}_${rangeKeyValue}_${data.email}`,
       {
         replacement: "_",
-        lower: true
-      }
+        lower: true,
+      },
     ).substr(0, 60);
 
     this.idp.adminCreateUser(
@@ -183,16 +183,16 @@ export class CognitoDataSource implements IDckDataSource {
         UserAttributes: [
           {
             Name: "email_verified",
-            Value: "true"
+            Value: "true",
           },
           {
             Name: "updated_at",
             Value: moment()
               .unix()
-              .toString()
-          }
+              .toString(),
+          },
         ].concat(toCognitoAttributes(data)),
-        DesiredDeliveryMediums: ["EMAIL"]
+        DesiredDeliveryMediums: ["EMAIL"],
       },
       (err: Error, result: any) => {
         if (err) {
@@ -200,7 +200,7 @@ export class CognitoDataSource implements IDckDataSource {
         } else {
           callback(null, fromCognitoUser(result.User));
         }
-      }
+      },
     );
   }
 
@@ -208,7 +208,7 @@ export class CognitoDataSource implements IDckDataSource {
     itemType: IDbEntity,
     data: any,
     queryOptions: IQueryOptions,
-    callback: IDckCallback
+    callback: IDckCallback,
   ): void {
     const cleanData = Object.assign({}, data);
     delete cleanData.id;
@@ -230,23 +230,23 @@ export class CognitoDataSource implements IDckDataSource {
                   Name: "updated_at",
                   Value: moment()
                     .unix()
-                    .toString()
-                }
-              ].concat(toCognitoAttributes(cleanData))
+                    .toString(),
+                },
+              ].concat(toCognitoAttributes(cleanData)),
             },
-            next
+            next,
           ),
         (result: any, next: IDckCallback) =>
-          this.getItem(itemType, queryOptions, next)
+          this.getItem(itemType, queryOptions, next),
       ],
-      callback
+      callback,
     );
   }
 
   public deleteItems(
     itemType: IDbEntity,
     options: IDeleteOptions,
-    callback: IDckCallback
+    callback: IDckCallback,
   ): void {
     if (options.keys === null) {
       return callback(new Error("Keys can't be null"), null);
@@ -263,15 +263,15 @@ export class CognitoDataSource implements IDckDataSource {
               this.idp.adminDeleteUser(
                 {
                   UserPoolId: itemType.getDatabaseTableName(),
-                  Username: keyToBeDeleted[itemType.getHashKey()]
+                  Username: keyToBeDeleted[itemType.getHashKey()],
                 },
-                next
-              )
+                next,
+              ),
           ],
-          asyncCallback
+          asyncCallback,
         );
       },
-      err => (err ? callback(err, null) : callback(null, []))
+      (err) => (err ? callback(err, null) : callback(null, [])),
     );
   }
 }
