@@ -19,11 +19,11 @@ export class Sidebar extends React.Component<SidebarProps, any> {
 
   public render() {
     return (
-      <div className="sidebar-container">
-        <div className="sidebar-header-container">
+      <div className={this.props.containerClass}>
+        <div className={this.props.headerContainerClass}>
           {this.props.headerComponent}
         </div>
-        <ul className="sidebarItems">{this.props.children}</ul>
+        <ul className={this.props.itemsContainerClass}>{this.props.children}</ul>
       </div>
     );
   }
