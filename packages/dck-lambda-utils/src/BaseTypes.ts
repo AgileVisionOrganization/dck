@@ -19,6 +19,7 @@ export interface IQueryOptions {
   limit?: number;
   query?: any;
   data?: any;
+  comparisonOperators?: any;
 }
 
 export interface IDeleteOptions {

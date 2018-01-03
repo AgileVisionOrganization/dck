@@ -30,6 +30,8 @@ export class DynamoDbDataSource implements IDckDataSource {
     const rangeKey = itemType.getRangeKey();
     const expressionAttributeNames: any = {};
     const expressionAttributeValues: any = {};
+    const comparisonOperators : any = queryOptions.comparisonOperators || {};
+
     let filterExpression: any = "";
     if (queryOptions.data) {
       Object.keys(queryOptions.data).forEach((item) => {
@@ -38,17 +40,23 @@ export class DynamoDbDataSource implements IDckDataSource {
         if (filterExpression.length > 0) {
           filterExpression += "and ";
         }
-        filterExpression += "#" + item + " = " + ":" + item + " ";
+        const comparisonOperator: string = comparisonOperators[item] || "=";
+        filterExpression += "#" + item + comparisonOperator + ":" + item + " ";
       });
     }
     expressionAttributeNames["#hkeyname"] = hashKey;
     expressionAttributeValues[":hkeyvalue"] = queryOptions.query[hashKey];
-    let keyConditionExpression = "#hkeyname = :hkeyvalue";
+    const hashKeyComparisonOperator = comparisonOperators[hashKey] || "=";
+    let keyConditionExpression: string = null;
+    
     if (queryOptions.query[rangeKey]) {
+      const rangeKeyComparisonOperator = comparisonOperators[rangeKey] || "=";
       expressionAttributeNames["#rkeyname"] = rangeKey;
       expressionAttributeValues[":rkeyvalue"] = queryOptions.query[rangeKey];
       keyConditionExpression =
-        "#hkeyname = :hkeyvalue and #rkeyname = :rkeyvalue";
+        `#hkeyname ${hashKeyComparisonOperator} :hkeyvalue and #rkeyname ${rangeKeyComparisonOperator} :rkeyvalue`;
+    } else {
+      keyConditionExpression = `#hkeyname ${hashKeyComparisonOperator} :hkeyvalue`;
     }
     async.waterfall(
       [
@@ -80,6 +88,8 @@ export class DynamoDbDataSource implements IDckDataSource {
   ) {
     const expressionAttributeNames: any = {};
     const expressionAttributeValues: any = {};
+    const comparisonOperators : any = queryOptions.comparisonOperators || {};
+
     let filterExpression: any = "";
     if (queryOptions.data) {
       Object.keys(queryOptions.data).forEach((item) => {
@@ -88,7 +98,8 @@ export class DynamoDbDataSource implements IDckDataSource {
         if (filterExpression.length > 0) {
           filterExpression += "and ";
         }
-        filterExpression += "#" + item + " = " + ":" + item + " ";
+        const comparisonOperator: string = comparisonOperators[item] || "=";
+        filterExpression += "#" + item + comparisonOperator + ":" + item + " ";
       });
     }
     async.waterfall(
