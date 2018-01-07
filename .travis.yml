@@ -6,7 +6,14 @@ before_install:
 install:
 - npm install lerna
 - lerna bootstrap
-script: ./scripts/build.sh
+before_script:
+  - git checkout master
+  - lerna updated --json
+script:
+  - lerna run test --since master
+  - lerna publish -m "bump versions [ci skip]" --conventional-commits --yes
+after_script:
+  - git push  
 
 env:
   global:
