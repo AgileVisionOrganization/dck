@@ -6,14 +6,9 @@ before_install:
 install:
 - npm install lerna
 - lerna bootstrap
-before_script:
-  - git checkout master
-  - lerna updated --json
 script:
-  - lerna run test --since master
-  - lerna publish -m "bump versions [ci skip]" --conventional-commits --yes
-after_script:
-  - git push  
+- lerna run test
+- if [ -n "$TRAVIS_TAG" ]; lerna exec -- npm publish; fi
 
 env:
   global:
