@@ -8,7 +8,7 @@ install:
 - lerna bootstrap
 script:
 - lerna run test
-- if [ -n "$TRAVIS_TAG" ]; then lerna exec -- npm publish; fi
+- npm publish
 
 env:
   global:
