@@ -8,6 +8,7 @@ install:
 - lerna bootstrap
 script:
 - lerna run test
+- lerna publish --skip-git
 
 env:
   global:
