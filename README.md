@@ -1,5 +1,11 @@
 # DCK
+
+
+
 DCK (**D**ashboard **C**onstruction **K**it) is a opinionated  way to build React-based applications.
+
+
+<img alt="DCK Logo" src="./docs/logo256.png" style="width:128px;height:128px">
 
 [![Build Status](https://travis-ci.org/AgileVisionCompany/dck.svg?branch=master)](https://travis-ci.org/AgileVisionCompany/dck)
 
