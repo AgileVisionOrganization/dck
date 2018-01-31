@@ -8,7 +8,6 @@ install:
 - lerna bootstrap
 script:
 - lerna run test
-- npm publish
 
 env:
   global:
