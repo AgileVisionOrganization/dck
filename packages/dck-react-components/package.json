@@ -4,7 +4,7 @@
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "dck-validators": "^1.0.7",
+    "dck-validators": "^1.0.6",
     "moment": "2.18.1",
     "react": "^15.6.1",
     "react-bootstrap": "0.31.0",
