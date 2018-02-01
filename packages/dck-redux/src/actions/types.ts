@@ -1,6 +1,7 @@
 /** Session management */
 export const INITIALIZE_APP = "INITIALIZE_APP";
 export const SIGN_IN = "SIGN_IN";
+export const SIGN_UP = "SIGN_UP";
 export const SIGN_OUT = "SIGN_OUT";
 export const FORCE_CHANGE_PASSWORD = "FORCE_CHANGE_PASSWORD";
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";

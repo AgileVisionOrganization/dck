@@ -14,6 +14,15 @@ export function signIn(email: string, password: string) {
   };
 }
 
+export function signUp(email: string, password: string, password2: string) {
+  return {
+    type: types.SIGN_UP,
+    email,
+    password,
+    password2
+  };
+}
+
 export function initializeApp() {
   return {
     type: types.INITIALIZE_APP
