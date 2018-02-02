@@ -1,6 +1,7 @@
 /** Session management */
 export const INITIALIZE_APP = "INITIALIZE_APP";
 export const SIGN_IN = "SIGN_IN";
+export const SIGN_UP_WITH_PASSWORD = "SIGN_UP_WITH_PASSWORD";
 export const SIGN_OUT = "SIGN_OUT";
 export const FORCE_CHANGE_PASSWORD = "FORCE_CHANGE_PASSWORD";
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
@@ -66,3 +67,9 @@ export const REMOVE_ITEM_SEARCH_FILTER = "REMOVE_ITEM_SEARCH_FILTER";
 export const SET_ITEM_SEARCH_FILTERS = "SET_ITEM_SEARCH_FILTERS";
 export const CLEAR_ITEM_SEARCH_FILTERS = "CLEAR_ITEM_SEARCH_FILTERS";
 export const SET_ITEM_SORTING_OPTIONS = "SET_ITEM_SORTING_OPTIONS";
+
+export type SignUpWithPasswordCredentials = {
+  identifier: string;
+  password1: string;
+  password2: string;
+}
