@@ -14,12 +14,10 @@ export function signIn(email: string, password: string) {
   };
 }
 
-export function signUp(email: string, password: string, password2: string) {
+export function signUpWithPassword(credentials: types.SignUpWithPasswordCredentials) {
   return {
-    type: types.SIGN_UP,
-    email,
-    password,
-    password2
+    type: types.SIGN_UP_WITH_PASSWORD,
+    credentials
   };
 }
 
