@@ -9,7 +9,7 @@ export function asyncProcessStart(processCode: string) {
 
 export function asyncProcessStop(processCode: string, result: any) {
   return {
-    type: types.ASYNC_PROCESS_START,
+    type: types.ASYNC_PROCESS_STOP,
     processCode,
     result
   };
