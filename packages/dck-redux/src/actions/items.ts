@@ -61,6 +61,7 @@ export function itemMakeActive(itemType: string, id: string | number) {
 export function itemSelect(itemType: string, id: string | number) {
   return {
     type: types.ITEM_SELECT,
+    itemType,
     id
   };
 }
@@ -84,6 +85,7 @@ export function itemsRemove(itemType: string, ids: string[] | number[]) {
 export function itemsSelect(itemType: string, ids: string[] | number[]) {
   return {
     type: types.ITEMS_SELECT,
+    itemType,
     ids
   };
 }
