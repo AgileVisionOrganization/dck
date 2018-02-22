@@ -60,7 +60,7 @@ export function itemMakeActive(itemType: string, id: string | number) {
 
 export function itemSelect(itemType: string, id: string | number) {
   return {
-    type: types.ITEMS_SELECT,
+    type: types.ITEM_SELECT,
     id
   };
 }

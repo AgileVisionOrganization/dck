@@ -37,6 +37,9 @@ export const ITEM_MAKE_ACTIVE = "ITEM_MAKE_ACTIVE";
 // Select items, e.g. by using the checkbox in the table
 export const ITEMS_SELECT = "ITEMS_SELECT";
 
+// Select item, e.g. by using the checkbox in the table
+export const ITEM_SELECT = "ITEM_SELECT";
+
 // Add new item
 export const ITEM_ADD = "ITEM_ADD";
 
