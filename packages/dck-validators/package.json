@@ -1,6 +1,6 @@
 {
   "name": "dck-validators",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "lib/dck-validators.js",
   "types": "lib/index.d.ts",
   "dependencies": {
