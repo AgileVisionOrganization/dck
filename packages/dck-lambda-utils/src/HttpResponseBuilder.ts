@@ -29,6 +29,11 @@ export class HttpResponseBuilder {
         callback(null, response);
     }
 
+    public CustomResponse(code: number, message: string, data: any, callback: IDckCallback) {
+        const response = this.createResponse(code, message, data);
+        callback(null, response);
+    }
+
     private createResponseBody(code: number, message: string, data?: any) {
         const response: any = {
             statusCode: code,
