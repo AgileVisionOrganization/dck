@@ -160,6 +160,23 @@ export function nonEmpty(value: string) {
     resolve({ valid, empty });
   });
 }
+
+export function regexpValidator(regExp: RegExp) {
+    return (value: string) => {
+        return new Promise(function (resolve, reject) {
+            let empty = false;
+            let valid = false;
+            if (!value || value.trim().length === 0) {
+                empty = true;
+            }
+            if (regExp.test(value)) {
+                valid = true;
+            }
+            resolve({valid: valid, empty: empty});
+        });
+    }
+}
+
 export function serverSideValidator(requestGenerator: () => Promise<any>) {
   return new Promise((resolve, reject) => {
     requestGenerator()
