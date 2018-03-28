@@ -6,7 +6,7 @@
   "dependencies": {
     "email-validator": "^1.1.1",
     "libphonenumber-js": "^0.4.31",
-    "moment": "^2.21.0"
+    "moment": "2.21.0"
   },
   "devDependencies": {
     "@types/jest": "^20.0.8",

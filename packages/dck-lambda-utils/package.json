@@ -5,7 +5,7 @@
   "types": "lib/index.d.ts",
   "dependencies": {
     "async": "^2.2.0",
-    "moment": "2.18.1",
+    "moment": "2.21.0",
     "shortid": "^2.2.8",
     "slug": "^0.9.1"
   },
