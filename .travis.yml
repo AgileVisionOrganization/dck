@@ -3,6 +3,7 @@ node_js:
 - '8'
 before_install:
 - echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+- chmod +x npm-publish.sh
 install:
 - npm install lerna
 - npm install underscore-cli
