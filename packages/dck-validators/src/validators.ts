@@ -163,7 +163,7 @@ export function nonEmpty(value: string) {
 
 export function regexpValidator(regExp: RegExp) {
     return (value: string) => {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             let empty = false;
             let valid = false;
             if (!value || value.trim().length === 0) {
@@ -172,9 +172,9 @@ export function regexpValidator(regExp: RegExp) {
             if (regExp.test(value)) {
                 valid = true;
             }
-            resolve({valid: valid, empty: empty});
+            resolve({valid, empty});
         });
-    }
+    };
 }
 
 export function serverSideValidator(requestGenerator: () => Promise<any>) {
