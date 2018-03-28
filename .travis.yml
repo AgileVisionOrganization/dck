@@ -8,7 +8,7 @@ install:
 - npm install underscore-cli
 - lerna bootstrap
 script:
-- lerna exec ./npm-publish.sh
+- lerna exec ../../npm-publish.sh
 - lerna run test
 env:
   global:
