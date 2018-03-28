@@ -423,29 +423,28 @@ describe("Validators", () => {
   describe("regExpValidator", () => {
     it("should correctly validate positive integer value using /^\d+$/ regexp", (done) => {
       const positiveIntRegexpValidator = regexpValidator(/^\d+$/);
-
-      const correctPositiveIntegerValue: string = '987654321';
+      const correctPositiveIntegerValue: string = "987654321";
       positiveIntRegexpValidator(correctPositiveIntegerValue).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(true);
       });
-      const wrongPositiveIntegerValueWithDot: string = '987654321.';
+      const wrongPositiveIntegerValueWithDot: string = "987654321.";
       positiveIntRegexpValidator(wrongPositiveIntegerValueWithDot).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(false);
       });
-      const negativeInteger: string = '-44';
+      const negativeInteger: string = "-44";
       positiveIntRegexpValidator(negativeInteger).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(false);
       });
-      const notANumber: string = 'fifty five';
+      const notANumber: string = "fifty five";
       positiveIntRegexpValidator(notANumber).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
@@ -454,16 +453,17 @@ describe("Validators", () => {
       });
       done();
     });
-    it("should validate empty value as empty and in the same time if reqExp describes empty string it should be valid", (done) => {
+    it(`should validate empty value as empty and in the same time \
+      if reqExp describes empty string it should be valid`, (done) => {
       const emptyStringRegExp = regexpValidator(/^$/);
-      emptyStringRegExp('').then((result: IValidationResult) => {
+      emptyStringRegExp("").then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(true);
         expect(result.valid).toEqual(true);
       });
       const notEmptyStringRegExp = regexpValidator(/^ABCXYZ$/);
-      notEmptyStringRegExp('').then((result: IValidationResult) => {
+      notEmptyStringRegExp("").then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(true);
@@ -472,8 +472,9 @@ describe("Validators", () => {
       done();
     });
     it("should correctly validate IP address", (done) => {
-      const ipAddressValidator = regexpValidator(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/);
-      const ipAddressValue = '192.168.1.1';
+      const ipRegExpString = `^${"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).".repeat(4)}?$`;
+      const ipAddressValidator = regexpValidator(new RegExp(ipRegExpString));
+      const ipAddressValue = "192.168.1.1";
       ipAddressValidator(ipAddressValue).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
