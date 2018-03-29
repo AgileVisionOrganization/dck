@@ -6,8 +6,6 @@ import {IDbEntity, IDckCallback} from "./BaseTypes";
 import * as slug from "slug";
 import {fromCognitoGetUser} from "./utils";
 
-const COGNITO_USER_POOL = process.env.COGNITO_USER_POOL;
-
 const idp = new CognitoIdentityServiceProvider();
 const dataSource = new CognitoDataSource(idp);
 
