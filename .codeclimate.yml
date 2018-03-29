@@ -16,4 +16,4 @@ checks:
       threshold: 15
   identical-code:
     config:
-      threshold: 90
+      threshold: 96
