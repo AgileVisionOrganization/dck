@@ -1,9 +1,10 @@
+
+
 import * as async from "async";
 import * as shortid from "shortid";
 import { config, DynamoDB } from "aws-sdk";
 import { DynamoDbDataSource } from "./";
 import { IDbEntity, IDckCallback } from "./BaseTypes";
-
 const REGION = process.env.AWS_REGION;
 const PARENT_TABLE =
   process.env.AWS_TEST_PARENT_TABLE;
