@@ -5,14 +5,16 @@ before_install:
 - echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
 - wget https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.zip
 - unzip -u dynamodb_local_latest.zip
+- chmod +x npm-publish.sh
 install:
 - npm install lerna
+- npm install underscore-cli
 - lerna bootstrap
 before_script:
 - java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory &
 script:
 - lerna run test
-- lerna exec -- npm publish
+- lerna exec ../../npm-publish.sh
 env:
   global:
   - secure: fZZxLdKUhZ9V7m4eqVZulI7DuvKZuYo2lKOT1Wv1xykT6/xiEvwTll41lZGNxvUaqigUs6r77ddHBriDsjTu4RwWUD+cEiERPUAVBnQGwDO2dLTDJLMZMjPjV4EZWsG4xfkue0L+26yYB0YTr7hynFdYR/Q4FvV31o5qcifd5fY3cEV4240qrrxDuWtENE8cDFMa+TiE3tJ9Ovxgt/q8cWpiiQ1qQjgZqzhzPjas2QwUVOSWlxtxBMto6A3cmMopU1SqJwcH2b4ZTplvc0zqjOWrcoHYSe0a3Vg/1PovCR/ROb9OZ05+6RCGvk48GosUywDIePLo9bXdwnfJ5hVBq+HfeJqfjUAdtMIn8vxWqJEMf35au6Em9kqPKPKmzsjfYd9aD6OBBdJ59il3G9qyLege3Gr2HHLQud1KPA2Maui+8HpYfaCip146Xb6PCcduHzBJn8PINiKf/K5ST81Fqbghaiw5/35WDrOL0qhdTmEpPQ1S+CoImV/t1xjEf+/H1X1u7Cuz5tgOTqrya0zieHBA9lJJWFf1jRpSdWMvKqGRwL4lneJO9SG+HEhBeHUPrIudp/j4vOBh/JrCBrQxSdDjypoaFUK67NKu5yhF8jNaS3vW85YaAYqWGJsjkCN/k+n8kSjletCXXzx1+Xc1ocuHFwYZn3P29ou/IUWRbM4=

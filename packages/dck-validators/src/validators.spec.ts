@@ -423,7 +423,6 @@ describe("Validators", () => {
   describe("regExpValidator", () => {
     it("should correctly validate positive integer value using /^\d+$/ regexp", (done) => {
       const positiveIntRegexpValidator = regexpValidator(/^\d+$/);
-
       const correctPositiveIntegerValue: string = "987654321";
       positiveIntRegexpValidator(correctPositiveIntegerValue).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
