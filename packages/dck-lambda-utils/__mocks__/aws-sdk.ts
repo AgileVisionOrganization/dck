@@ -93,23 +93,27 @@ export class CognitoIdentityServiceProvider{
     public adminUpdateUserAttributes(params: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesResponse) => void): any {
         if (this.checkUserPool(params, callback)) {
             const foundUsers = this.users.filter((user) => { return user.Username === params.Username });
-            if (foundUsers.length > 0) {
-                for (const attribute of params.UserAttributes) {
-                    if (foundUsers[0].Attributes.filter(existAttribute => {
-                        if (existAttribute.Name === attribute.Name) {
-                            existAttribute.Value = attribute.Value;
-                        }
-                        return existAttribute.Name === attribute.Name
-                    }).length === 0) {
-                        foundUsers[0].Attributes.push({
-                            Name: attribute.Name,
-                            Value: attribute.Value
-                        });
+            if (foundUsers.length === 0) {
+                callback(new AWSError(`User with username ${params.Username} is not found!`, "UserNotFoundException"), null);
+                return;
+            }
+
+            params.UserAttributes.map(attribute => {
+                const ExitstAttributes = foundUsers[0].Attributes.filter(existAttribute => { return existAttribute.Name !== attribute.Name });
+                if (ExitstAttributes.length > 0) {
+                    foundUsers[0].Attributes.push({
+                        Name: attribute.Name,
+                        Value: attribute.Value
+                    });
+                }
+                foundUsers[0].Attributes.map(existAttribute => {
+                    if (existAttribute.Name === attribute.Name) {
+                        existAttribute.Value === attribute.Value;
                     }
                 }
-                callback(null, {});
-            }
-            else callback(new AWSError(`User with username ${params.Username} is not found!`, "UserNotFoundException"), null);
+                );
+            })
+            callback(null, {});
         }
     }
     public adminDeleteUser(params: aws.CognitoIdentityServiceProvider.Types.AdminDeleteUserRequest, callback?: (err: Error, data: {}) => void): any {
