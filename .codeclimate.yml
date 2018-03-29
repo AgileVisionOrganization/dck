@@ -5,3 +5,15 @@ checks:
   similar-code:
     config:
       threshold: 90
+  file-lines:
+    config:
+      threshold: 1000
+  method-lines:
+    config:
+      threshold: 200
+  complex-logic:
+    config:
+      threshold: 15
+  identical-code:
+    config:
+      threshold: 6
