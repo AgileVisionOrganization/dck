@@ -1,5 +1,5 @@
 
-
+jest.unmock('aws-sdk');
 import * as async from "async";
 import * as shortid from "shortid";
 import { DynamoDbDataSource } from "./";
