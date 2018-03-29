@@ -1,24 +1,38 @@
 import * as async from "async";
 import * as shortid from "shortid";
-import { config, DynamoDB } from "aws-sdk";
 import { DynamoDbDataSource } from "./";
 import { IDbEntity, IDckCallback } from "./BaseTypes";
+const AWS = require("aws-sdk");
 
-const REGION = process.env.AWS_REGION;
-const PARENT_TABLE =
-  process.env.AWS_TEST_PARENT_TABLE;
-const CHILD_TABLE =
-  process.env.AWS_TEST_CHILD_TABLE;
+const REGION = "us-east-1";
+const PARENT_TABLE = "PARENT_TABLE";
+const CHILD_TABLE = "CHILD_TABLE";
 const CHILD_TABLE_INDEX = "secondary_id-index";
 const CHILD_TABLE_INDEX_WITH_RANGE = "parent_id-secondary_id-index";
 
 const PARENT_HASH_KEY = "id";
 const CHILD_HASH_KEY = "parent_id";
 const CHILD_RANGE_KEY = "id";
+
 const CHILD_SECONDARY_HASH_KEY = "secondary_id";
 
-config.region = REGION;
-const dynamo = new DynamoDB.DocumentClient();
+
+AWS.config.region = REGION;
+
+const dynamodb = new AWS.DynamoDB(
+    {
+        endpoint: new AWS.Endpoint('http://localhost:8000'),
+        region: "us-east-1",
+        credentials: {
+            key:'fake-key',
+            secret: 'fake-secret',
+            accessKeyId: "fake-accessKeyId",
+            secretAccessKey: "fake-secretAccessKey",
+        }
+    }
+);
+
+const dynamo = new AWS.DynamoDB.DocumentClient({service: dynamodb});
 const dataSource = new DynamoDbDataSource(dynamo);
 
 const createEntity = (
@@ -35,8 +49,14 @@ const createEntity = (
   };
 };
 
+let testEntities: Array<IDbEntity> = [];
+
 const ParentEntity = createEntity(PARENT_TABLE, PARENT_HASH_KEY);
+testEntities = testEntities.concat(ParentEntity);
+
 const ChildEntity = createEntity(CHILD_TABLE, CHILD_HASH_KEY, CHILD_RANGE_KEY);
+testEntities = testEntities.concat(ChildEntity);
+
 const BrokenEntity = createEntity(
   "NONEXISTINGTABLE",
   CHILD_HASH_KEY,
@@ -44,53 +64,152 @@ const BrokenEntity = createEntity(
 );
 
 const ChildEntityWithIndex = createEntity(
-  CHILD_TABLE,
-  "secondary_id",
+  `${CHILD_TABLE}withIndex`,
+  CHILD_SECONDARY_HASH_KEY,
   null,
   CHILD_TABLE_INDEX,
 );
+
 const ChildEntityWithRangeIndex = createEntity(
-  CHILD_TABLE,
-  "parent_id",
-  "secondary_id",
+  `${CHILD_TABLE}withRangeIndex`,
+  CHILD_HASH_KEY,
+  CHILD_SECONDARY_HASH_KEY,
   CHILD_TABLE_INDEX_WITH_RANGE,
 );
 const ChildEntityWithNonExistingIndex = createEntity(
-  CHILD_TABLE,
-  "id",
+  `${CHILD_TABLE}withOutIndex`,
+  CHILD_RANGE_KEY,
   null,
   "NONEXISTING",
 );
+testEntities = testEntities.concat(ChildEntityWithIndex, ChildEntityWithRangeIndex, ChildEntityWithNonExistingIndex);
+
+
+
+const createDynamoDbEntity = (dbEntity: IDbEntity) => {
+
+  const tableName = dbEntity.getDatabaseTableName(),
+        hash = dbEntity.getHashKey(),
+        range = dbEntity.getRangeKey();
+  let index = dbEntity.getIndex();
+
+  const hashKeySchema = { AttributeName: hash, KeyType: "HASH" };
+
+  let tableParams: any = {
+    TableName : tableName,
+    KeySchema: [
+        hashKeySchema
+    ],
+    AttributeDefinitions: [
+        { AttributeName: hash, AttributeType: "S" },
+    ],
+    ProvisionedThroughput: {
+        ReadCapacityUnits: 10,
+        WriteCapacityUnits: 10
+    }
+  };
+
+  let rangeKeySchema = null;
+
+  if (range) {
+      rangeKeySchema = { AttributeName: range, KeyType: "Range" };
+      tableParams.KeySchema = tableParams.KeySchema.concat(rangeKeySchema);
+      tableParams.AttributeDefinitions = tableParams.AttributeDefinitions.concat(
+        { AttributeName: range, AttributeType: "S" }
+      )
+  }
+
+  if (index) {
+    let secondaryIndexKeySchema: any[] = [];
+
+    if (hash) {
+        secondaryIndexKeySchema = secondaryIndexKeySchema.concat(hashKeySchema);
+    }
+    if (range) {
+        secondaryIndexKeySchema = secondaryIndexKeySchema.concat(rangeKeySchema);
+    }
+
+    tableParams.GlobalSecondaryIndexes = [
+        {
+          IndexName: index,
+          KeySchema: secondaryIndexKeySchema,
+          Projection: {
+            ProjectionType: "ALL"
+          },
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 10,
+            WriteCapacityUnits: 10
+          }
+        }
+    ];
+  }
+
+  return new Promise((resolve, reject) => {
+      dynamodb.createTable(tableParams, function(err: any, data: any) { err ? reject(err) : resolve(data) });
+  });
+};
+
+let consoleError = console.error;
 
 describe("DynamoDbDataSource Tests", () => {
-  beforeEach((done: (err: any) => void) => {
-    dynamo.put(
-      {
-        TableName: PARENT_TABLE,
-        Item: {
-          id: "TEST_PARENT",
-          field1: "A",
-          field2: ["a", "b", "c"],
-          field3: { nested_field: "nested value" },
-        },
-      },
-      () => {
+
+
+  beforeEach((done) => {
+    console.error = jest.fn((error) => {});
+
+    const testEntitiesCreations = testEntities.map(e => createDynamoDbEntity(e));
+
+    Promise.all([...testEntitiesCreations]).then((result) => {
         dynamo.put(
           {
-            TableName: CHILD_TABLE,
+            TableName: PARENT_TABLE,
             Item: {
-              parent_id: "TEST_PARENT",
-              id: "TEST_CHILD",
-              field1: "C",
-              field2: "B",
-              field3: [1, 2, 3, 10],
-              secondary_id: "TEST_CHILD_SEC",
+              id: "TEST_PARENT",
+              field1: "A",
+              field2: ["a", "b", "c"],
+              field3: { nested_field: "nested value" },
             },
           },
-          done,
+          () => {
+              const testData: any = {
+                Item: {
+                  parent_id: "TEST_PARENT",
+                  id: "TEST_CHILD",
+                  field1: "C",
+                  field2: "B",
+                  field3: [1, 2, 3, 10],
+                  secondary_id: "TEST_CHILD_SEC",
+                }
+              };
+
+              const testEntitiesDataInsertions = testEntities.map((dbEntity : IDbEntity) => {
+                  testData.TableName = dbEntity.getDatabaseTableName();
+                  return new Promise((resolve, reject) => {
+                       dynamo.put(testData, (err: any, data: any) => { err ? reject(err) : resolve(data)})
+                  })
+              });
+
+              Promise.all(testEntitiesDataInsertions).then(results => done()).catch(error => done(error));
+          }
         );
-      },
-    );
+    }).catch(error => done(error));
+  });
+
+  afterEach(() => {
+      console.error = consoleError;
+
+      const testEntitiesDeletions = testEntities.map(e => {
+          return new Promise((resolve, reject) => {
+              dynamodb.deleteTable({TableName : e.getDatabaseTableName()}, function(err: any, data:any) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(data)
+                }
+              });
+          })
+      });
+      return Promise.all(testEntitiesDeletions)
   });
 
   describe("getMultipleItems", () => {
@@ -236,6 +355,7 @@ describe("DynamoDbDataSource Tests", () => {
     it("should fail on a non-existing index ", (done: () => void) => {
       const scanSpy = (dataSource.scanItems = jest.fn(dataSource.scanItems));
       const querySpy = (dataSource.queryItems = jest.fn(dataSource.queryItems));
+      ChildEntityWithNonExistingIndex.getIndex = () => "NOTEXISTINGINDEX";
       dataSource.getItems(
         ChildEntityWithNonExistingIndex,
         {},
@@ -295,6 +415,7 @@ describe("DynamoDbDataSource Tests", () => {
       );
     });
     it("should fail when trying to get an item from a non-existing index", (done) => {
+      ChildEntityWithNonExistingIndex.getIndex = () => "NOINDEX";
       dataSource.getItem(
         ChildEntityWithNonExistingIndex,
         { query: { id: "test" } },
