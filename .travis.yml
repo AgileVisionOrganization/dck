@@ -3,11 +3,15 @@ node_js:
 - '8'
 before_install:
 - echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+- wget https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.zip
+- unzip -u dynamodb_local_latest.zip
 - chmod +x npm-publish.sh
 install:
 - npm install lerna
 - npm install underscore-cli
 - lerna bootstrap
+before_script:
+- java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory &
 script:
 - lerna run test
 - lerna exec ../../npm-publish.sh
