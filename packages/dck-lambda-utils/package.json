@@ -25,6 +25,7 @@
     "faker": "^4.1.0",
     "jest": "^21.1.0",
     "jest-junit-reporter": "^1.1.0",
+    "npm-run-all": "^4.1.2",
     "ts-jest": "^21.1.4",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
@@ -36,9 +37,12 @@
   },
   "scripts": {
     "build": "webpack --env build",
-    "test": "jest --config jest.config.json",
+    "test": "npm-run-all -s install-dynamo-localdb -p -r start-dynamo-localdb run-jest-tests",
+    "run-jest-tests": "jest --config jest.config.json",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "install-dynamo-localdb": "./install_dynamodb_local.sh",
+    "start-dynamo-localdb": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118"
   }
 }
