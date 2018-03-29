@@ -27,32 +27,19 @@ export class CognitoIdentityServiceProvider{
                 Precedence: 1
                }
            ]
-        },
-        { 
-         Attributes: [ 
-            { 
-               Name: "custom:team_id",
-               Value: "2"
-            }
-         ],
-         Enabled: true,
-         Username: "EXISTINGITEM2",
-         UserStatus: "CONFIRMED",
-         Groups: [
-             {
-              GroupName: "Users",
-              Precedence: 2
-             }
-         ]
-      }
+        }
      ]
-    public listUsers(params: aws.CognitoIdentityServiceProvider.Types.ListUsersRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.ListUsersResponse) => void): any
+    private checkUserPool(params, callback) : boolean
     {
         if(params.UserPoolId!=="COGNITO_USER_POOL"){
             callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
+            return false;
         }
-        else
-        {
+        return true;
+    }
+    public listUsers(params: aws.CognitoIdentityServiceProvider.Types.ListUsersRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.ListUsersResponse) => void): any
+    {
+        if(this.checkUserPool(params, callback)){
             callback(null, {
                 PaginationToken: "1",
                 Users: this.users
@@ -61,10 +48,8 @@ export class CognitoIdentityServiceProvider{
     }
     public adminListGroupsForUser(params: aws.CognitoIdentityServiceProvider.Types.AdminListGroupsForUserRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminListGroupsForUserResponse) => void): any
     {
-        if(params.UserPoolId!=="COGNITO_USER_POOL"){
-            callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
-        }
-        else{
+        if(this.checkUserPool(params, callback))
+        {
             const existUsersResult = this.users.filter(user => { return user.Username===params.Username  })
             if(existUsersResult.length>0){
                 callback(null, {Groups: existUsersResult[0].Groups});
@@ -72,52 +57,41 @@ export class CognitoIdentityServiceProvider{
             else callback(new AWSError(`User with username ${params.Username} is not found!`, "UserNotFoundException"), null);
         }
     }
-    public adminGetUser(params: aws.CognitoIdentityServiceProvider.Types.AdminGetUserRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminGetUserResponse) => void): any
-    {
-        if(params.UserPoolId!=="COGNITO_USER_POOL"){
-            callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
-        }
-        else if(!params.Username){
+    public adminGetUser(params: aws.CognitoIdentityServiceProvider.Types.AdminGetUserRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminGetUserResponse) => void): any {
+        if (!params.Username) {
             callback(new AWSError("Username must be not empty", "InvalidParameterValue"), null);
         }
-        else{
+        else if (this.checkUserPool(params, callback)) {
             const foundUsers = this.users.filter((user) => { return user.Username === params.Username });
-            if(foundUsers.length>0){
-                callback(null, Object.assign(foundUsers[0], {UserAttributes: foundUsers[0].Attributes}));
+            if (foundUsers.length > 0) {
+                callback(null, Object.assign(foundUsers[0], { UserAttributes: foundUsers[0].Attributes }));
             }
             else callback(new AWSError(`User with username ${params.Username} is not found!`, "UserNotFoundException"), null);
         }
     }
-    public adminCreateUser(params: aws.CognitoIdentityServiceProvider.Types.AdminCreateUserRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminCreateUserResponse) => void): any
-    {
-        if(params.UserPoolId!=="COGNITO_USER_POOL"){
-            callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
-        }
-        else if(!params.Username){
+    public adminCreateUser(params: aws.CognitoIdentityServiceProvider.Types.AdminCreateUserRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminCreateUserResponse) => void): any {
+        if (!params.Username) {
             callback(new AWSError("Username must be not empty", "InvalidParameterValue"), null);
         }
-        else if (this.users.filter((user) => { return user.Username === params.Username }).length>0)
-        {
-            callback(new AWSError(`User with username ${params.Username} already extist!`, "InvalidParameterValue"), null);
-        }
-        else {
-            const newUser = {
-                Username: params.Username,
-                Attributes: params.UserAttributes.map(attribute => { return {Name: attribute.Name, Value: attribute.Value} }),
-                Enabled: true,
-                UserStatus: "CONFIRMED",
-                Groups: []
-            };
-            this.users.push(newUser);
-            callback(null, {User:newUser});
+        else if (this.checkUserPool(params, callback)) {
+            if (this.users.filter((user) => { return user.Username === params.Username }).length > 0) {
+                callback(new AWSError(`User with username ${params.Username} already extist!`, "InvalidParameterValue"), null);
+            }
+            else {
+                const newUser = {
+                    Username: params.Username,
+                    Attributes: params.UserAttributes.map(attribute => { return { Name: attribute.Name, Value: attribute.Value } }),
+                    Enabled: true,
+                    UserStatus: "CONFIRMED",
+                    Groups: []
+                };
+                this.users.push(newUser);
+                callback(null, { User: newUser });
+            }
         }
     }
-    public adminUpdateUserAttributes(params: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesResponse) => void): any
-    {
-        if(params.UserPoolId!=="COGNITO_USER_POOL"){
-            callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
-        }
-        else{
+    public adminUpdateUserAttributes(params: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesRequest, callback?: (err: Error, data: aws.CognitoIdentityServiceProvider.Types.AdminUpdateUserAttributesResponse) => void): any {
+        if (this.checkUserPool(params, callback)) {
             const foundUsers = this.users.filter((user) => { return user.Username === params.Username });
             if (foundUsers.length > 0) {
                 for (const attribute of params.UserAttributes) {
@@ -139,16 +113,12 @@ export class CognitoIdentityServiceProvider{
         }
     }
     public adminDeleteUser(params: aws.CognitoIdentityServiceProvider.Types.AdminDeleteUserRequest, callback?: (err: Error, data: {}) => void): any {
-        if(params.UserPoolId!=="COGNITO_USER_POOL"){
-            callback(new AWSError("Resource not found", "InvalidParameterValue"), null);
-        }
-        else{
+        if (this.checkUserPool(params, callback)) {
             const newUsers = this.users.filter((user) => { return user.Username !== params.Username; });
-            if (newUsers.length  === this.users.length) {
-               
+            if (newUsers.length === this.users.length) {
                 callback(new AWSError(`User with username ${params.Username} is not found!`, "UserNotFoundException"), null);
             }
-            else{ this.users = newUsers; callback(null, {}); }
+            else { this.users = newUsers; callback(null, {}); }
         }
     }
 
