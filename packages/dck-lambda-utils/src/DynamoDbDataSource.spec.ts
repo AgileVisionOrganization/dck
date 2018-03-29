@@ -149,11 +149,14 @@ const createDynamoDbEntity = (dbEntity: IDbEntity) => {
   });
 };
 
+let consoleError = console.error;
 
 describe("DynamoDbDataSource Tests", () => {
 
 
   beforeEach((done) => {
+    console.error = jest.fn((error) => {});
+
     const testEntitiesCreations = testEntities.map(e => createDynamoDbEntity(e));
 
     Promise.all([...testEntitiesCreations]).then((result) => {
@@ -193,6 +196,8 @@ describe("DynamoDbDataSource Tests", () => {
   });
 
   afterEach(() => {
+      console.error = consoleError;
+
       const testEntitiesDeletions = testEntities.map(e => {
           return new Promise((resolve, reject) => {
               dynamodb.deleteTable({TableName : e.getDatabaseTableName()}, function(err: any, data:any) {
