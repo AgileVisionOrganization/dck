@@ -37,7 +37,8 @@
   },
   "scripts": {
     "build": "webpack --env build",
-    "test": "npm-run-all -s install-dynamo-localdb -p -r start-dynamo-localdb run-jest-tests",
+    "test": "run-jest-tests",
+    "local-test": "npm-run-all -s install-dynamo-localdb -p -r start-dynamo-localdb run-jest-tests",
     "run-jest-tests": "jest --config jest.config.json",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
