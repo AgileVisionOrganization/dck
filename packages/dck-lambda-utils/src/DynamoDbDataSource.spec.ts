@@ -1,3 +1,6 @@
+
+jest.unmock('aws-sdk');
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 300000
 import * as async from "async";
 import * as shortid from "shortid";
 import { DynamoDbDataSource } from "./";

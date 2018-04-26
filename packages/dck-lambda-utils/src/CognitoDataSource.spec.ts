@@ -1,15 +1,11 @@
 import * as async from "async";
 import * as shortid from "shortid";
-import {config, CognitoIdentityServiceProvider} from "aws-sdk";
+import {CognitoIdentityServiceProvider} from "aws-sdk";
 import {CognitoDataSource} from "./";
 import {IDbEntity, IDckCallback} from "./BaseTypes";
 import * as slug from "slug";
 import {fromCognitoGetUser} from "./utils";
 
-const REGION = process.env.AWS_REGION;
-const COGNITO_USER_POOL = process.env.COGNITO_USER_POOL;
-
-config.region = REGION;
 const idp = new CognitoIdentityServiceProvider();
 const dataSource = new CognitoDataSource(idp);
 
@@ -22,7 +18,7 @@ const createEntity = (tableName: string, hash: string, range?: string, index?: s
     };
 };
 
-const UserEntity = createEntity(COGNITO_USER_POOL, "Username", "custom:team_id");
+const UserEntity = createEntity("COGNITO_USER_POOL", "Username", "custom:team_id");
 const BrokenEntity = createEntity("NONEXISTINGPOOL", "Username", "custom:team_id");
 
 describe("CognitoDataSource Tests", () => {
@@ -35,7 +31,6 @@ describe("CognitoDataSource Tests", () => {
 
         it("should work correctly",
             (done: () => void) => {
-
                 dataSource.getItems(UserEntity, {
                     query: {},
                 }, (error: Error, data: any) => {
