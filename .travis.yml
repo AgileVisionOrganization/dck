@@ -7,8 +7,8 @@ before_install:
 - unzip -u dynamodb_local_latest.zip
 - chmod +x npm-publish.sh
 install:
-- npm install lerna -g
-- npm install underscore-cli -g
+- npm install lerna
+- npm install underscore-cli
 - lerna bootstrap
 before_script:
 - java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118 &
