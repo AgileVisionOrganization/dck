@@ -19,7 +19,16 @@ export type FieldInputType =
   | "datepicker"
   | "select";
 
-export interface IFieldGroupProps {
+export const InputTypes = Object.freeze({
+  text: "text",
+  password: "password",
+  email: "email",
+  checkbox: "checkbox",
+  datepicker: "datepicker",
+  select: "select",
+});
+
+export interface IFieldGroupInputProps {
   type?: FieldInputType;
   placeholder?: string;
   id?: string;
@@ -29,8 +38,9 @@ export interface IFieldGroupProps {
   validationMessage?: string;
   onFocus?: () => void;
   onChange?: (e: any) => void;
+}
 
-  // select properties
+export interface IFieldGroupSelectProps {
   selectClass?: string;
   value?: any;
   arrowIconUp?: string;
@@ -43,12 +53,15 @@ export interface IFieldGroupProps {
   selectValues: any[];
 }
 
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps {}
+
 export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
     type: "text",
     selectClass: "select-class",
     clearable: false,
     multi: false,
+    searchable: false,
     arrowIconUp: "angle-up",
     arrowIconDown: "angle-down",
     arrowContainerClass: "arrow-container",
@@ -92,10 +105,10 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   private getCurrentRender() {
     let render = null;
     switch (this.props.type) {
-      case "checkbox":
+      case InputTypes.checkbox:
         render = this.renderCheckBox();
         break;
-      case "select":
+      case InputTypes.select:
         render = this.renderSelect();
         break;
       default:
