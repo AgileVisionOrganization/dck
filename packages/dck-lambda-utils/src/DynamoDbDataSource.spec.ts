@@ -24,7 +24,7 @@ AWS.config.region = REGION;
 
 const dynamodb = new AWS.DynamoDB(
     {
-        endpoint: new AWS.Endpoint('http://localhost:8000'),
+        endpoint: new AWS.Endpoint('http://localhost:8118'),
         region: "us-east-1",
         credentials: {
             key:'fake-key',

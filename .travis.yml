@@ -11,7 +11,7 @@ install:
 - npm install underscore-cli
 - lerna bootstrap
 before_script:
-- java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory &
+- java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118 &
 script:
 - lerna run test
 - lerna exec ../../npm-publish.sh
