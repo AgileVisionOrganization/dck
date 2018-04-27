@@ -5,4 +5,5 @@ export * from "./components/ProgressOverlay";
 export * from "./components/InternalPage";
 export * from "./components/ExternalPage";
 export * from "./components/FieldGroup";
+export * from "./components/Select";
 export * from "./utils";
