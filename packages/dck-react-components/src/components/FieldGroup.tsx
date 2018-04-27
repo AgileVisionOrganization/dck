@@ -1,16 +1,25 @@
 import * as React from "react";
-import * as ControlLabel from "react-bootstrap/lib/ControlLabel";
-import * as FormControl from "react-bootstrap/lib/FormControl";
-import * as Checkbox from "react-bootstrap/lib/Checkbox";
-import * as FormGroup from "react-bootstrap/lib/FormGroup";
-import * as HelpBlock from "react-bootstrap/lib/HelpBlock";
-import * as InputGroup from "react-bootstrap/lib/InputGroup";
+import {
+  ControlLabel,
+  FormControl,
+  Checkbox,
+  FormGroup,
+  HelpBlock,
+  InputGroup,
+} from "react-bootstrap";
 import * as FontAwesome from "react-fontawesome";
 import * as DateTime from "react-datetime";
+import Select from "react-select";
 
-export type FieldInputType = "text" | "password" | "email" | "checkbox" | "datepicker";
+export type FieldInputType =
+  | "text"
+  | "password"
+  | "email"
+  | "checkbox"
+  | "datepicker"
+  | "select";
 
-export interface FieldGroupProps {
+export interface IFieldGroupProps {
   type?: FieldInputType;
   placeholder?: string;
   id?: string;
@@ -20,12 +29,29 @@ export interface FieldGroupProps {
   validationMessage?: string;
   onFocus?: () => void;
   onChange?: (e: any) => void;
+
+  // select properties
+  selectClass?: string;
   value?: any;
+  arrowIconUp?: string;
+  arrowIconDown?: string;
+  arrowsSize?: FontAwesome.FontAwesomeSize;
+  arrowContainerClass?: string;
+  clearable?: boolean;
+  searchable?: boolean;
+  multi?: boolean;
+  selectValues: any[];
 }
 
-export class FieldGroup extends React.Component<FieldGroupProps, any> {
+export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
     type: "text",
+    selectClass: "select-class",
+    clearable: false,
+    multi: false,
+    arrowIconUp: "angle-up",
+    arrowIconDown: "angle-down",
+    arrowContainerClass: "arrow-container",
   };
 
   public getValidationState(validation: any) {
@@ -47,20 +73,7 @@ export class FieldGroup extends React.Component<FieldGroupProps, any> {
         validationState={this.getValidationState(this.props.validationState)}
       >
         <ControlLabel>{this.props.label}</ControlLabel>
-        {this.props.type === "checkbox"? 
-
-        <Checkbox value={this.props.value} onChange={this.props.onChange} /> :
-        
-        <FormControl
-          onFocus={this.props.onFocus}
-          onChange={this.props.onChange}
-          type={this.props.type}
-          placeholder={this.props.placeholder}
-          value={this.props.value}
-        />
-        }
-        
-        {" "}
+        {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
         {this.props.validationMessage &&
         this.props.validationState &&
@@ -73,6 +86,79 @@ export class FieldGroup extends React.Component<FieldGroupProps, any> {
           <HelpBlock>&nbsp;</HelpBlock>
         )}
       </FormGroup>
+    );
+  }
+
+  private getCurrentRender() {
+    let render = null;
+    switch (this.props.type) {
+      case "checkbox":
+        render = this.renderCheckBox();
+        break;
+      case "select":
+        render = this.renderSelect();
+        break;
+      default:
+        render = this.renderTextInput();
+        break;
+    }
+
+    return render;
+  }
+
+  private renderSelect() {
+    return (
+      <Select
+        className={this.props.selectClass}
+        placeholder={this.props.placeholder}
+        value={this.props.value}
+        clearable={this.props.clearable}
+        searchable={this.props.searchable}
+        multi={this.props.multi}
+        options={this.props.selectValues}
+        onChange={(event) => {
+          if (event) {
+            this.props.onChange(event);
+          }
+        }}
+        arrowRenderer={(action): JSX.Element => {
+          return (
+            <span className={this.props.arrowContainerClass}>
+              {action && action.isOpen ? (
+                <FontAwesome
+                  name={this.props.arrowIconUp}
+                  {...this.props.arrowsSize && {
+                    size: this.props.arrowsSize,
+                  }}
+                />
+              ) : (
+                <FontAwesome
+                  name={this.props.arrowIconDown}
+                  {...this.props.arrowsSize && {
+                    size: this.props.arrowsSize,
+                  }}
+                />
+              )}
+            </span>
+          );
+        }}
+      />
+    );
+  }
+
+  private renderCheckBox() {
+    return <Checkbox value={this.props.value} onChange={this.props.onChange} />;
+  }
+
+  private renderTextInput() {
+    return (
+      <FormControl
+        onFocus={this.props.onFocus}
+        onChange={this.props.onChange}
+        type={this.props.type}
+        placeholder={this.props.placeholder}
+        value={this.props.value}
+      />
     );
   }
 }
