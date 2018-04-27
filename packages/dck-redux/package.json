@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.5",
+    "@types/pluralize": "0.0.28",
     "@types/redux-immutable": "^3.0.38",
     "@types/reselect": "^2.2.0",
     "awesome-typescript-loader": "^3.2.3",
@@ -54,5 +55,8 @@
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "lint:watch": "esw -w lib/**/*.ts",
     "prepublish": "npm run lint && npm run build"
+  },
+  "dependencies": {
+    "pluralize": "^7.0.0"
   }
 }
