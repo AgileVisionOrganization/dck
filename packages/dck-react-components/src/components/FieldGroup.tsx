@@ -8,24 +8,29 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import * as FontAwesome from "react-fontawesome";
-import * as DateTime from "react-datetime";
+import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
+import "../../node_modules/react-datetime/css/react-datetime.css";
 
 export type FieldInputType =
   | "text"
   | "password"
   | "email"
   | "checkbox"
+  | "select"
+  | "datetimepicker"
   | "datepicker"
-  | "select";
+  | "timepicker";
 
 export const InputTypes = Object.freeze({
   text: "text",
   password: "password",
   email: "email",
   checkbox: "checkbox",
-  datepicker: "datepicker",
   select: "select",
+  datetimepicker: "datetimepicker",
+  datepicker: "datepicker",
+  timepicker: "timepicker",
 });
 
 export interface IFieldGroupInputProps {
@@ -53,7 +58,27 @@ export interface IFieldGroupSelectProps {
   selectValues: any[];
 }
 
-export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps {}
+export interface IFieldGroupDateTimeProps {
+  dateTimeClass?: string;
+
+  dateFormat?: boolean | string;
+  timeFormat?: boolean | string;
+  input?: boolean;
+  open?: boolean;
+  locale?: string;
+  utc?: boolean;
+  onBlur?: (e: any) => void;
+  inputProps?: object;
+  strictParsing?: boolean;
+  closeOnSelect?: boolean;
+  closeOnTab?: boolean;
+  disableOnClickOutside?: boolean;
+}
+
+export interface IFieldGroupProps
+  extends IFieldGroupInputProps,
+    IFieldGroupSelectProps,
+    IFieldGroupDateTimeProps {}
 
 export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
@@ -65,6 +90,13 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     arrowIconUp: "angle-up",
     arrowIconDown: "angle-down",
     arrowContainerClass: "arrow-container",
+    dateTimeClass: "date-time-class",
+    closeOnSelect: true,
+    disableOnClickOutside: false,
+    open: false,
+    input: true,
+    defaultValue: new Date(),
+    selectValues: [] as any[],
   };
 
   public getValidationState(validation: any) {
@@ -110,6 +142,14 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         break;
       case InputTypes.select:
         render = this.renderSelect();
+      case InputTypes.datetimepicker:
+        render = this.renderDateTimePicker();
+        break;
+      case InputTypes.datepicker:
+        render = this.renderDatePicker();
+        break;
+      case InputTypes.timepicker:
+        render = this.renderTimePicker();
         break;
       default:
         render = this.renderTextInput();
@@ -156,6 +196,40 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
           );
         }}
       />
+    );
+  }
+
+  private renderDateTimePicker() {
+    return (
+      <div className={this.props.dateTimeClass}>
+        <ReactDatetime {...this.props} />
+      </div>
+    );
+  }
+
+  private renderDatePicker() {
+    const { dateFormat, timeFormat, ...otherProps } = this.props;
+    return (
+      <div className={this.props.dateTimeClass}>
+        <ReactDatetime
+          dateFormat={dateFormat ? dateFormat : true}
+          timeFormat={false}
+          {...otherProps}
+        />
+      </div>
+    );
+  }
+
+  private renderTimePicker() {
+    const { dateFormat, timeFormat, ...otherProps } = this.props;
+    return (
+      <div className={this.props.dateTimeClass}>
+        <ReactDatetime
+          dateFormat={false}
+          timeFormat={timeFormat ? timeFormat : true}
+          {...otherProps}
+        />
+      </div>
     );
   }
 

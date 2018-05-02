@@ -15,6 +15,7 @@ export function initField(
   validator: (value: string) => Promise<IValidationResult>,
   existingRecord?: boolean,
   isCheckbox?: boolean,
+  isDateTimePiker?: boolean
 ) {
   const field: any = {};
 
@@ -22,13 +23,13 @@ export function initField(
     onChange: (e: React.FormEvent<HTMLInputElement>) => {
 
       const updatedField = { ...that.state[name] };
-      updatedField.value = isCheckbox ? e.currentTarget.checked : e.currentTarget.value;
+      updatedField.value = isCheckbox ? e.currentTarget.checked : isDateTimePiker ? e : e.currentTarget.value;
 
       const newState: any = {};
       newState[name] = updatedField;
       that.setState(newState);
 
-      validator(e.currentTarget.value).then((result) => {
+      validator(updatedField.value).then((result) => {
         const fieldState = that.state[name];
         fieldState.validation = result;
         const updatedState: any = {};
