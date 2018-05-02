@@ -13,7 +13,7 @@ describe("FieldGroup tests", () => {
   });
   it("Select type", () => {
     const component = TestRenderer.create(
-      <FieldGroup type={InputTypes.select} />,
+      <FieldGroup type="select" selectValues={[]} />,
     ).getInstance();
     expect(component.props.type).toEqual(InputTypes.select);
   });
