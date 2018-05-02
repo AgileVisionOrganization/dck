@@ -1,27 +1,22 @@
 import * as React from "react";
-import * as TestRenderer from "react-test-renderer";
-import * as Enzyme from "enzyme";
 import * as Adapter from "enzyme-adapter-react-15";
-import { mount } from "enzyme";
+import { mount, configure } from "enzyme";
 import { FieldGroup, InputTypes, FieldInputType } from "./FieldGroup";
 import * as ReactDatetime from "react-datetime";
 
-Enzyme.configure({ adapter: new Adapter() });
-
+configure({ adapter: new Adapter() });
 describe("FieldGroup tests", () => {
   it("Test mount", () => {
-    const component = TestRenderer.create(<FieldGroup />);
+    const component = mount(<FieldGroup />);
     expect(component).toBeTruthy();
   });
   it("Default type", () => {
-    const component = TestRenderer.create(<FieldGroup />).getInstance();
-    expect(component.props.type).toEqual(InputTypes.text);
+    const component = mount(<FieldGroup />);
+    expect(component.first().props().type).toEqual(InputTypes.text);
   });
   it("Select type", () => {
-    const component = TestRenderer.create(
-      <FieldGroup type="select" selectValues={[]} />,
-    ).getInstance();
-    expect(component.props.type).toEqual(InputTypes.select);
+    const component = mount(<FieldGroup type="select" selectValues={[]} />);
+    expect(component.first().props().type).toEqual(InputTypes.select);
   });
 
   it("DateTimePicker type", () => {

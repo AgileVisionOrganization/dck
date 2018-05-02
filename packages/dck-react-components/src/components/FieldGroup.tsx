@@ -55,7 +55,7 @@ export interface IFieldGroupSelectProps {
   clearable?: boolean;
   searchable?: boolean;
   multi?: boolean;
-  selectValues: any[];
+  selectValues?: any[];
 }
 
 export interface IFieldGroupDateTimeProps {
