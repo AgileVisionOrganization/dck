@@ -53,12 +53,14 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
   }
 
    componentWillReceiveProps(nextProps:any){
-    const newShowState = nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed ? false : nextProps.show 
+     if(nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed ){
+       this.props.onAsyncOperationSuccess();
+     }
+    const newShowState = nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed ? false : nextProps.show;
     this.setState({
         show: newShowState,
         isAsyncProcessed: false
-    }
-    );
+    });
   }
 
   public render() {
