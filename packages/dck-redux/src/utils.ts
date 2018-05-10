@@ -4,7 +4,11 @@ import { selectAllItems, selectActiveItem, selectProcessFailed, selectProcessSuc
 import { DckActionCreators } from "./actions";
 
 function capitalizeFirstLetter(s: string) {
-  return s.charAt(0).toUpperCase() + s.toLocaleLowerCase().slice(1);
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function lowercaseFirstLetter(s: string) {
+    return s.charAt(0).toLocaleLowerCase() + s.slice(1);
 }
 
 
@@ -21,10 +25,10 @@ export function createReducer(initialState: any, handlers: any) {
 
 export function stateToPropsMappingsForItem(state: any, itemType: string) {
   
-  const pluralLowercase = plural(itemType).toLocaleLowerCase();
+  const pluralLowercase = lowercaseFirstLetter(plural(itemType));
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
-  const singularLowercase = itemType.toLowerCase();
+  const singularLowercase = lowercaseFirstLetter(itemType);
 
   const loadProcessName = `${itemType.toUpperCase}_LOAD`;
   const addProcessName = `${itemType.toUpperCase}_ADD`;
@@ -33,7 +37,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   
 
 
-  let mappings : any = {};
+  const mappings : any = {};
   mappings[pluralLowercase] = selectAllItems(state, itemType);
   mappings[`current${singularCapitalized}`] = selectActiveItem(state, itemType);
   
@@ -47,7 +51,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
 
   mappings[`${singularLowercase}Updating`] = selectProcessRunning(state, updateProcessName);
   mappings[`${singularLowercase}UpdateFailed`] = selectProcessFailed(state, updateProcessName);
-  mappings[`${singularLowercase}UpdateSucess`] = selectProcessSuccess(state, updateProcessName);
+  mappings[`${singularLowercase}UpdateSuccess`] = selectProcessSuccess(state, updateProcessName);
 
   mappings[`${singularLowercase}Removing`] = selectProcessRunning(state, removeProcessName);
   mappings[`${singularLowercase}RemoveFailed`] = selectProcessFailed(state, removeProcessName);
@@ -61,13 +65,13 @@ export function dispatchToPropsMappingsForItem(dispatch: Function, itemType: str
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
   const singularLowercase = itemType.toLowerCase();
-  let mappings : any = {};
+  const mappings : any = {};
 
   mappings[`load${pluralCapitalized}`] = (filteringOptions: any) => dispatch(DckActionCreators.itemsLoad(itemType, filteringOptions));
   mappings[`add${singularCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemAdd(itemType, data));
   mappings[`update${singularCapitalized}`] = (id: any, data: any) => dispatch(DckActionCreators.itemSave(itemType, id, data));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemsRemove(itemType, [id]));
-  mappings[`remove${pluralCapitalized}`] = (ids: Array<any>) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
+  mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
   
 
   return mappings;
