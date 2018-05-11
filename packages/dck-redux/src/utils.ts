@@ -30,10 +30,10 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   const singularCapitalized = capitalizeFirstLetter(itemType);
   const singularLowercase = lowercaseFirstLetter(itemType);
 
-  const loadProcessName = `${itemType.toUpperCase}_LOAD`;
-  const addProcessName = `${itemType.toUpperCase}_ADD`;
-  const updateProcessName = `${itemType.toUpperCase}_UPDATE`;
-  const removeProcessName = `${itemType.toUpperCase}_REMOVE`;
+  const loadProcessName = `${itemType.toUpperCase()}_LOAD`;
+  const addProcessName = `${itemType.toUpperCase()}_ADD`;
+  const updateProcessName = `${itemType.toUpperCase()}_UPDATE`;
+  const removeProcessName = `${itemType.toUpperCase()}_REMOVE`;
   
 
 
@@ -60,7 +60,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   return mappings;
 }
 
-export function dispatchToPropsMappingsForItem(dispatch: Function, itemType: string) {
+export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) {
   const pluralLowercase = plural(itemType).toLocaleLowerCase();
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
@@ -70,7 +70,7 @@ export function dispatchToPropsMappingsForItem(dispatch: Function, itemType: str
   mappings[`load${pluralCapitalized}`] = (filteringOptions: any) => dispatch(DckActionCreators.itemsLoad(itemType, filteringOptions));
   mappings[`add${singularCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemAdd(itemType, data));
   mappings[`update${singularCapitalized}`] = (id: any, data: any) => dispatch(DckActionCreators.itemSave(itemType, id, data));
-  mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemsRemove(itemType, [id]));
+  mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
   
 
