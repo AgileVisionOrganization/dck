@@ -7,4 +7,4 @@ export const DckSelectors: any = Selectors;
 export const DckActionTypes: any = Types;
 export { createDckReducer } from "./reducers";
 
-export { stateToPropsMappingsForItem, dispatchToPropsMappingsForItem } from "./utils";
+export { stateToPropsMappingsForItem, dispatchToPropsMappingsForItem, getPropTypesForItem } from "./utils";

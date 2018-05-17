@@ -2,6 +2,7 @@ import { plural } from 'pluralize';
 
 import { selectAllItems, selectActiveItem, selectProcessFailed, selectProcessSuccess, selectProcessRunning, selectProcess } from './selectors';
 import { DckActionCreators } from "./actions";
+import * as PropTypes from "prop-types";
 
 function capitalizeFirstLetter(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -74,5 +75,39 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
   mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
   
 
+  return mappings;
+}
+
+export function getPropTypesForItem(itemType: string){
+  const pluralLowercase = lowercaseFirstLetter(plural(itemType));
+  const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
+  const singularCapitalized = capitalizeFirstLetter(itemType);
+  const singularLowercase = lowercaseFirstLetter(itemType);
+
+  const mappings : any = {};
+  mappings[pluralLowercase] = PropTypes.array;
+  mappings[`current${singularCapitalized}`] = PropTypes.object;
+  
+  mappings[`${pluralLowercase}Loading`] = PropTypes.bool;
+  mappings[`${pluralLowercase}LoadFailed`] = PropTypes.bool;
+  mappings[`${pluralLowercase}LoadSuccess`] = PropTypes.bool;
+
+  mappings[`${singularLowercase}Adding`] = PropTypes.bool;
+  mappings[`${singularLowercase}AddFailed`] = PropTypes.bool;
+  mappings[`${singularLowercase}AddSuccess`] = PropTypes.bool;
+
+  mappings[`${singularLowercase}Updating`] = PropTypes.bool;
+  mappings[`${singularLowercase}UpdateFailed`] = PropTypes.bool;
+  mappings[`${singularLowercase}UpdateSuccess`] = PropTypes.bool;
+
+  mappings[`${singularLowercase}Removing`] = PropTypes.bool;
+  mappings[`${singularLowercase}RemoveFailed`] = PropTypes.bool;
+  mappings[`${singularLowercase}RemoveSuccess`] = PropTypes.bool;
+
+  mappings[`load${pluralCapitalized}`] = PropTypes.func;
+  mappings[`add${singularCapitalized}`] = PropTypes.func;
+  mappings[`update${singularCapitalized}`] = PropTypes.func;
+  mappings[`remove${singularCapitalized}`] = PropTypes.func;
+  mappings[`remove${pluralCapitalized}`] = PropTypes.func;
   return mappings;
 }

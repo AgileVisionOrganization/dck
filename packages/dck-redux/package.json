@@ -57,6 +57,8 @@
     "prepublish": "npm run lint && npm run build"
   },
   "dependencies": {
-    "pluralize": "^7.0.0"
+    "@types/prop-types": "^15.5.2",
+    "pluralize": "^7.0.0",
+    "prop-types": "^15.6.1"
   }
 }
