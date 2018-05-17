@@ -104,10 +104,10 @@ export function getPropTypesForItem(itemType: string){
   mappings[`${singularLowercase}RemoveFailed`] = PropTypes.bool;
   mappings[`${singularLowercase}RemoveSuccess`] = PropTypes.bool;
 
-  mappings[`load${pluralCapitalized}`] = PropTypes.func;
-  mappings[`add${singularCapitalized}`] = PropTypes.func;
-  mappings[`update${singularCapitalized}`] = PropTypes.func;
-  mappings[`remove${singularCapitalized}`] = PropTypes.func;
-  mappings[`remove${pluralCapitalized}`] = PropTypes.func;
+  mappings[`load${pluralCapitalized}`] = PropTypes.any;
+  mappings[`add${singularCapitalized}`] = PropTypes.any;
+  mappings[`update${singularCapitalized}`] = PropTypes.any;
+  mappings[`remove${singularCapitalized}`] = PropTypes.any;
+  mappings[`remove${pluralCapitalized}`] = PropTypes.any;
   return mappings;
 }
