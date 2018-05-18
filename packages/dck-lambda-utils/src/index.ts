@@ -1,3 +1,7 @@
+/**
+ * @module dck-lambda-utils
+ */
+
 export * from "./BaseTypes";
 export * from "./DynamoDbDataSource";
 export * from "./CognitoDataSource";

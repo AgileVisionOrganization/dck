@@ -30,6 +30,7 @@
     "ts-jest": "^21.1.4",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.5.2",
     "webpack": "2.6.1",
     "webpack-dev-server": "2.5.0",
@@ -45,6 +46,7 @@
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "prepublish": "npm run build",
     "install-dynamo-localdb": "./install_dynamodb_local.sh",
-    "start-dynamo-localdb": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118"
+    "start-dynamo-localdb": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118",
+    "documentation": "typedoc --out doc/ --mode file --target ES2015 ./src/index.ts --readme ./README.md"
   }
 }

@@ -1,3 +1,7 @@
+/**
+ * @module dck-redux
+ */
+
 export { DckActionCreators } from "./actions";
 import * as Types from "./actions/types";
 

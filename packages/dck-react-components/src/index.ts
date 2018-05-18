@@ -1,3 +1,7 @@
+/**
+ * @module dck-react-components
+ */
+
 export * from "./components/SidebarItem";
 export * from "./components/Sidebar";
 export * from "./components/SearchField";
