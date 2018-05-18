@@ -47,6 +47,6 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "prepublish": "npm run lint && npm run build",
-    "documentation": "typedoc --out doc/ --mode file --target ES2015 ./src/index.ts --readme ./README.md"
+    "documentation": "typedoc --out doc/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Validators documentations\""
   }
 }
