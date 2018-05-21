@@ -11,6 +11,10 @@ export interface IValidationResult {
   empty?: boolean;
 }
 
+/**
+ * Any value will be valid result.
+ * @param {string} value input string
+ */
 export function anything(value: string) {
   return new Promise((resolve, reject) => {
     const empty = false;
@@ -19,6 +23,10 @@ export function anything(value: string) {
   });
 }
 
+/**
+ * Checks that input string contains email.
+ * @param {string} value input string
+ */
 export function email(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -33,6 +41,10 @@ export function email(value: string) {
   });
 }
 
+/**
+ * Password validation, the correct password should contain more than 6 letters.
+ * @param {string} value input string
+ */
 export function password(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -47,6 +59,10 @@ export function password(value: string) {
   });
 }
 
+/**
+ * Password confirmation validation, the confirm password should be the same as password.
+ * @param {any} passwordExtractor password extractor
+ */
 export function passwordConfirmation(passwordExtractor: () => string) {
   return (value: string) => {
     return new Promise((resolve, reject) => {
@@ -64,6 +80,10 @@ export function passwordConfirmation(passwordExtractor: () => string) {
   };
 }
 
+/**
+ * Validator for the required value, the result will be valid if the input string contains any value.
+ * @param {string} value input string
+ */
 export function requiredValue(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -78,6 +98,10 @@ export function requiredValue(value: string) {
   });
 }
 
+/**
+ * Date value validator, the result will be valid if the input string contains date.
+ * @param {string} value input string
+ */
 export function date(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -93,6 +117,10 @@ export function date(value: string) {
   });
 }
 
+/**
+ * Phone number validator, the result will be valid if the input string contains phone number.
+ * @param {string} value input string
+ */
 export function phoneNumber(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -110,6 +138,10 @@ export function phoneNumber(value: string) {
   });
 }
 
+/**
+ * Gender validator, the result will be valid if the input string contains gender(MALE or FEMALE).
+ * @param {string} value input string
+ */
 export function gender(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -125,6 +157,10 @@ export function gender(value: string) {
   });
 }
 
+/**
+ * Float validator, the result will be valid if the input string contains float value.
+ * @param {string} value input string
+ */
 export function float(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -146,6 +182,10 @@ function isFloat(n: any) {
   return parseFloat(n.match(/^-?\d*(\.\d+)?$/)) > 0;
 }
 
+/**
+ * Non empty validator, the result will be valid if the input string contains non empty.
+ * @param {string} value input string
+ */
 export function nonEmpty(value: string) {
   return new Promise((resolve, reject) => {
     let empty = false;
@@ -161,6 +201,10 @@ export function nonEmpty(value: string) {
   });
 }
 
+/**
+ * Regex validator, the result will be valid if the input string match with regex.
+ * @param {RegExp} regExp input regexp
+ */
 export function regexpValidator(regExp: RegExp) {
     return (value: string) => {
         return new Promise((resolve, reject) => {
@@ -177,6 +221,10 @@ export function regexpValidator(regExp: RegExp) {
     };
 }
 
+/**
+ * Server-side validation, input string will be checking on the server.
+ * @param {Promise<any>} requestGenerator server request
+ */
 export function serverSideValidator(requestGenerator: () => Promise<any>) {
   return new Promise((resolve, reject) => {
     requestGenerator()
