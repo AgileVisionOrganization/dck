@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IFieldGroupInputProps | DCK React Components documentation </title>
+	<title>ISidebarProps | DCK React Components documentation </title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ifieldgroupinputprops.html">IFieldGroupInputProps</a>
+					<a href="isidebarprops.html">ISidebarProps</a>
 				</li>
 			</ul>
-			<h1>Interface IFieldGroupInputProps</h1>
+			<h1>Interface ISidebarProps</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Props for field group component.</p>
+						<p>Sidebar component props.</p>
 					</div>
 				</div>
 			</section>
@@ -77,12 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IFieldGroupInputProps</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="ifieldgroupprops.html" class="tsd-signature-type">IFieldGroupProps</a>
-							</li>
-						</ul>
+						<span class="target">ISidebarProps</span>
 					</li>
 				</ul>
 			</section>
@@ -93,15 +88,11 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#help" class="tsd-kind-icon">help</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#label" class="tsd-kind-icon">label</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#onchange" class="tsd-kind-icon">on<wbr>Change</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#onfocus" class="tsd-kind-icon">on<wbr>Focus</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#placeholder" class="tsd-kind-icon">placeholder</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#validationmessage" class="tsd-kind-icon">validation<wbr>Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="ifieldgroupinputprops.html#validationstate" class="tsd-kind-icon">validation<wbr>State</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="isidebarprops.html#children" class="tsd-kind-icon">children</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="isidebarprops.html#containerclass" class="tsd-kind-icon">container<wbr>Class</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="isidebarprops.html#headercomponent" class="tsd-kind-icon">header<wbr>Component</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="isidebarprops.html#headercontainerclass" class="tsd-kind-icon">header<wbr>Container<wbr>Class</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="isidebarprops.html#itemscontainerclass" class="tsd-kind-icon">items<wbr>Container<wbr>Class</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,173 +101,77 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="help" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> help</h3>
-					<div class="tsd-signature tsd-kind-icon">help<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="children" class="tsd-anchor"></a>
+					<h3>children</h3>
+					<div class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">:</span> <a href="../classes/sidebaritem.html" class="tsd-signature-type">SidebarItem</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L69">components/FieldGroup.tsx:69</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/Sidebar.tsx#L32">components/Sidebar.tsx:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Help message.</p>
+							<p>Sidebar items.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="containerclass" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> container<wbr>Class</h3>
+					<div class="tsd-signature tsd-kind-icon">container<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L59">components/FieldGroup.tsx:59</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/Sidebar.tsx#L12">components/Sidebar.tsx:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Component id.</p>
+							<p>Sidebar container class.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="label" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> label</h3>
-					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="headercomponent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> header<wbr>Component</h3>
+					<div class="tsd-signature tsd-kind-icon">header<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Element</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L64">components/FieldGroup.tsx:64</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/Sidebar.tsx#L27">components/Sidebar.tsx:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Component label.</p>
+							<p>Sidebar header component.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="onchange" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Change</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="headercontainerclass" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> header<wbr>Container<wbr>Class</h3>
+					<div class="tsd-signature tsd-kind-icon">header<wbr>Container<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L89">components/FieldGroup.tsx:89</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/Sidebar.tsx#L17">components/Sidebar.tsx:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Function which call when component value changed.</p>
-						</div>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>e: <span class="tsd-signature-type">any</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="onfocus" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Focus</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Focus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L84">components/FieldGroup.tsx:84</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Function which call when component focused.</p>
-						</div>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="placeholder" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> placeholder</h3>
-					<div class="tsd-signature tsd-kind-icon">placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L54">components/FieldGroup.tsx:54</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Placeholder text.</p>
+							<p>Header container class.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="type" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../globals.html#fieldinputtype" class="tsd-signature-type">FieldInputType</a></div>
+					<a name="itemscontainerclass" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> items<wbr>Container<wbr>Class</h3>
+					<div class="tsd-signature tsd-kind-icon">items<wbr>Container<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L49">components/FieldGroup.tsx:49</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/Sidebar.tsx#L22">components/Sidebar.tsx:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Field group component type/</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="validationmessage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> validation<wbr>Message</h3>
-					<div class="tsd-signature tsd-kind-icon">validation<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L79">components/FieldGroup.tsx:79</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Validation message.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="validationstate" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> validation<wbr>State</h3>
-					<div class="tsd-signature tsd-kind-icon">validation<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/FieldGroup.tsx#L74">components/FieldGroup.tsx:74</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Validation state</p>
+							<p>Sidebar items container class.</p>
 						</div>
 					</div>
 				</section>
@@ -322,42 +217,9 @@
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="ifieldgroupdatetimeprops.html" class="tsd-kind-icon">IField<wbr>Group<wbr>Date<wbr>Time<wbr>Props</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-is-external">
+					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="ifieldgroupinputprops.html" class="tsd-kind-icon">IField<wbr>Group<wbr>Input<wbr>Props</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#help" class="tsd-kind-icon">help</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#label" class="tsd-kind-icon">label</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#onchange" class="tsd-kind-icon">on<wbr>Change</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#onfocus" class="tsd-kind-icon">on<wbr>Focus</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#placeholder" class="tsd-kind-icon">placeholder</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#validationmessage" class="tsd-kind-icon">validation<wbr>Message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="ifieldgroupinputprops.html#validationstate" class="tsd-kind-icon">validation<wbr>State</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="ifieldgroupprops.html" class="tsd-kind-icon">IField<wbr>Group<wbr>Props</a>
 					</li>
@@ -385,9 +247,30 @@
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="isidebaritemprops.html" class="tsd-kind-icon">ISidebar<wbr>Item<wbr>Props</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-is-external">
 						<a href="isidebarprops.html" class="tsd-kind-icon">ISidebar<wbr>Props</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="isidebarprops.html#children" class="tsd-kind-icon">children</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="isidebarprops.html#containerclass" class="tsd-kind-icon">container<wbr>Class</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="isidebarprops.html#headercomponent" class="tsd-kind-icon">header<wbr>Component</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="isidebarprops.html#headercontainerclass" class="tsd-kind-icon">header<wbr>Container<wbr>Class</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="isidebarprops.html#itemscontainerclass" class="tsd-kind-icon">items<wbr>Container<wbr>Class</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="internalpageprops.html" class="tsd-kind-icon">Internal<wbr>Page<wbr>Props</a>
 					</li>

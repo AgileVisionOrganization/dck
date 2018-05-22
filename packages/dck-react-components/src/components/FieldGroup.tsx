@@ -12,6 +12,9 @@ import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
 import "../../node_modules/react-datetime/css/react-datetime.css";
 
+/**
+ * Field group input types.
+ */
 export type FieldInputType =
   | "text"
   | "password"
@@ -22,6 +25,9 @@ export type FieldInputType =
   | "datepicker"
   | "timepicker";
 
+/**
+ * Field group input types map.
+ */
 export const InputTypes = Object.freeze({
   text: "text",
   password: "password",
@@ -33,53 +39,207 @@ export const InputTypes = Object.freeze({
   timepicker: "timepicker",
 });
 
+/**
+ * Props for field group component.
+ */
 export interface IFieldGroupInputProps {
+  /**
+   * Field group component type/
+   */
   type?: FieldInputType;
+
+  /**
+   * Placeholder text.
+   */
   placeholder?: string;
+
+  /**
+   * Component id.
+   */
   id?: string;
+
+  /**
+   * Component label.
+   */
   label?: string;
+
+  /**
+   * Help message.
+   */
   help?: string;
+
+  /**
+   * Validation state
+   */
   validationState?: any;
+
+  /**
+   * Validation message.
+   */
   validationMessage?: string;
+
+  /**
+   * Function which call when component focused.
+   */
   onFocus?: () => void;
+
+  /**
+   * Function which call when component value changed.
+   */
   onChange?: (e: any) => void;
 }
 
+/**
+ * Props for select component.
+ */
 export interface IFieldGroupSelectProps {
+  /**
+   * Select class.
+   */
   selectClass?: string;
+
+  /**
+   * Select value.
+   */
   value?: any;
+
+  /**
+   * FontAwesome icon name for close list button.
+   */
   arrowIconUp?: string;
+
+  /**
+   * FontAwesome icon name for open list button.
+   */
   arrowIconDown?: string;
+
+  /**
+   * FontAwesome icon size for open/close list buttons.
+   */
   arrowsSize?: FontAwesome.FontAwesomeSize;
+
+  /**
+   * Arrow container class.
+   */
   arrowContainerClass?: string;
+
+  /**
+   * If true to select component will be added button  which clear input.
+   */
   clearable?: boolean;
+
+  /**
+   * If true to select component will be added ability to search needed value.
+   */
   searchable?: boolean;
+
+  /**
+   * If true, select component can contains several selected items.
+   */
   multi?: boolean;
-  selectValues?: any[];
+
+  /**
+   * Values for select component.
+   */
+  selectValues?: ISelectValue[];
 }
 
+/**
+ * Select compnent object format.
+ */
+export interface ISelectValue {
+  /**
+   * Label which will be shown to user.
+   */
+  readonly label: string;
+
+  /**
+   * Unique item value, such as id.
+   */
+  readonly value: string | number;
+}
+
+/**
+ * Props for datetime component.
+ */
 export interface IFieldGroupDateTimeProps {
+  /**
+   * Date component class.
+   */
   dateTimeClass?: string;
 
+  /**
+   * Date format.
+   */
   dateFormat?: boolean | string;
+
+  /**
+   * Time format.
+   */
   timeFormat?: boolean | string;
+
+  /**
+   * Is input allowed?
+   */
   input?: boolean;
+
+  /**
+   * Is open on startup?
+   */
   open?: boolean;
+
+  /**
+   * Date/time locale.
+   */
   locale?: string;
+
+  /**
+   * Use utc time?
+   */
   utc?: boolean;
+
+  /**
+   * function which call on element blur.
+   */
   onBlur?: (e: any) => void;
+
+  /**
+   * Input component props.
+   */
   inputProps?: object;
+
+  /**
+   * Strict parsing?
+   */
   strictParsing?: boolean;
+
+  /**
+   * Close datetime on select?
+   */
   closeOnSelect?: boolean;
+
+  /**
+   * Close on tab?
+   */
   closeOnTab?: boolean;
+
+  /**
+   * Disable on clck outside?
+   */
   disableOnClickOutside?: boolean;
 }
 
+/**
+ * Combined props.
+ */
 export interface IFieldGroupProps
   extends IFieldGroupInputProps,
     IFieldGroupSelectProps,
     IFieldGroupDateTimeProps {}
 
+/**
+ * Field group component.
+ */
 export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
     type: "text",
@@ -96,9 +256,13 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     open: false,
     input: true,
     defaultValue: new Date(),
-    selectValues: [] as any[],
+    selectValues: [] as ISelectValue[],
   };
 
+  /**
+   * Get element validation state.
+   * @param validation current element validation state
+   */
   public getValidationState(validation: any) {
     if (!validation) {
       return null;
@@ -142,6 +306,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         break;
       case InputTypes.select:
         render = this.renderSelect();
+        break;
       case InputTypes.datetimepicker:
         render = this.renderDateTimePicker();
         break;

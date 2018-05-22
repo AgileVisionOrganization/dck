@@ -3,10 +3,13 @@ import { IValidationResult } from "dck-validators";
 
 /**
  * Populates state for the field in the parent component
- * @param {*} that reference to the parent component
- * @param {*} name name of the field
- * @param {*} initialValue initial value of the field
- * @param {*} validator validator to be used for checking the field
+ * @param {any} that reference to the parent component
+ * @param {string} name name of the field
+ * @param {any} initialValue initial value of the field
+ * @param {(value: string) => Promise<IValidationResult>} validator validator to be used for checking the field
+ * @param {boolean} existingRecord if the record exists(true) initial value will be validated on startup
+ * @param {boolean} isCheckbox used to declare current component and from what field it should take value
+ * @param {boolean} isDateTimePiker used to declare current component and from what field it should take value
  */
 export function initField(
   that: any,
@@ -15,7 +18,7 @@ export function initField(
   validator: (value: string) => Promise<IValidationResult>,
   existingRecord?: boolean,
   isCheckbox?: boolean,
-  isDateTimePiker?: boolean
+  isDateTimePiker?: boolean,
 ) {
   const field: any = {};
 

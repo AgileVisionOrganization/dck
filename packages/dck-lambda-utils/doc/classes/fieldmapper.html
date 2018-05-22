@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Field mapper.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -84,19 +91,11 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="fieldmapper.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="fieldmapper.html#fromdatasourcemappings" class="tsd-kind-icon">from<wbr>Data<wbr>Source<wbr>Mappings</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="fieldmapper.html#todatasourcemappings" class="tsd-kind-icon">to<wbr>Datasource<wbr>Mappings</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="fieldmapper.html#fromdatasource" class="tsd-kind-icon">from<wbr>Datasource</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="fieldmapper.html#todatasource" class="tsd-kind-icon">to<wbr>Datasource</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="fieldmapper.html#transformdata" class="tsd-kind-icon">transform<wbr>Data</a></li>
 							</ul>
 						</section>
 					</div>
@@ -114,44 +113,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L6">FieldMapper.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/FieldMapper.ts#L9">FieldMapper.ts:9</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>FieldMapper constructor</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> toDatasourceMappings: <a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>to datasource mapping</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fromDatasourceMappings: <a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>from datasource mapping</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="fieldmapper.html" class="tsd-signature-type">FieldMapper</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="fromdatasourcemappings" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> from<wbr>Data<wbr>Source<wbr>Mappings</h3>
-					<div class="tsd-signature tsd-kind-icon">from<wbr>Data<wbr>Source<wbr>Mappings<span class="tsd-signature-symbol">:</span> <a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L6">FieldMapper.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="todatasourcemappings" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> to<wbr>Datasource<wbr>Mappings</h3>
-					<div class="tsd-signature tsd-kind-icon">to<wbr>Datasource<wbr>Mappings<span class="tsd-signature-symbol">:</span> <a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L5">FieldMapper.ts:5</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
@@ -166,16 +157,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L18">FieldMapper.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/FieldMapper.ts#L36">FieldMapper.ts:36</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Map data from datasource</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>source: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>source</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -192,45 +194,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L14">FieldMapper.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/FieldMapper.ts#L27">FieldMapper.ts:27</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Map data to datasource.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>source: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>source</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="transformdata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> transform<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">transform<wbr>Data<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, mappings<span class="tsd-signature-symbol">: </span><a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a>, callback<span class="tsd-signature-symbol">: </span><a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/FieldMapper.ts#L22">FieldMapper.ts:22</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>source: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>mappings: <a href="../globals.html#fieldsmap" class="tsd-signature-type">FieldsMap</a></h5>
-								</li>
-								<li>
-									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -266,20 +250,11 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 								<a href="fieldmapper.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="fieldmapper.html#fromdatasourcemappings" class="tsd-kind-icon">from<wbr>Data<wbr>Source<wbr>Mappings</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="fieldmapper.html#todatasourcemappings" class="tsd-kind-icon">to<wbr>Datasource<wbr>Mappings</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="fieldmapper.html#fromdatasource" class="tsd-kind-icon">from<wbr>Datasource</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="fieldmapper.html#todatasource" class="tsd-kind-icon">to<wbr>Datasource</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="fieldmapper.html#transformdata" class="tsd-kind-icon">transform<wbr>Data</a>
 							</li>
 						</ul>
 					</li>

@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Response builder.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -84,12 +91,6 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="httpresponsebuilder.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="httpresponsebuilder.html#responseheaders" class="tsd-kind-icon">response<wbr>Headers</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
@@ -98,8 +99,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="httpresponsebuilder.html#notfound" class="tsd-kind-icon">Not<wbr>Found</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="httpresponsebuilder.html#operationsucess" class="tsd-kind-icon">Operation<wbr>Sucess</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="httpresponsebuilder.html#unauthorized" class="tsd-kind-icon">Unauthorized</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="httpresponsebuilder.html#createresponse" class="tsd-kind-icon">create<wbr>Response</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="httpresponsebuilder.html#createresponsebody" class="tsd-kind-icon">create<wbr>Response<wbr>Body</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,31 +116,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L6">HttpResponseBuilder.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L12">HttpResponseBuilder.ts:12</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Response builder constructor.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>additionalHeaders: <a href="../globals.html#headersmap" class="tsd-signature-type">HeadersMap</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>additional headers</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="httpresponsebuilder.html" class="tsd-signature-type">HttpResponseBuilder</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="responseheaders" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> response<wbr>Headers</h3>
-					<div class="tsd-signature tsd-kind-icon">response<wbr>Headers<span class="tsd-signature-symbol">:</span> <a href="../globals.html#headersmap" class="tsd-signature-type">HeadersMap</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L6">HttpResponseBuilder.ts:6</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
@@ -156,16 +152,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L27">HttpResponseBuilder.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L59">HttpResponseBuilder.ts:59</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>BadRequest response.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response message</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -182,22 +189,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L32">HttpResponseBuilder.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L71">HttpResponseBuilder.ts:71</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Custom response.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>code: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response code</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response message</p>
+									</div>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response data</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -214,16 +238,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L17">HttpResponseBuilder.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L39">HttpResponseBuilder.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Not found response.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>resposne message</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -240,22 +275,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L12">HttpResponseBuilder.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L29">HttpResponseBuilder.ts:29</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Operaion success response.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>code: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response code</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>resposne message</p>
+									</div>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response data</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -272,77 +324,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L22">HttpResponseBuilder.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L49">HttpResponseBuilder.ts:49</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unauthorized response.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>response message</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="createresponse" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Response</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Response<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L53">HttpResponseBuilder.ts:53</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>code: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="createresponsebody" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Response<wbr>Body</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Response<wbr>Body<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/HttpResponseBuilder.ts#L37">HttpResponseBuilder.ts:37</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>code: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -378,9 +383,6 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 								<a href="httpresponsebuilder.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="httpresponsebuilder.html#responseheaders" class="tsd-kind-icon">response<wbr>Headers</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="httpresponsebuilder.html#badrequest" class="tsd-kind-icon">Bad<wbr>Request</a>
 							</li>
@@ -395,12 +397,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="httpresponsebuilder.html#unauthorized" class="tsd-kind-icon">Unauthorized</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="httpresponsebuilder.html#createresponse" class="tsd-kind-icon">create<wbr>Response</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="httpresponsebuilder.html#createresponsebody" class="tsd-kind-icon">create<wbr>Response<wbr>Body</a>
 							</li>
 						</ul>
 					</li>

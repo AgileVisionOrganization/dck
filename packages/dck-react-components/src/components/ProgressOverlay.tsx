@@ -1,31 +1,72 @@
 import * as React from "react";
 import * as Spinner from "react-spinkit";
 
-export interface ProgressOverlayProps {
+/**
+ * Progress overlay props.
+ */
+export interface IProgressOverlayProps {
+  /**
+   * Component content.
+   */
   children: JSX.Element;
+
+  /**
+   * Overlay wrapper class.
+   */
   overlayWrapperClass?: string;
+
+  /**
+   * Overlay container class.
+   */
   overlayContainerClass?: string;
+
+  /**
+   * Spinner container class.
+   */
   spinnerContainerClass?: string;
+
+  /**
+   * Spinner type.
+   */
   spinnerType?: any;
+
+  /**
+   * Spinner color.
+   */
   spinnerColor?: string;
+
+  /**
+   * Spinner fade in?
+   */
   spinnerFadeIn?: any;
+
+  /**
+   * Component visible?
+   */
   visible?: boolean;
 }
 
-export interface ProgressOverlayState {}
+/**
+ * Progress overlay state.
+ */
+export interface IProgressOverlayState {}
 
+/**
+ * Progress overlay component.
+ * Can be used to wait some async process.
+ */
 export class ProgressOverlay extends React.Component<
-  ProgressOverlayProps,
-  Partial<ProgressOverlayState>
+  IProgressOverlayProps,
+  Partial<IProgressOverlayState>
 > {
-  public static defaultProps: Partial<ProgressOverlayProps> = {
+  public static defaultProps: Partial<IProgressOverlayProps> = {
     spinnerColor: "red",
     spinnerType: "double-bounce",
     spinnerFadeIn: "none",
     overlayWrapperClass: "progress-overlay-wrapper",
     overlayContainerClass: "progress-overlay-container",
     spinnerContainerClass: "spinner-container",
-    visible: false
+    visible: false,
   };
 
   public render() {

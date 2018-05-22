@@ -66,11 +66,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>External page component.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
+						<span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ExternalPage</span>
@@ -128,7 +135,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>External<wbr>Page<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">?: </span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a>, context<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="externalpage.html" class="tsd-signature-type">ExternalPage</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>External<wbr>Page<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">?: </span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a>, context<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="externalpage.html" class="tsd-signature-type">ExternalPage</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -141,7 +148,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> props: <a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> props: <a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> context: <span class="tsd-signature-type">any</span></h5>
@@ -168,7 +175,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="props" class="tsd-anchor"></a>
 					<h3>props</h3>
-					<div class="tsd-signature tsd-kind-icon">props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
@@ -256,7 +263,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L30">components/ExternalPage.tsx:30</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L77">components/ExternalPage.tsx:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -291,7 +298,7 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, props<span class="tsd-signature-symbol">: </span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, props<span class="tsd-signature-symbol">: </span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
@@ -301,7 +308,7 @@
 															<h5>prevState: <span class="tsd-signature-type">any</span></h5>
 														</li>
 														<li>
-															<h5>props: <a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a></h5>
+															<h5>props: <a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -388,7 +395,7 @@
 					<a name="componentdidupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, prevContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, prevContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -401,7 +408,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
@@ -436,7 +443,7 @@
 					<a name="componentwillreceiveprops" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Will<wbr>Receive<wbr>Props</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -449,7 +456,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextContext: <span class="tsd-signature-type">any</span></h5>
@@ -481,7 +488,7 @@
 					<a name="componentwillupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Will<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -494,7 +501,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
@@ -511,7 +518,7 @@
 					<a name="shouldcomponentupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> should<wbr>Component<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">should<wbr>Component<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">should<wbr>Component<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -524,7 +531,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/externalpageprops.html" class="tsd-signature-type">ExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iexternalpageprops.html" class="tsd-signature-type">IExternalPageProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
@@ -546,7 +553,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L21">components/ExternalPage.tsx:21</a></li>
+							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L68">components/ExternalPage.tsx:68</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
@@ -555,7 +562,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Container<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-container&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L22">components/ExternalPage.tsx:22</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L69">components/ExternalPage.tsx:69</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -565,7 +572,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Content<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-content&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L24">components/ExternalPage.tsx:24</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L71">components/ExternalPage.tsx:71</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -575,7 +582,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Form<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-form&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L26">components/ExternalPage.tsx:26</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L73">components/ExternalPage.tsx:73</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -585,7 +592,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Form<wbr>Container<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-form-container&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L25">components/ExternalPage.tsx:25</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L72">components/ExternalPage.tsx:72</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -595,7 +602,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Header<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-header-container&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L23">components/ExternalPage.tsx:23</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L70">components/ExternalPage.tsx:70</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -605,7 +612,7 @@
 						<div class="tsd-signature tsd-kind-icon">page<wbr>Subheader<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;external-page-subheader&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-react-components/src/components/ExternalPage.tsx#L27">components/ExternalPage.tsx:27</a></li>
+								<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-react-components/src/components/ExternalPage.tsx#L74">components/ExternalPage.tsx:74</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -701,7 +708,7 @@
 						<a href="sidebaritem.html" class="tsd-kind-icon">Sidebar<wbr>Item</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/externalpageprops.html" class="tsd-kind-icon">External<wbr>Page<wbr>Props</a>
+						<a href="../interfaces/iexternalpageprops.html" class="tsd-kind-icon">IExternal<wbr>Page<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="../interfaces/ifieldgroupdatetimeprops.html" class="tsd-kind-icon">IField<wbr>Group<wbr>Date<wbr>Time<wbr>Props</a>
@@ -719,25 +726,28 @@
 						<a href="../interfaces/imodaldialog.html" class="tsd-kind-icon">IModal<wbr>Dialog</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/iprogressoverlayprops.html" class="tsd-kind-icon">IProgress<wbr>Overlay<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/iprogressoverlaystate.html" class="tsd-kind-icon">IProgress<wbr>Overlay<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/isearchfieldprops.html" class="tsd-kind-icon">ISearch<wbr>Field<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/isearchfieldstate.html" class="tsd-kind-icon">ISearch<wbr>Field<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/iselectvalue.html" class="tsd-kind-icon">ISelect<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/isidebaritemprops.html" class="tsd-kind-icon">ISidebar<wbr>Item<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/isidebarprops.html" class="tsd-kind-icon">ISidebar<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="../interfaces/internalpageprops.html" class="tsd-kind-icon">Internal<wbr>Page<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/progressoverlayprops.html" class="tsd-kind-icon">Progress<wbr>Overlay<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/progressoverlaystate.html" class="tsd-kind-icon">Progress<wbr>Overlay<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/searchfieldprops.html" class="tsd-kind-icon">Search<wbr>Field<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/searchfieldstate.html" class="tsd-kind-icon">Search<wbr>Field<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/sidebaritemprops.html" class="tsd-kind-icon">Sidebar<wbr>Item<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="../interfaces/sidebarprops.html" class="tsd-kind-icon">Sidebar<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-external">
 						<a href="../globals.html#fieldinputtype" class="tsd-kind-icon">Field<wbr>Input<wbr>Type</a>

@@ -66,6 +66,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Cognito data source.
+						Can be used to manage users in cognito.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -88,12 +96,6 @@
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="cognitodatasource.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="cognitodatasource.html#idp" class="tsd-kind-icon">idp</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -122,31 +124,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L12">CognitoDataSource.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L16">CognitoDataSource.ts:16</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Cognito data source constructor.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>idp: <span class="tsd-signature-type">CognitoIdentityServiceProvider</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>object of CognitoIdentityServiceProvider</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="cognitodatasource.html" class="tsd-signature-type">CognitoDataSource</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="idp" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> idp</h3>
-					<div class="tsd-signature tsd-kind-icon">idp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CognitoIdentityServiceProvider</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L12">CognitoDataSource.ts:12</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
@@ -162,19 +161,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#additem">addItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L122">CognitoDataSource.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L154">CognitoDataSource.ts:154</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add user to cognito.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>user data</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -192,19 +205,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#deleteitems">deleteItems</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L192">CognitoDataSource.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L237">CognitoDataSource.ts:237</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Delete users.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>options: <a href="../interfaces/ideleteoptions.html" class="tsd-signature-type">IDeleteOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users keys</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -222,19 +249,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#getitem">getItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L50">CognitoDataSource.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L70">CognitoDataSource.ts:70</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get user from cognito.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>queryOptions: <a href="../interfaces/iqueryoptions.html" class="tsd-signature-type">IQueryOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>user key</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -252,19 +293,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#getitems">getItems</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L18">CognitoDataSource.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L32">CognitoDataSource.ts:32</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get users from cognito.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>queryOptions: <a href="../interfaces/iqueryoptions.html" class="tsd-signature-type">IQueryOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users key</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -282,19 +337,33 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#getmultipleitems">getMultipleItems</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L80">CognitoDataSource.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L106">CognitoDataSource.ts:106</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get users with different keys from cognito.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>queryOptions: <a href="../interfaces/igetmulitpleoptions.html" class="tsd-signature-type">IGetMulitpleOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users keys</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -312,22 +381,39 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/idckdatasource.html">IDckDataSource</a>.<a href="../interfaces/idckdatasource.html#updateitem">updateItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/a5e5dd3/packages/dck-lambda-utils/src/CognitoDataSource.ts#L160">CognitoDataSource.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/AgileVisionCompany/dck/blob/3940f1b/packages/dck-lambda-utils/src/CognitoDataSource.ts#L199">CognitoDataSource.ts:199</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Update user.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>itemType: <a href="../interfaces/idbentity.html" class="tsd-signature-type">IDbEntity</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>users cognito entity</p>
+									</div>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>new user data</p>
+									</div>
 								</li>
 								<li>
 									<h5>queryOptions: <a href="../interfaces/iqueryoptions.html" class="tsd-signature-type">IQueryOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>user key</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <a href="../globals.html#idckcallback" class="tsd-signature-type">IDckCallback</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function callback</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -356,9 +442,6 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
 								<a href="cognitodatasource.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="cognitodatasource.html#idp" class="tsd-kind-icon">idp</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="cognitodatasource.html#additem" class="tsd-kind-icon">add<wbr>Item</a>

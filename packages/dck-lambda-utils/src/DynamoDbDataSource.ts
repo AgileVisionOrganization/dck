@@ -3,8 +3,6 @@ import * as shortid from "shortid";
 import * as moment from "moment";
 import { DynamoDB } from "aws-sdk";
 
-const MAX_BATCH_WRITE_ITEMS = 25;
-
 import {
   IDckCallback,
   IDckDataSource,
@@ -14,13 +12,31 @@ import {
   IGetMulitpleOptions,
 } from "./BaseTypes";
 
+/**
+ * Max items count to update/delete operation.
+ */
+const MAX_BATCH_WRITE_ITEMS = 25;
+
+/**
+ * Dynamo DB data source.
+ */
 export class DynamoDbDataSource implements IDckDataSource {
   private dynamo: DynamoDB.DocumentClient;
 
+  /**
+   * DynamoDB constructor.
+   * @param dynamo object of DynamoDB.DocumentClient
+   */
   constructor(dynamo: DynamoDB.DocumentClient) {
     this.dynamo = dynamo;
   }
 
+  /**
+   * Get items from database using query.
+   * @param itemType items database entity
+   * @param queryOptions query options
+   * @param callback function callback
+   */
   public queryItems(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
@@ -30,7 +46,7 @@ export class DynamoDbDataSource implements IDckDataSource {
     const rangeKey = itemType.getRangeKey();
     const expressionAttributeNames: any = {};
     const expressionAttributeValues: any = {};
-    const comparisonOperators : any = queryOptions.comparisonOperators || {};
+    const comparisonOperators: any = queryOptions.comparisonOperators || {};
 
     let filterExpression: any = "";
     if (queryOptions.data) {
@@ -48,7 +64,7 @@ export class DynamoDbDataSource implements IDckDataSource {
     expressionAttributeValues[":hkeyvalue"] = queryOptions.query[hashKey];
     const hashKeyComparisonOperator = comparisonOperators[hashKey] || "=";
     let keyConditionExpression: string = null;
-    
+
     if (queryOptions.query[rangeKey]) {
       const rangeKeyComparisonOperator = comparisonOperators[rangeKey] || "=";
       expressionAttributeNames["#rkeyname"] = rangeKey;
@@ -81,6 +97,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Get item from database using scan (be very careful consume a lot of database table read capacity!).
+   * @param itemType items database entity
+   * @param queryOptions query options
+   * @param callback function callback
+   */
   public scanItems(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
@@ -88,7 +110,7 @@ export class DynamoDbDataSource implements IDckDataSource {
   ) {
     const expressionAttributeNames: any = {};
     const expressionAttributeValues: any = {};
-    const comparisonOperators : any = queryOptions.comparisonOperators || {};
+    const comparisonOperators: any = queryOptions.comparisonOperators || {};
 
     let filterExpression: any = "";
     if (queryOptions.data) {
@@ -124,6 +146,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Get items from database.
+   * @param itemType items database entity
+   * @param queryOptions query options
+   * @param callback function callback
+   */
   public getItems(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
@@ -140,6 +168,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     }
   }
 
+  /**
+   * Get items from database with several keys.
+   * @param itemType items database entity
+   * @param queryOptions query options
+   * @param callback function callback
+   */
   public getMultipleItems(
     itemType: IDbEntity,
     queryOptions: IGetMulitpleOptions,
@@ -163,6 +197,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Add item to database.
+   * @param itemType items database entity
+   * @param data item data
+   * @param callback function callback
+   */
   public addItem(item: IDbEntity, data: any, callback: IDckCallback) {
     const newItem = Object.assign({}, data, {
       added: moment().unix(),
@@ -198,6 +238,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Get item from database.
+   * @param itemType items database entity
+   * @param queryOptions item keys
+   * @param callback function callback
+   */
   public getItem(
     itemType: IDbEntity,
     queryOptions: IQueryOptions,
@@ -243,6 +289,13 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Update item in database.
+   * @param itemType items database entity
+   * @param data new item data
+   * @param queryOptions item keys
+   * @param callback function callback
+   */
   public updateItem(
     itemType: IDbEntity,
     data: any,
@@ -304,6 +357,12 @@ export class DynamoDbDataSource implements IDckDataSource {
     );
   }
 
+  /**
+   * Delete items from database.
+   * @param itemType items database entity
+   * @param options items keys
+   * @param callback function callback
+   */
   public deleteItems(
     itemType: IDbEntity,
     options: IDeleteOptions,

@@ -7,14 +7,28 @@ import {CognitoIdentityServiceProvider} from "aws-sdk";
 import {IDbEntity, IDckCallback, IDckDataSource, IDeleteOptions, IGetMulitpleOptions, IQueryOptions} from "./BaseTypes";
 import {fromCognitoGetUser, fromCognitoUser, toCognitoAttributes} from "./utils";
 
+/**
+ * Cognito data source.
+ * Can be used to manage users in cognito.
+ */
 export class CognitoDataSource implements IDckDataSource {
 
     private idp: CognitoIdentityServiceProvider;
 
+    /**
+     * Cognito data source constructor.
+     * @param idp object of CognitoIdentityServiceProvider
+     */
     public constructor(idp: CognitoIdentityServiceProvider) {
         this.idp = idp;
     }
 
+    /**
+     * Get users from cognito.
+     * @param itemType users cognito entity
+     * @param queryOptions users key
+     * @param callback function callback
+     */
     public getItems(itemType: IDbEntity, queryOptions: IQueryOptions, callback: IDckCallback): void {
         async.waterfall(
             [
@@ -47,6 +61,12 @@ export class CognitoDataSource implements IDckDataSource {
         );
     }
 
+    /**
+     * Get user from cognito.
+     * @param itemType users cognito entity
+     * @param queryOptions user key
+     * @param callback function callback
+     */
     public getItem(itemType: IDbEntity, queryOptions: IQueryOptions, callback: IDckCallback): void {
         this.idp.adminGetUser(
             {
@@ -77,6 +97,12 @@ export class CognitoDataSource implements IDckDataSource {
         );
     }
 
+    /**
+     * Get users with different keys from cognito.
+     * @param itemType users cognito entity
+     * @param queryOptions users keys
+     * @param callback function callback
+     */
     public getMultipleItems(itemType: IDbEntity, queryOptions: IGetMulitpleOptions, callback: IDckCallback): void {
         if (!queryOptions.keys || queryOptions.keys.length === 0) {
           callback(new Error("queryOptions.keys is null or undefined"), null);
@@ -119,6 +145,12 @@ export class CognitoDataSource implements IDckDataSource {
         );
     }
 
+    /**
+     * Add user to cognito.
+     * @param itemType users cognito entity
+     * @param data user data
+     * @param callback function callback
+     */
     public addItem(itemType: IDbEntity, data: any, callback: IDckCallback): void {
 
         const rangeKey = itemType.getRangeKey();
@@ -157,6 +189,13 @@ export class CognitoDataSource implements IDckDataSource {
         );
     }
 
+    /**
+     * Update user.
+     * @param itemType users cognito entity
+     * @param data new user data
+     * @param queryOptions user key
+     * @param callback function callback
+     */
     public updateItem(itemType: IDbEntity, data: any, queryOptions: IQueryOptions, callback: IDckCallback): void {
 
         const cleanData = Object.assign({}, data);
@@ -189,6 +228,12 @@ export class CognitoDataSource implements IDckDataSource {
         );
     }
 
+    /**
+     * Delete users.
+     * @param itemType users cognito entity
+     * @param options users keys
+     * @param callback function callback
+     */
     public deleteItems(itemType: IDbEntity, options: IDeleteOptions, callback: IDckCallback): void {
 
         if (options.keys === null) {

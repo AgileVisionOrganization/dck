@@ -61,7 +61,7 @@ export function password(value: string) {
 
 /**
  * Password confirmation validation, the confirm password should be the same as password.
- * @param {any} passwordExtractor password extractor
+ * @param {() => string} passwordExtractor password extractor
  */
 export function passwordConfirmation(passwordExtractor: () => string) {
   return (value: string) => {
@@ -223,7 +223,7 @@ export function regexpValidator(regExp: RegExp) {
 
 /**
  * Server-side validation, input string will be checking on the server.
- * @param {Promise<any>} requestGenerator server request
+ * @param {() => Promise<any>} requestGenerator server request
  */
 export function serverSideValidator(requestGenerator: () => Promise<any>) {
   return new Promise((resolve, reject) => {

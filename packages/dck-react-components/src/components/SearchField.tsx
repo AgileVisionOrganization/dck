@@ -1,57 +1,101 @@
 import * as React from "react";
-import * as FormGroup from "react-bootstrap/lib/FormGroup";
-import * as InputGroup from "react-bootstrap/lib/InputGroup";
-import * as FormControl from "react-bootstrap/lib/FormControl";
+import {FormGroup, InputGroup, FormControl} from "react-bootstrap";
 import * as FontAwesome from "react-fontawesome";
 
+/**
+ * Search field input type.
+ */
 export type InputType = "text" | "password" | "email";
 
-export interface SearchFieldProps {
+/**
+ * Search field props.
+ */
+export interface ISearchFieldProps {
+  /**
+   * On focus function.
+   */
   onFocus?: () => void;
+
+  /**
+   * On change function.
+   */
   onChange?: (e: any) => void;
+
+  /**
+   * Field group class.
+   */
   fieldGroupClass?: string;
+
+  /**
+   * Field group addon class.
+   */
   addonClass?: string;
+
+  /**
+   * Addon focus class.
+   */
   addonFocusClass?: string;
+
+  /**
+   * Input field class.
+   */
   inputClass?: string;
+
+  /**
+   * FontAwesome icon for search field.
+   */
   icon?: string;
+
+  /**
+   * Input id.
+   */
   id?: string;
+
+  /**
+   * Input type.
+   */
   type?: InputType;
+
+  /**
+   * Input placeholder.
+   */
   placeholder?: string;
+
+  /**
+   * Input value.
+   */
   value?: string;
 }
 
-export interface SearchFieldState {
-  focused: Boolean;
+/**
+ * Search field default state.
+ */
+export interface ISearchFieldState {
+  focused: boolean;
 }
 
+/**
+ * Search field component.
+ */
 export class SearchField extends React.Component<
-  SearchFieldProps,
-  Partial<SearchFieldState>
+  ISearchFieldProps,
+  Partial<ISearchFieldState>
 > {
-  public static defaultProps: Partial<SearchFieldProps> = {
+  public static defaultProps: Partial<ISearchFieldProps> = {
     icon: "search",
     fieldGroupClass: "search-field-group",
     addonClass: "search-addon input-group-addon",
     addonFocusClass: "search-addon-focus",
     inputClass: "search-input",
-    type: "text"
+    type: "text",
   };
 
-  constructor(props: SearchFieldProps) {
+  constructor(props: ISearchFieldProps) {
     super(props);
     this.state = { focused: false };
   }
 
-  handleBlur() {
-    this.setState({ focused: false });
-  }
-
-  handleFocus() {
-    this.setState({ focused: true });
-    this.props.onFocus && this.props.onFocus();
-  }
-
-  render() {
+  public render() {
     const addonClass = this.state.focused
       ? "search-addon input-group-addon search-addon-focus"
       : "search-addon input-group-addon";
@@ -77,5 +121,16 @@ export class SearchField extends React.Component<
         </InputGroup>
       </FormGroup>
     );
+  }
+  private handleBlur() {
+    this.setState({ focused: false });
+  }
+
+  private handleFocus() {
+    this.setState({ focused: true });
+
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
   }
 }
