@@ -10,6 +10,7 @@ const initialState = Map({ authenticated: false });
 
 /**
  * Account reducer.
+ * This reducer set user session data to state and authenticated flag on INITIALIZE_USER_SESSION action 
  */
 export const account = createReducer(initialState, {
   [types.SIGN_IN](state: any) {

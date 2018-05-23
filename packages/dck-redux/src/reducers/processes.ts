@@ -3,6 +3,14 @@ import { fromJS } from "immutable";
 import * as types from "../actions/types";
 import { createReducer } from "../utils";
 
+/**
+ * Process reducer.
+ * For all processes it the system creates the record in the state with next content:
+ * PROCESS_NAME: {
+ *   running: false
+ * }
+ * @param processTypes all processes in the system 
+ */
 export const createProcessesReducer = (processTypes: string[]) => {
   let initialProcessStates: any;
   initialProcessStates = {};

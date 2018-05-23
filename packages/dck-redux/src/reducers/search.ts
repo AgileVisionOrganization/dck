@@ -3,11 +3,18 @@ import { fromJS, Map, List } from "immutable";
 import * as types from "../actions/types";
 import { createReducer } from "../utils";
 
+/**
+ * Search reducer initial state.
+ */
 const initialState = fromJS({
   term: "",
   filters: {}
 });
 
+/**
+ * Search reducer.
+ * Global search filters can be used to filters value in some generic search field.
+ */
 export const search = createReducer(initialState, {
   [types.SET_SEARCH_TERM](state: any, action: any) {
     return state.set("term", action.term);

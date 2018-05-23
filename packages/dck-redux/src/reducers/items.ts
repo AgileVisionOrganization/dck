@@ -3,8 +3,25 @@ import { fromJS, Map, List } from "immutable";
 import * as types from "../actions/types";
 import { createReducer } from "../utils";
 
+/**
+ * Items reducer initial state.
+ */
 let initialState = {};
 
+/**
+ * Create items reducer.
+ * These reducers manage items data.
+ * For all items types, it creates the record in the state with next content:
+ * ItemType: {
+ *   items: [],
+ *   selected: [],
+ *   active: null,
+ *   term: '',
+ *   filters: {},
+ *   sortingOptions: []
+ * }
+ * @param itemTypes all items types in system
+ */
 export const createItemsReducer = (itemTypes: string[]) => {
   let initialItemStates: any;
   initialItemStates = {};
@@ -101,6 +118,9 @@ export const createItemsReducer = (itemTypes: string[]) => {
   };
 };
 
+/**
+ * Items reducer for tests.
+ */
 export const items = createReducer(initialState, {
   [types.ITEMS_LOAD](state: any) {
     return state;
