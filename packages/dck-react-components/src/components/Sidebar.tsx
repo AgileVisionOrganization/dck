@@ -2,19 +2,45 @@ import * as React from "react";
 
 import { SidebarItem } from "./SidebarItem";
 
-export interface SidebarProps {
+/**
+ * Sidebar component props.
+ */
+export interface ISidebarProps {
+  /**
+   * Sidebar container class.
+   */
   containerClass?: string;
+
+  /**
+   * Header container class.
+   */
   headerContainerClass?: string;
+
+  /**
+   * Sidebar items container class.
+   */
   itemsContainerClass?: string;
+
+  /**
+   * Sidebar header component.
+   */
   headerComponent?: JSX.Element;
+
+  /**
+   * Sidebar items.
+   */
   children: SidebarItem[];
 }
 
-export class Sidebar extends React.Component<SidebarProps, any> {
-  public static defaultProps: Partial<SidebarProps> = {
+/**
+ * Sidebar component.
+ * Used to navigation on the dashboard.
+ */
+export class Sidebar extends React.Component<ISidebarProps, any> {
+  public static defaultProps: Partial<ISidebarProps> = {
     containerClass: "sidebar-container",
     headerContainerClass: "sidebar-header-container",
-    itemsContainerClass: "sidebar-items-container"
+    itemsContainerClass: "sidebar-items-container",
   };
 
   public render() {

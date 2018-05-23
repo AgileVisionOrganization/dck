@@ -1,3 +1,7 @@
+/**
+ * Reverse map.
+ * @param input input map
+ */
 export function reverseMap(input: any) {
     const result: any = {};
 
@@ -10,6 +14,10 @@ export function reverseMap(input: any) {
     return result;
 }
 
+/**
+ * User to cognito attributes.
+ * @param user user entity
+ */
 export function toCognitoAttributes(user: any) {
     const attributes = [];
 
@@ -25,6 +33,10 @@ export function toCognitoAttributes(user: any) {
     return attributes;
 }
 
+/**
+ * Read data from cognito attributes.
+ * @param attributes cognito attributes
+ */
 export function fromCognitoAttributes(attributes: any) {
     const transformed: any = {};
 
@@ -35,6 +47,10 @@ export function fromCognitoAttributes(attributes: any) {
     return transformed;
 }
 
+/**
+ * From cognito user.
+ * @param user user entity
+ */
 export function fromCognitoUser(user: any) {
     return Object.assign(
         {},
@@ -46,6 +62,10 @@ export function fromCognitoUser(user: any) {
     );
 }
 
+/**
+ * From cognito get user.
+ * @param user user entity
+ */
 export function fromCognitoGetUser(user: any) {
     return Object.assign(
         {},

@@ -1,10 +1,35 @@
-export { DckActionCreators } from "./actions";
-import * as Types from "./actions/types";
+/**
+ * @module dck-redux
+ */
 
+import * as Types from "./actions/types";
 import * as Selectors from "./selectors";
 
-export const DckSelectors: any = Selectors;
-export const DckActionTypes: any = Types;
+/**
+ * DCK props mapping functions.
+ */
+export {
+  stateToPropsMappingsForItem,
+  dispatchToPropsMappingsForItem,
+  getPropTypesForItem
+} from "./utils";
+
+/**
+ * Create DCK reducers.
+ */
 export { createDckReducer } from "./reducers";
 
-export { stateToPropsMappingsForItem, dispatchToPropsMappingsForItem, getPropTypesForItem } from "./utils";
+/**
+ * DCK action creators.
+ */
+export { DckActionCreators } from "./actions";
+
+/**
+ * DCK selectors.
+ */
+export const DckSelectors: any = Selectors;
+
+/**
+ * DCK action types.
+ */
+export const DckActionTypes: any = Types;

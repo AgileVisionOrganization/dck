@@ -1,6 +1,7 @@
 /**
  * Selects Cognito ID token from the state
  * @param {object} state state
+ * @returns current user session data
  */
 export const selectSessionData = (state: any) => {
   const sessionData = state.dck.account.get("sessionData");

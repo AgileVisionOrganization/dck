@@ -12,7 +12,11 @@ function lowercaseFirstLetter(s: string) {
     return s.charAt(0).toLocaleLowerCase() + s.slice(1);
 }
 
-
+/**
+ * Created reducer.
+ * @param initialState reducer initial state 
+ * @param handlers reducer handlers
+ */
 export function createReducer(initialState: any, handlers: any) {
   return function reducer(state = initialState, action: any) {
     if (handlers.hasOwnProperty(action.type)) {
@@ -23,7 +27,12 @@ export function createReducer(initialState: any, handlers: any) {
   };
 }
 
-
+/**
+ * Get CRUD process status for item with given type. 
+ * @param state current state
+ * @param itemType item type
+ * @returns {any} status of CRUD process for item with given type 
+ */
 export function stateToPropsMappingsForItem(state: any, itemType: string) {
   
   const pluralLowercase = lowercaseFirstLetter(plural(itemType));
@@ -61,6 +70,12 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   return mappings;
 }
 
+/**
+ * Create mappings by which You can dispatch CRUD actions for given type.
+ * @param dispatch dispatch
+ * @param itemType item type
+ * @returns {any} mapping with dispatch CRUD actions for given type 
+ */
 export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) {
   const pluralLowercase = plural(itemType).toLocaleLowerCase();
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
@@ -78,6 +93,11 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
   return mappings;
 }
 
+/**
+ * Get prop types for CRUD process and actions.
+ * @param itemType item type
+ * @returns {any} object with CRUD prop types for given item type
+ */
 export function getPropTypesForItem(itemType: string){
   const pluralLowercase = lowercaseFirstLetter(plural(itemType));
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));

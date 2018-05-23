@@ -1,14 +1,27 @@
 import {FieldsMap, IDckCallback} from "./BaseTypes";
 
+/**
+ * Request object validator.
+ */
 export class RequestObjectValidator {
     private allowedFields: string[];
     private requiredFields: string[];
 
+    /**
+     * RequestObjectValidator constructor.
+     * @param allowedFields fields which allows in request
+     * @param requiredFields required fields in request
+     */
     public constructor(allowedFields?: string[], requiredFields?: string[]) {
         this.allowedFields = allowedFields || [];
         this.requiredFields = requiredFields || [];
     }
 
+    /**
+     * Validate request.
+     * @param requestBody request body
+     * @param callback function callback
+     */
     public validateRequest(requestBody: any, callback: IDckCallback) {
 
         if (requestBody === null) {

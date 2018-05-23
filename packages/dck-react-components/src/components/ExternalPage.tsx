@@ -1,33 +1,80 @@
 import * as React from "react";
-import * as Grid from "react-bootstrap/lib/Grid";
-import * as Row from "react-bootstrap/lib/Row";
-import * as Col from "react-bootstrap/lib/Col";
+import { Grid, Row, Col } from "react-bootstrap";
 
-export interface ExternalPageProps {
+/**
+ * External page props.
+ */
+export interface IExternalPageProps {
+  /**
+   * Page header string or component.
+   */
   header: JSX.Element | string;
+
+  /**
+   * Page subheader.
+   */
   subheader?: JSX.Element | string;
+
+  /**
+   * Page footer.
+   */
   footer?: JSX.Element | string;
+
+  /**
+   * Page content.
+   */
   children: React.ReactNode;
+
+  /**
+   * Page container class.
+   */
   pageContainerClass?: string;
+
+  /**
+   * Page header class.
+   */
   pageHeaderClass?: string;
+
+  /**
+   * Page subheader class.
+   */
   pageSubheaderClass?: string;
+
+  /**
+   * Page content class.
+   */
   pageContentClass?: string;
+
+  /**
+   * Form container class.
+   */
   pageFormContainerClass?: string;
+
+  /**
+   * Form container.
+   */
   pageFormClass?: string;
+
+  /**
+   * Form submit function.
+   */
   onSubmit?: () => void;
 }
 
-export class ExternalPage extends React.Component<ExternalPageProps, any> {
+/**
+ * External page component.
+ */
+export class ExternalPage extends React.Component<IExternalPageProps, any> {
   public static defaultProps = {
     pageContainerClass: "external-page-container",
     pageHeaderClass: "external-page-header-container",
     pageContentClass: "external-page-content",
     pageFormContainerClass: "external-page-form-container",
     pageFormClass: "external-page-form",
-    pageSubheaderClass: "external-page-subheader"
+    pageSubheaderClass: "external-page-subheader",
   };
 
-  render() {
+  public render() {
     return (
       <Grid bsClass={this.props.pageContainerClass}>
         <Row className={`${this.props.pageContentClass} row`}>
@@ -45,8 +92,10 @@ export class ExternalPage extends React.Component<ExternalPageProps, any> {
               </h2>
               <form
                 className={this.props.pageFormClass}
-                onSubmit={e => {
-                  this.props.onSubmit && this.props.onSubmit();
+                onSubmit={(e) => {
+                  if (this.props.onSubmit) {
+                    this.props.onSubmit();
+                  }
                   e.preventDefault();
                 }}
               >

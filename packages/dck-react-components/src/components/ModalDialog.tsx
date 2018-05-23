@@ -1,42 +1,161 @@
 import * as React from "react";
-import { Modal } from 'react-bootstrap' 
-import * as Button from "react-bootstrap/lib/Button";
-import * as ButtonGroup from "react-bootstrap/lib/ButtonGroup";
-import { Row, Col, Alert } from "react-bootstrap";
-import "./styles.css"
+import { Row, Col, Alert, Button, ButtonGroup, Modal } from "react-bootstrap";
+import "./styles.css";
 
+/**
+ * Modal dialog props.
+ */
 export interface IModalDialog {
+  /**
+   * Modal dialog title.
+   */
   title: string;
+
+  /**
+   * If true, modal dialog will be shown.
+   */
   show: boolean;
+
+  /**
+   * Dialog content.
+   */
   children: any;
+
+  /**
+   * Cancel button title.
+   */
   cancelButtonTitle?: string;
+
+  /**
+   * Ok button title.
+   */
   okButtonTitle?: string;
+
+  /**
+   * Cancel button style.
+   */
   cancelButtonStyle?: string;
+
+  /**
+   * Ok button style.
+   */
   okButtonStyle?: string;
+
+  /**
+   * Ok button diabled?
+   * Can be used to avoid clicks while some process running.
+   */
   okButtonDisabled?: boolean;
+
+  /**
+   * The function which will be called when modal dialog closed.
+   */
   onClose?: (e: any) => void;
+
+  /**
+   * The function which will be call when user press on the ok button.
+   */
   onOkClick?: (e: any) => void;
+
+  /**
+   * Modal dialog props.
+   */
   modalProps?: any;
+
+  /**
+   * On enter press.
+   */
   onEnter?: (e: any) => void;
+
+  /**
+   * Is cancel hide?
+   */
   isCancelHide?: boolean;
+
+  /**
+   * Is cancel disabled?
+   */
   isCancelDisabled?: boolean;
+
+  /**
+   * The function which will be call when user press on the cancel button.
+   */
   cancelClick?: (e: any) => void;
+
+  /**
+   * Is ok button hide?
+   */
   isOkHide?: boolean;
+
+  /**
+   * Body class.
+   */
   bodyClass?: string;
+
+  /**
+   * Modal footer class.
+   */
   footerClass?: string;
+
+  /**
+   * Modal class.
+   */
   modalClass?: string;
+
+  /**
+   * Container class.
+   */
   containerClass?: string;
+
+  /**
+   * Additional footer.
+   */
   secondFooter?: string;
+
+  /**
+   * Close modal on the escape button press.
+   */
   CloseOnEscapePress?: boolean;
+
+  /**
+   * Modal backdrop.
+   */
   backdrop?: string;
+
+  /**
+   * Hide close button?
+   */
   hideCloseButton?: boolean;
-  footer?: string;
+
+  /**
+   * Footer component.
+   */
+  footer?: JSX.Element;
+
+  /**
+   * Async process success state, if this value will be true, the modal dialog will be closed.
+   */
   isAsyncOperationSuccess?: boolean;
+
+  /**
+   * Async process failed state, if this value will be true, the modal dialog show to user error message.
+   */
   isAsyncOperationFailed?: boolean;
+
+  /**
+   * Failed process error message.
+   */
   asyncOperationFailedMessage?: string;
+
+  /**
+   * The function which will be call when async process end successfully.
+   */
   onAsyncOperationSuccess?: () => void;
 }
 
+/**
+ * Modal Dialog component.
+ */
 export class ModalDialog extends React.Component<IModalDialog, any> {
   public static defaultProps = {
     cancelButtonTitle: "Cancel",
@@ -46,20 +165,23 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
 
   constructor(props: IModalDialog) {
     super(props);
-    this.state={
-        isAsyncProcessed: false,
-        show: false
-    }
+    this.state = {
+      isAsyncProcessed: false,
+      show: false,
+    };
   }
 
-   componentWillReceiveProps(nextProps:any){
-     if(nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed ){
-       this.props.onAsyncOperationSuccess();
-     }
-    const newShowState = nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed ? false : nextProps.show;
+  public componentWillReceiveProps(nextProps: any) {
+    if (nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed) {
+      this.props.onAsyncOperationSuccess();
+    }
+    const newShowState =
+      nextProps.isAsyncOperationSuccess && this.state.isAsyncProcessed
+        ? false
+        : nextProps.show;
     this.setState({
-        show: newShowState,
-        isAsyncProcessed: false
+      show: newShowState,
+      isAsyncProcessed: false,
     });
   }
 
@@ -84,12 +206,13 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
             className={this.props.bodyClass ? this.props.bodyClass : ""}
           >
             {this.props.children}
-            {this.props.isAsyncOperationFailed ? 
-                <Alert bsStyle="warning">
+            {this.props.isAsyncOperationFailed ? (
+              <Alert bsStyle="warning">
                 {this.props.asyncOperationFailedMessage}
-                </Alert>
-            :   ""
-            }
+              </Alert>
+            ) : (
+              ""
+            )}
           </Modal.Body>
           <Modal.Footer
             className={this.props.footerClass ? this.props.footerClass : ""}
@@ -101,9 +224,14 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
                     bsSize="large"
                     disabled={this.props.isCancelDisabled}
                     onClick={
-                        this.props.cancelClick
+                      this.props.cancelClick
                         ? this.props.cancelClick
-                        : (e) => {if(this.props.onClose)this.props.onClose(e); this.setState({show:false})}
+                        : (e) => {
+                            if (this.props.onClose) {
+                              this.props.onClose(e);
+                            }
+                            this.setState({ show: false });
+                          }
                     }
                     className={
                       this.props.cancelButtonStyle
@@ -120,7 +248,14 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
                   <Button
                     bsStyle="primary"
                     bsSize="large"
-                    onClick={this.props.onOkClick ? (e)=>{this.setState({isAsyncProcessed: true}); this.props.onOkClick(e);} : null}
+                    onClick={
+                      this.props.onOkClick
+                        ? (e) => {
+                            this.setState({ isAsyncProcessed: true });
+                            this.props.onOkClick(e);
+                          }
+                        : null
+                    }
                     disabled={this.props.okButtonDisabled}
                     className={
                       this.props.okButtonStyle
