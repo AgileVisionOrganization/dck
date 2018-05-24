@@ -52,18 +52,22 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   mappings[`current${singularCapitalized}`] = selectActiveItem(state, itemType);
   
   mappings[`${pluralLowercase}Loading`] = selectProcessRunning(state, loadProcessName);
+  mappings[`${pluralLowercase}LoadingProcess`] = selectProcess(state, loadProcessName);
   mappings[`${pluralLowercase}LoadFailed`] = selectProcessFailed(state, loadProcessName);
   mappings[`${pluralLowercase}LoadSuccess`] = selectProcessSuccess(state, loadProcessName);
 
   mappings[`${singularLowercase}Adding`] = selectProcessRunning(state, addProcessName);
+  mappings[`${singularLowercase}AddingProcess`] = selectProcess(state, addProcessName);
   mappings[`${singularLowercase}AddFailed`] = selectProcessFailed(state, addProcessName);
   mappings[`${singularLowercase}AddSuccess`] = selectProcessSuccess(state, addProcessName);
 
   mappings[`${singularLowercase}Updating`] = selectProcessRunning(state, updateProcessName);
+  mappings[`${singularLowercase}UpdatingProcess`] = selectProcess(state, updateProcessName);
   mappings[`${singularLowercase}UpdateFailed`] = selectProcessFailed(state, updateProcessName);
   mappings[`${singularLowercase}UpdateSuccess`] = selectProcessSuccess(state, updateProcessName);
 
   mappings[`${singularLowercase}Removing`] = selectProcessRunning(state, removeProcessName);
+  mappings[`${singularLowercase}RemovingProcess`] = selectProcess(state, removeProcessName);
   mappings[`${singularLowercase}RemoveFailed`] = selectProcessFailed(state, removeProcessName);
   mappings[`${singularLowercase}RemoveSuccess`] = selectProcessSuccess(state, removeProcessName);
   
