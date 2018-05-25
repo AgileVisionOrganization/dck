@@ -59,21 +59,7 @@ export class CognitoDataSource implements IDckCognitoDataSource {
             async.map(
               transformed,
               (x: any, cb) => {
-                this.idp.adminListGroupsForUser(
-                  {
-                    UserPoolId: itemType.getDatabaseTableName(),
-                    Username: x.id,
-                  },
-                  (listErr: any, listData: any) => {
-                    if (listErr) {
-                      console.error("Failed to fetch groups for the user", x.id, listErr);
-                      cb(null, x);
-                    } else {
-                      const groups = listData.Groups.sort((a: any, b: any) => a.Precedece - b.Precedence);
-                      cb(null, { ...x, groups });
-                    }
-                  },
-                );
+                this.loadGroupsForUser(itemType, x, cb);
               },
               next,
             );
@@ -114,21 +100,7 @@ export class CognitoDataSource implements IDckCognitoDataSource {
           const transformed = fromCognitoGetUser(result);
 
           if (loadUserGroups) {
-            this.idp.adminListGroupsForUser(
-              {
-                UserPoolId: itemType.getDatabaseTableName(),
-                Username: transformed.id,
-              },
-              (listErr: any, listData: any) => {
-                if (listErr) {
-                  console.error("Failed to fetch groups for the user", transformed.id, listErr);
-                  callback(null, transformed);
-                } else {
-                  const groups = listData.Groups.sort((a: any, b: any) => a.Precedece - b.Precedence);
-                  callback(null, { ...transformed, groups });
-                }
-              },
-            );
+            this.loadGroupsForUser(itemType, transformed, callback);
           } else {
             callback(null, transformed);
           }
@@ -295,6 +267,24 @@ export class CognitoDataSource implements IDckCognitoDataSource {
         );
       },
       (err) => (err ? callback(err, null) : callback(null, [])),
+    );
+  }
+
+  private loadGroupsForUser(itemType: IDbEntity, user: any, callback: IDckCallback) {
+    this.idp.adminListGroupsForUser(
+      {
+        UserPoolId: itemType.getDatabaseTableName(),
+        Username: user.id,
+      },
+      (listErr: any, listData: any) => {
+        if (listErr) {
+          console.error("Failed to fetch groups for the user", user.id, listErr);
+          callback(null, user);
+        } else {
+          const groups = listData.Groups.sort((a: any, b: any) => a.Precedece - b.Precedence);
+          callback(null, { ...user, groups });
+        }
+      },
     );
   }
 }
