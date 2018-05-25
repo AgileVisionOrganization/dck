@@ -74,7 +74,6 @@ describe("CognitoDataSource Tests", () => {
                     Username: "EXISTINGITEM1",
                 },
             }, true, (err: Error, data: any) => {
-                console.log("data=", data);
                 expect(err).toBe(null);
                 expect(data).toBeDefined();
                 expect(data.id).toBeDefined();
@@ -90,7 +89,6 @@ describe("CognitoDataSource Tests", () => {
                     Username: "EXISTINGITEM1",
                 },
             }, false, (err: Error, data: any) => {
-                console.log("data=", data);
                 expect(err).toBe(null);
                 expect(data).toBeDefined();
                 expect(data.id).toBeDefined();
@@ -203,21 +201,21 @@ describe("CognitoDataSource Tests", () => {
 
     describe("updateItem", () => {
         const randomValue = shortid.generate();
-        // it("should update item", (done) => {
-        //     async.waterfall([
-        //         (next: IDckCallback) => {
-        //             dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
-        //                 {query: { Username: "abbott_ryGBVwNMsZ"}}, next);
-        //         },
-        //         (data: any, next: IDckCallback) => dataSource.getItem(UserEntity,
-        //             {query: {Username: "abbott_ryGBVwNMsZ"}}, next),
-        //         (data: any, next: IDckCallback) => {
-        //             expect(data.id).toBe("abbott_ryGBVwNMsZ");
-        //             expect(data).toHaveProperty("custom:team_id", randomValue);
-        //             next(null);
-        //         },
-        //     ], done);
-        // });
+        it("should update item", (done) => {
+            async.waterfall([
+                (next: IDckCallback) => {
+                    dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
+                        {query: { Username: "EXISTINGITEM1"}}, next);
+                },
+                (data: any, next: IDckCallback) => dataSource.getItem(UserEntity,
+                    {query: {Username: "EXISTINGITEM1"}}, false, next),
+                (data: any, next: IDckCallback) => {
+                    expect(data.id).toBe("EXISTINGITEM1");
+                    expect(data).toHaveProperty("custom:team_id", randomValue);
+                    next(null);
+                },
+            ], done);
+        });
         it("should fail if item doesn't exist", (done) => {
             dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
                 {query: {Username: "IDONTEXIST_REALLY"}}, (err, data) => {
