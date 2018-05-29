@@ -87,6 +87,11 @@ export interface IFieldGroupInputProps {
    * Function which call when component value changed.
    */
   onChange?: (e: any) => void;
+
+    /**
+   * Function which call when component lost focus.
+   */
+  onBlur?: (e: any) => void;
 }
 
 /**
@@ -407,6 +412,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
       <FormControl
         onFocus={this.props.onFocus}
         onChange={this.props.onChange}
+        onBlur={this.props.onBlur}
         type={this.props.type}
         placeholder={this.props.placeholder}
         value={this.props.value}
