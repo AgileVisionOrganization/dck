@@ -8,6 +8,6 @@ export * from "./components/SearchField";
 export * from "./components/ProgressOverlay";
 export * from "./components/InternalPage";
 export * from "./components/ExternalPage";
-export * from "./components/FieldGroup";
-export * from "./components/ModalDialog";
+export { IFieldGroupInputProps, FieldGroup, FieldInputType} from "./components/FieldGroup";
+export { IModalDialog, ModalDialog } from "./components/ModalDialog";
 export * from "./utils";
