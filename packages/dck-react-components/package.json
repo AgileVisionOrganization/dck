@@ -1,10 +1,10 @@
 {
   "name": "dck-react-components",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "dck-validators": "^2.0.0",
+    "dck-validators": "^2.0.2",
     "moment": "^2.22.1",
     "react": "^15.6.1",
     "react-bootstrap": "0.31.0",
