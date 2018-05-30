@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Adapter from "enzyme-adapter-react-15";
 import { mount, configure } from "enzyme";
-import ModalDialog from "./ModalDialog";
+import { ModalDialog } from "./ModalDialog";
 import * as ReactDatetime from "react-datetime";
 
 configure({ adapter: new Adapter() });

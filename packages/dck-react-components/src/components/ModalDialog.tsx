@@ -279,5 +279,3 @@ export class ModalDialog extends React.Component<IModalDialog, any> {
     );
   }
 }
-
-export default ModalDialog;

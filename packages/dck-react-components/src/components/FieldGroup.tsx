@@ -420,5 +420,3 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     );
   }
 }
-
-export default FieldGroup;
