@@ -33,7 +33,7 @@ describe("CognitoDataSource Tests", () => {
             (done: () => void) => {
                 dataSource.getItems(UserEntity, {
                     query: {},
-                }, (error: Error, data: any) => {
+                }, true, (error: Error, data: any) => {
                     expect(error).toBeFalsy();
                     expect(data).toBeInstanceOf(Array);
                     expect(data).not.toHaveLength(0);
@@ -43,8 +43,22 @@ describe("CognitoDataSource Tests", () => {
                 });
             });
 
+        it("users should be load without groups",
+            (done: () => void) => {
+                dataSource.getItems(UserEntity, {
+                    query: {},
+                }, false, (error: Error, data: any) => {
+                    expect(error).toBeFalsy();
+                    expect(data).toBeInstanceOf(Array);
+                    expect(data).not.toHaveLength(0);
+                    expect(data[0].id).not.toBe(null);
+                    expect(data[0].groups).toBeFalsy();
+                    done();
+                });
+            });
+
         it("should fail on a non-existing table ", (done: () => void) => {
-            dataSource.getItems(BrokenEntity, {}, (error: Error, data: any) => {
+            dataSource.getItems(BrokenEntity, {}, true, (error: Error, data: any) => {
                 expect(error).toBeDefined();
                 expect(error).toBeInstanceOf(Error);
                 expect(data).toBe(null);
@@ -54,19 +68,49 @@ describe("CognitoDataSource Tests", () => {
     });
 
     describe("getItem", () => {
+        it("should return user with groups", (done) => {
+            dataSource.getItem(UserEntity, {
+                query: {
+                    Username: "EXISTINGITEM1",
+                },
+            }, true, (err: Error, data: any) => {
+                expect(err).toBe(null);
+                expect(data).toBeDefined();
+                expect(data.id).toBeDefined();
+                expect(data.id).toEqual("EXISTINGITEM1");
+                expect(data).toHaveProperty("groups");
+                done();
+            });
+        });
+
+        it("should return user without groups", (done) => {
+            dataSource.getItem(UserEntity, {
+                query: {
+                    Username: "EXISTINGITEM1",
+                },
+            }, false, (err: Error, data: any) => {
+                expect(err).toBe(null);
+                expect(data).toBeDefined();
+                expect(data.id).toBeDefined();
+                expect(data.id).toEqual("EXISTINGITEM1");
+                expect(data.groups).toBeFalsy();
+                done();
+            });
+        });
+
         it("should return null as data when trying to get a non-existing item", (done) => {
             dataSource.getItem(UserEntity, {
                 query: {
                     Username: "NONEXISTINGITEM",
                 },
-            }, (err, data) => {
+            }, false, (err, data) => {
                 expect(err).toBe(null);
                 expect(data).toBe(null);
                 done();
             });
         });
         it("should fail when trying to get an item from a non-existing table", (done) => {
-            dataSource.getItem(BrokenEntity, {query: {Username: "test"}}, (err, data) => {
+            dataSource.getItem(BrokenEntity, {query: {Username: "test"}}, false, (err, data) => {
                 expect(err).toBeDefined();
                 expect(err).toBeInstanceOf(Error);
                 done();
@@ -77,7 +121,7 @@ describe("CognitoDataSource Tests", () => {
             (done) => {
                 dataSource.getItem(UserEntity, {
                     query: {},
-                }, (err, data: any) => {
+                }, false, (err, data: any) => {
                     expect(err).toBeDefined();
                     expect(err).toBeInstanceOf(Error);
                     expect(data).toBe(null);
@@ -157,21 +201,21 @@ describe("CognitoDataSource Tests", () => {
 
     describe("updateItem", () => {
         const randomValue = shortid.generate();
-        // it("should update item", (done) => {
-        //     async.waterfall([
-        //         (next: IDckCallback) => {
-        //             dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
-        //                 {query: { Username: "abbott_ryGBVwNMsZ"}}, next);
-        //         },
-        //         (data: any, next: IDckCallback) => dataSource.getItem(UserEntity,
-        //             {query: {Username: "abbott_ryGBVwNMsZ"}}, next),
-        //         (data: any, next: IDckCallback) => {
-        //             expect(data.id).toBe("abbott_ryGBVwNMsZ");
-        //             expect(data).toHaveProperty("custom:team_id", randomValue);
-        //             next(null);
-        //         },
-        //     ], done);
-        // });
+        it("should update item", (done) => {
+            async.waterfall([
+                (next: IDckCallback) => {
+                    dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
+                        {query: { Username: "EXISTINGITEM1"}}, next);
+                },
+                (data: any, next: IDckCallback) => dataSource.getItem(UserEntity,
+                    {query: {Username: "EXISTINGITEM1"}}, false, next),
+                (data: any, next: IDckCallback) => {
+                    expect(data.id).toBe("EXISTINGITEM1");
+                    expect(data).toHaveProperty("custom:team_id", randomValue);
+                    next(null);
+                },
+            ], done);
+        });
         it("should fail if item doesn't exist", (done) => {
             dataSource.updateItem(UserEntity, {"custom:team_id": randomValue},
                 {query: {Username: "IDONTEXIST_REALLY"}}, (err, data) => {
