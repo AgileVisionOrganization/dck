@@ -10,7 +10,9 @@ import {
 import * as FontAwesome from "react-fontawesome";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
+
 import "../../node_modules/react-datetime/css/react-datetime.css";
+import "../../node_modules/react-select/dist/react-select.css";
 
 /**
  * Field group input types.
@@ -87,6 +89,11 @@ export interface IFieldGroupInputProps {
    * Function which call when component value changed.
    */
   onChange?: (e: any) => void;
+
+    /**
+   * Function which call when component lost focus.
+   */
+  onBlur?: (e: any) => void;
 }
 
 /**
@@ -339,6 +346,11 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
             this.props.onChange(event);
           }
         }}
+        onBlur={(event) => {
+          if (event) {
+            this.props.onBlur(event);
+          }
+        }}
         arrowRenderer={(action): JSX.Element => {
           return (
             <span className={this.props.arrowContainerClass}>
@@ -407,6 +419,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
       <FormControl
         onFocus={this.props.onFocus}
         onChange={this.props.onChange}
+        onBlur={this.props.onBlur}
         type={this.props.type}
         placeholder={this.props.placeholder}
         value={this.props.value}
@@ -414,5 +427,3 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     );
   }
 }
-
-export default FieldGroup;
