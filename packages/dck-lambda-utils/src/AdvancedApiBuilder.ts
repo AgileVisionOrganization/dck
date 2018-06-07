@@ -19,11 +19,7 @@ export class AdvancedApiBuilder {
    * @param {HttpResponseBuilder} httpResponseBuilder http response builder
    * @param {boolean} detailedLogging if true, logging will be detailed
    */
-  constructor(
-    securityEnforcer: SecurityEnforcer,
-    httpResponseBuilder: HttpResponseBuilder,
-    detailedLogging?: boolean,
-  ) {
+  constructor(securityEnforcer: SecurityEnforcer, httpResponseBuilder: HttpResponseBuilder, detailedLogging?: boolean) {
     this.securityEnforcer = securityEnforcer;
     this.httpResponseBuilder = httpResponseBuilder;
     this.detailedLogging = detailedLogging || false;
@@ -35,18 +31,14 @@ export class AdvancedApiBuilder {
    * @param {boolean} validateBody validate body?
    * @param {Handler} handler function handler
    */
-  public ApiAction(
-    requiredGroups: string[],
-    validateBody: boolean,
-    handler: Handler,
-  ): Handler {
+  public ApiAction(requiredGroups: string[], validateBody: boolean, handler: Handler): Handler {
     return (event, context, callback: IDckCallback) => {
-
-       async.waterfall(
+      async.waterfall(
         [
           (next: IDckCallback) =>
             this.securityEnforcer.allowOnly(event, requiredGroups, (err) => {
               if (err) {
+                console.log("here");
                 return this.httpResponseBuilder.Unauthorized(null, callback);
               } else {
                 next(null, null);
@@ -61,19 +53,16 @@ export class AdvancedApiBuilder {
           },
         ],
         (err, data) => {
+          console.log("err=", err, ", data=", data);
+          if (this.detailedLogging) {
+            console.log("Invoking an API method. Event: ", event, ". Response: ", data, ". Error: ", err);
+          }
+          if (err) {
+            const errorMessage = err && typeof err === "string" ? String(err) : "Bad request";
 
-            if (this.detailedLogging) {
-                console.log("Invoking an API method. Event: ", event, ". Response: ", data, ". Error: ", err);
-            }
-            if (err) {
-            this.httpResponseBuilder.BadRequest("Bad request", callback);
+            this.httpResponseBuilder.BadRequest(errorMessage, data, callback);
           } else {
-            this.httpResponseBuilder.OperationSucess(
-              200,
-              "Success",
-              data,
-              callback,
-            );
+            this.httpResponseBuilder.OperationSucess(200, "Success", data, callback);
           }
         },
       );

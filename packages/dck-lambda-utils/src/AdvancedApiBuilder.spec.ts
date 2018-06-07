@@ -16,13 +16,9 @@ describe("AdvancedApiBuilder", () => {
       },
     };
 
-    const api = apiBuilder.ApiAction(
-      ["demo-admin"],
-      false,
-      (event, context: any, callback) => {
-        callback(null, { ok: true });
-      },
-    );
+    const api = apiBuilder.ApiAction(["demo-admin"], false, (event, context: any, callback) => {
+      callback(null, { ok: true });
+    });
 
     api(eventTemplate, null, (err: Error, data: any) => {
       expect(err).toBe(null);
@@ -43,13 +39,9 @@ describe("AdvancedApiBuilder", () => {
       },
     };
 
-    const api = apiBuilder.ApiAction(
-      ["demo-admin"],
-      false,
-      (event, context: any, callback) => {
-        callback(null, { ok: true });
-      },
-    );
+    const api = apiBuilder.ApiAction(["demo-admin"], false, (event, context: any, callback) => {
+      callback(null, { ok: true });
+    });
 
     api(eventTemplate, null, (err: Error, data: any) => {
       expect(err).toBe(null);
@@ -70,18 +62,39 @@ describe("AdvancedApiBuilder", () => {
       },
     };
 
-    const api = apiBuilder.ApiAction(
-      ["demo-admin"],
-      false,
-      (event, context: any, callback) => {
-        throw new Error("Mock error");
-      },
-    );
+    const api = apiBuilder.ApiAction(["demo-admin"], false, (event, context: any, callback) => {
+      throw new Error("Mock error");
+    });
 
     api(eventTemplate, null, (err: Error, data: any) => {
       expect(err).toBe(null);
       expect(data).not.toBe(null);
       expect(data.statusCode).toBe(400);
+      done();
+    });
+  });
+
+  it("should return custom error message", (done) => {
+    const eventTemplate = {
+      requestContext: {
+        authorizer: {
+          claims: {
+            "cognito:groups": ["demo-admin"],
+          },
+        },
+      },
+    };
+
+    const api = apiBuilder.ApiAction(["demo-admin"], false, (event, context: any, callback) => {
+      callback(Error("Test message"), {});
+    });
+
+    api(eventTemplate, null, (err: Error, data: any) => {
+      console.log("err=", err);
+      console.log("data=", data);
+      expect(err).toBeTruthy();
+      expect(data).toBeTruthy();
+      expect(data).toHaveProperty("statusCode", 200);
       done();
     });
   });
