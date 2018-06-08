@@ -15,10 +15,11 @@ export function initField(
   that: any,
   name: string,
   initialValue: any,
-  validator: (value: string) => Promise<IValidationResult>,
+  validator: (value: string, optional?: boolean) => Promise<IValidationResult>,
   existingRecord?: boolean,
   isCheckbox?: boolean,
   isDateTimePiker?: boolean,
+  optional?: boolean
 ) {
   const field: any = {};
 
@@ -31,8 +32,7 @@ export function initField(
       const newState: any = {};
       newState[name] = updatedField;
       that.setState(newState);
-
-      validator(updatedField.value).then((result) => {
+      validator(updatedField.value, optional).then((result) => {
         const fieldState = that.state[name];
         fieldState.validation = result;
         const updatedState: any = {};
@@ -47,7 +47,7 @@ export function initField(
       newState[name] = updatedField;
       that.setState(newState);
 
-      validator(updatedField.value).then((result) => {
+      validator(updatedField.value, optional).then((result) => {
         const fieldState = that.state[name];
         fieldState.validation = result;
         const updatedState: any = {};
@@ -63,7 +63,7 @@ export function initField(
       newState[name] = updatedField;
       that.setState(newState);
 
-      validator(value).then((result) => {
+      validator(value, optional).then((result) => {
         const fieldState = that.state[name];
         fieldState.validation = result;
         const updatedState: any = {};

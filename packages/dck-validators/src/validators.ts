@@ -32,8 +32,9 @@ export function email(value: string, optional?: boolean) {
     let empty = false;
     let valid = false;
 
-    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
+    if ((!value || value.length === 0 || value.trim().length === 0)) {
       empty = true;
+      if (optional) { valid = true; }
     } else {
       valid = emailValidator.validate(value);
     }
@@ -107,8 +108,9 @@ export function date(value: string, optional?: boolean) {
     let empty = false;
     let valid = false;
 
-    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
+    if ((!value || value.length === 0 || value.trim().length === 0)) {
       empty = true;
+      if (optional) { valid = true; }
     } else {
       const dateValue = moment(value, "M/D/YYYY", true);
       valid = dateValue.isValid();
@@ -126,8 +128,9 @@ export function phoneNumber(value: string, optional?: boolean) {
     let empty = false;
     let valid = false;
 
-    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
+    if ((!value || value.length === 0 || value.trim().length === 0)) {
       empty = true;
+      if (optional) { valid = true; }
     } else {
       const phoneNumberValue = parse(value);
       if (Object.keys(phoneNumberValue).length !== 0) {
@@ -148,8 +151,9 @@ export function gender(value: string, optional?: boolean) {
 
     let valid = false;
 
-    if ((!value || value.trim().length === 0) && !optional) {
+    if ((!value || value.trim().length === 0)) {
       empty = true;
+      if (optional) { valid = true; }
     } else if (value === "MALE" || value === "FEMALE") {
       valid = true;
     }
@@ -167,8 +171,9 @@ export function float(value: string, optional?: boolean) {
 
     let valid = false;
 
-    if ((!value || value.trim().length === 0) && !optional) {
+    if ((!value || value.trim().length === 0)) {
       empty = true;
+      if (optional) { valid = true; }
     } else {
       if (isFloat(value)) {
         valid = true;

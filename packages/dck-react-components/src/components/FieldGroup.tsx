@@ -341,16 +341,8 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         searchable={this.props.searchable}
         multi={this.props.multi}
         options={this.props.selectValues}
-        onChange={(event) => {
-          if (event) {
-            this.props.onChange(event);
-          }
-        }}
-        onBlur={(event) => {
-          if (event) {
-            this.props.onBlur(event);
-          }
-        }}
+        onChange={this.props.onChange}
+        onBlur={this.props.onBlur}
         arrowRenderer={(action): JSX.Element => {
           return (
             <span className={this.props.arrowContainerClass}>
