@@ -85,16 +85,20 @@ describe("AdvancedApiBuilder", () => {
       },
     };
 
+    const errorMessage = "Test message custom message";
+
     const api = apiBuilder.ApiAction(["demo-admin"], false, (event, context: any, callback) => {
-      callback(Error("Test message"), {});
+      callback(Error(errorMessage), { test: "test string" });
     });
 
     api(eventTemplate, null, (err: Error, data: any) => {
-      console.log("err=", err);
-      console.log("data=", data);
-      expect(err).toBeTruthy();
+      expect(err).toBe(null);
       expect(data).toBeTruthy();
-      expect(data).toHaveProperty("statusCode", 200);
+      expect(data).toHaveProperty("statusCode", 400);
+      expect(data.body).toBeTruthy();
+
+      const body = JSON.parse(data.body);
+      expect(body.message).toBe(errorMessage);
       done();
     });
   });

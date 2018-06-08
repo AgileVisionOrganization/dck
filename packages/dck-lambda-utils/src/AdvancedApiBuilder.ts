@@ -38,7 +38,6 @@ export class AdvancedApiBuilder {
           (next: IDckCallback) =>
             this.securityEnforcer.allowOnly(event, requiredGroups, (err) => {
               if (err) {
-                console.log("here");
                 return this.httpResponseBuilder.Unauthorized(null, callback);
               } else {
                 next(null, null);
@@ -52,13 +51,32 @@ export class AdvancedApiBuilder {
             }
           },
         ],
-        (err, data) => {
-          console.log("err=", err, ", data=", data);
+        (err: any, data) => {
           if (this.detailedLogging) {
             console.log("Invoking an API method. Event: ", event, ". Response: ", data, ". Error: ", err);
           }
           if (err) {
-            const errorMessage = err && typeof err === "string" ? String(err) : "Bad request";
+            let errorMessage: string = null;
+
+            try {
+              switch (typeof err) {
+                case "string":
+                  errorMessage = String(err);
+                  break;
+                case "object":
+                  if (err instanceof Error) {
+                    errorMessage = err.message;
+                  } else {
+                    errorMessage = JSON.stringify(err);
+                  }
+                  break;
+                default:
+                  errorMessage = "Bad request";
+                  break;
+              }
+            } catch (Error) {
+              errorMessage = "Bad request";
+            }
 
             this.httpResponseBuilder.BadRequest(errorMessage, data, callback);
           } else {
