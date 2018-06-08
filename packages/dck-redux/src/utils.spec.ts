@@ -104,6 +104,10 @@ describe("Utils Tests", () => {
                       return action.ids.filter((id:any) => id===item.id).length===0;
                    });
                   return state;
+                },
+                [types.ITEM_MAKE_ACTIVE](state: any, action: any) {
+                    state.testItems.map((item:any, index:any)=>{ if(item.id===action.id){ state.testItems[index].active = true } });
+                    return state;
                 }
             });
 
@@ -118,6 +122,7 @@ describe("Utils Tests", () => {
             expect(mappings).toHaveProperty("updateTestItem");
             expect(mappings).toHaveProperty("removeTestItem");
             expect(mappings).toHaveProperty("removeTestItems");
+            expect(mappings).toHaveProperty("makeActiveTestItem");
 
             const loadTestItemsAction = mappings.loadTestItems();
             expect(loadTestItemsAction).toBeDefined();
@@ -142,6 +147,12 @@ describe("Utils Tests", () => {
             expect(deleteTestItemAction.type).toEqual('ITEM_REMOVE');
             expect(deleteTestItemAction.itemType).toEqual('TestItem');
             expect(store.getState().testItems).toEqual([ { id: 'testId' } ] );
+
+            const makeActiveTestItemAction = mappings.makeActiveTestItem("testId");
+            expect(makeActiveTestItemAction).toBeDefined();
+            expect(makeActiveTestItemAction.type).toEqual('ITEM_MAKE_ACTIVE');
+            expect(makeActiveTestItemAction.itemType).toEqual('TestItem');
+            expect(store.getState().testItems).toEqual([ { id: 'testId', active: true } ]  );
 
             const deleteTestItemsAction = mappings.removeTestItems(["testId"]);
             expect(deleteTestItemsAction).toBeDefined();

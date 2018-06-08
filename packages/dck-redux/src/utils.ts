@@ -9,7 +9,7 @@ function capitalizeFirstLetter(s: string) {
 }
 
 function lowercaseFirstLetter(s: string) {
-    return s.charAt(0).toLocaleLowerCase() + s.slice(1);
+  return s.charAt(0).toLocaleLowerCase() + s.slice(1);
 }
 
 /**
@@ -34,7 +34,7 @@ export function createReducer(initialState: any, handlers: any) {
  * @returns {any} status of CRUD process for item with given type 
  */
 export function stateToPropsMappingsForItem(state: any, itemType: string) {
-  
+
   const pluralLowercase = lowercaseFirstLetter(plural(itemType));
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
@@ -44,13 +44,13 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   const addProcessName = `${itemType.toUpperCase()}_ADD`;
   const updateProcessName = `${itemType.toUpperCase()}_UPDATE`;
   const removeProcessName = `${itemType.toUpperCase()}_REMOVE`;
-  
 
 
-  const mappings : any = {};
+
+  const mappings: any = {};
   mappings[pluralLowercase] = selectAllItems(state, itemType);
   mappings[`current${singularCapitalized}`] = selectActiveItem(state, itemType);
-  
+
   mappings[`${pluralLowercase}Loading`] = selectProcessRunning(state, loadProcessName);
   mappings[`${pluralLowercase}LoadingProcess`] = selectProcess(state, loadProcessName);
   mappings[`${pluralLowercase}LoadFailed`] = selectProcessFailed(state, loadProcessName);
@@ -70,7 +70,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   mappings[`${singularLowercase}RemovingProcess`] = selectProcess(state, removeProcessName);
   mappings[`${singularLowercase}RemoveFailed`] = selectProcessFailed(state, removeProcessName);
   mappings[`${singularLowercase}RemoveSuccess`] = selectProcessSuccess(state, removeProcessName);
-  
+
   return mappings;
 }
 
@@ -85,14 +85,16 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
   const singularLowercase = itemType.toLowerCase();
-  const mappings : any = {};
+  const mappings: any = {};
 
   mappings[`load${pluralCapitalized}`] = (filteringOptions: any) => dispatch(DckActionCreators.itemsLoad(itemType, filteringOptions));
   mappings[`add${singularCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemAdd(itemType, data));
   mappings[`update${singularCapitalized}`] = (id: any, data: any) => dispatch(DckActionCreators.itemSave(itemType, id, data));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
-  
+  mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
+  mappings[`makeActive${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemMakeActive(itemType, id));
+
 
   return mappings;
 }
@@ -102,16 +104,16 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
  * @param itemType item type
  * @returns {any} object with CRUD prop types for given item type
  */
-export function getPropTypesForItem(itemType: string){
+export function getPropTypesForItem(itemType: string) {
   const pluralLowercase = lowercaseFirstLetter(plural(itemType));
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
   const singularLowercase = lowercaseFirstLetter(itemType);
 
-  const mappings : any = {};
+  const mappings: any = {};
   mappings[pluralLowercase] = PropTypes.array;
   mappings[`current${singularCapitalized}`] = PropTypes.object;
-  
+
   mappings[`${pluralLowercase}Loading`] = PropTypes.bool;
   mappings[`${pluralLowercase}LoadFailed`] = PropTypes.bool;
   mappings[`${pluralLowercase}LoadSuccess`] = PropTypes.bool;
@@ -133,5 +135,7 @@ export function getPropTypesForItem(itemType: string){
   mappings[`update${singularCapitalized}`] = PropTypes.any;
   mappings[`remove${singularCapitalized}`] = PropTypes.any;
   mappings[`remove${pluralCapitalized}`] = PropTypes.any;
+  mappings[`makeActive${singularCapitalized}`] = PropTypes.any;
+  
   return mappings;
 }

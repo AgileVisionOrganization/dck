@@ -27,12 +27,12 @@ export function anything(value: string) {
  * Checks that input string contains email.
  * @param {string} value input string
  */
-export function email(value: string) {
+export function email(value: string, optional?: boolean) {
   return new Promise((resolve, reject) => {
     let empty = false;
     let valid = false;
 
-    if (!value || value.length === 0 || value.trim().length === 0) {
+    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
       empty = true;
     } else {
       valid = emailValidator.validate(value);
@@ -102,12 +102,12 @@ export function requiredValue(value: string) {
  * Date value validator, the result will be valid if the input string contains date.
  * @param {string} value input string
  */
-export function date(value: string) {
+export function date(value: string, optional?: boolean) {
   return new Promise((resolve, reject) => {
     let empty = false;
     let valid = false;
 
-    if (!value || value.length === 0 || value.trim().length === 0) {
+    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
       empty = true;
     } else {
       const dateValue = moment(value, "M/D/YYYY", true);
@@ -121,12 +121,12 @@ export function date(value: string) {
  * Phone number validator, the result will be valid if the input string contains phone number.
  * @param {string} value input string
  */
-export function phoneNumber(value: string) {
+export function phoneNumber(value: string, optional?: boolean) {
   return new Promise((resolve, reject) => {
     let empty = false;
     let valid = false;
 
-    if (!value || value.length === 0 || value.trim().length === 0) {
+    if ((!value || value.length === 0 || value.trim().length === 0) && !optional) {
       empty = true;
     } else {
       const phoneNumberValue = parse(value);
@@ -142,13 +142,13 @@ export function phoneNumber(value: string) {
  * Gender validator, the result will be valid if the input string contains gender(MALE or FEMALE).
  * @param {string} value input string
  */
-export function gender(value: string) {
+export function gender(value: string, optional?: boolean) {
   return new Promise((resolve, reject) => {
     let empty = false;
 
     let valid = false;
 
-    if (!value || value.trim().length === 0) {
+    if ((!value || value.trim().length === 0) && !optional) {
       empty = true;
     } else if (value === "MALE" || value === "FEMALE") {
       valid = true;
@@ -161,13 +161,13 @@ export function gender(value: string) {
  * Float validator, the result will be valid if the input string contains float value.
  * @param {string} value input string
  */
-export function float(value: string) {
+export function float(value: string, optional?: boolean) {
   return new Promise((resolve, reject) => {
     let empty = false;
 
     let valid = false;
 
-    if (!value || value.trim().length === 0) {
+    if ((!value || value.trim().length === 0) && !optional) {
       empty = true;
     } else {
       if (isFloat(value)) {

@@ -59,6 +59,17 @@ describe("Validators", () => {
       });
     });
 
+    it("should validate empty email as nonempty if it's optional", (done) => {
+      const incorrectEmail: any = "";
+      email(incorrectEmail, true).then((result: IValidationResult) => {
+        expect(result).toHaveProperty("empty");
+        expect(result).toHaveProperty("valid");
+        expect(result.empty).toEqual(false);
+        expect(result.valid).toEqual(false);
+        done();
+      });
+    });
+
     it("should fail validation of an empty email if it is null", (done) => {
       const incorrectEmail: any = null;
       email(incorrectEmail).then((result: IValidationResult) => {
@@ -146,6 +157,17 @@ describe("Validators", () => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(false);
+        done();
+      });
+    });
+
+    it("should validate empty date as nonempty if it's optional", (done) => {
+      const incorrectDate = "";
+      date(incorrectDate, true).then((result: IValidationResult) => {
+        expect(result).toHaveProperty("empty");
+        expect(result).toHaveProperty("valid");
+        expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(false);
         done();
       });
@@ -263,6 +285,17 @@ describe("Validators", () => {
       });
     });
 
+    it("should validate empty phone number as nonempty if it's optional", (done) => {
+      const incorrectPhoneNumber = "";
+      phoneNumber(incorrectPhoneNumber, true).then((result: IValidationResult) => {
+        expect(result).toHaveProperty("empty");
+        expect(result).toHaveProperty("valid");
+        expect(result.empty).toEqual(false);
+        expect(result.valid).toEqual(false);
+        done();
+      });
+    });
+
     it("should fail validation of an empty phone number if it is null", (done) => {
       const incorrectPhoneNumber: any = null;
       phoneNumber(incorrectPhoneNumber).then((result: IValidationResult) => {
@@ -303,6 +336,17 @@ describe("Validators", () => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(false);
+        done();
+      });
+    });
+
+    it("should validate empty gender as nonempty if it's optional", (done) => {
+      const incorrectGender = "";
+      gender(incorrectGender, true).then((result: IValidationResult) => {
+        expect(result).toHaveProperty("empty");
+        expect(result).toHaveProperty("valid");
+        expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(false);
         done();
       });
@@ -359,6 +403,17 @@ describe("Validators", () => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
         expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(false);
+        done();
+      });
+    });
+
+    it("should validate empty float as nonempty if it's optional", (done) => {
+      const incorrectFloat = "";
+      float(incorrectFloat, true).then((result: IValidationResult) => {
+        expect(result).toHaveProperty("empty");
+        expect(result).toHaveProperty("valid");
+        expect(result.empty).toEqual(false);
         expect(result.valid).toEqual(false);
         done();
       });
