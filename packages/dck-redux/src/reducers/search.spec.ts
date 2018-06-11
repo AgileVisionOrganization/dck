@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { search } from "./search";
-import * as ActionTypes from "../actions/types";
+import ActionTypes from "../actions/types";
 
 const initialState = fromJS({
   term: "",

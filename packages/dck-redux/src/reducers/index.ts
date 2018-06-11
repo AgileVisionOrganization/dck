@@ -11,10 +11,7 @@ import * as sortingReducer from "./sorting";
  * @param itemTypes all item types in system
  * @param processTypes all process types in system
  */
-export function createDckReducer(
-  itemTypes: string[],
-  processTypes: string[]
-): any {
+export function createDckReducer(itemTypes: string[], processTypes: string[]): any {
   return combineReducers({
     ...accountReducer,
     ...createProcessesReducer(processTypes),
@@ -23,3 +20,5 @@ export function createDckReducer(
     ...sortingReducer
   });
 }
+
+export default createDckReducer;

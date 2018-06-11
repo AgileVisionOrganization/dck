@@ -2,7 +2,7 @@
 
 import { fromJS } from "immutable";
 import { items } from "./items";
-import * as ItemActionCreators from "../actions/items";
+import ItemActionCreators from "../actions/items";
 
 const initialState = fromJS({
   ItemType1: {

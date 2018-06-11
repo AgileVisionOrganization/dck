@@ -1,5 +1,5 @@
 import { Map } from "immutable";
-import * as StoreSelectors from "./index";
+import StoreSelectors from "./index";
 
 describe("Selectors", () => {
   describe("Account", () => {

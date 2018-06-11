@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { stateToPropsMappingsForItem, dispatchToPropsMappingsForItem, createReducer } from "./utils";
-import * as types from "./actions/types";
+import DckActionTypes from "./actions/types";
 import { createStore } from "redux";
 
 const TEST_ITEM_TYPE = "TestItem";
@@ -84,28 +84,28 @@ describe("Utils Tests", () => {
             const initialState: any = {testItems: [{id: "testId"}]};
           
             const testReducer =  createReducer(initialState, {
-                [types.ITEMS_LOAD](state: any) {
+                [DckActionTypes.ITEMS_LOAD](state: any) {
                   return state;
                 },
-                [types.ITEM_ADD](state: any, action: any) {
+                [DckActionTypes.ITEM_ADD](state: any, action: any) {
                   state.testItems.push(action.data);
                   return state;
                 },
-                [types.ITEM_SAVE](state: any, action: any) {
+                [DckActionTypes.ITEM_SAVE](state: any, action: any) {
                   state.testItems.map((item:any, index:any)=>{ if(item.id===action.id){ state.testItems[index] = action.data } })
                   return state;
                 },
-                [types.ITEM_REMOVE](state: any, action: any) {
+                [DckActionTypes.ITEM_REMOVE](state: any, action: any) {
                   state.testItems=state.testItems.filter((item:any)=> item.id!==action.id);
                   return state;
                 },
-                [types.ITEMS_REMOVE](state: any, action: any) {
+                [DckActionTypes.ITEMS_REMOVE](state: any, action: any) {
                   state.testItems=state.testItems.filter((item:any)=>{
                       return action.ids.filter((id:any) => id===item.id).length===0;
                    });
                   return state;
                 },
-                [types.ITEM_MAKE_ACTIVE](state: any, action: any) {
+                [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
                     state.testItems.map((item:any, index:any)=>{ if(item.id===action.id){ state.testItems[index].active = true } });
                     return state;
                 }

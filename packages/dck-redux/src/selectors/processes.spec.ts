@@ -1,5 +1,5 @@
 import { fromJS } from "immutable";
-import * as StoreSelectors from "./index";
+import StoreSelectors from "./index";
 
 describe("Process", () => {
   const state = {
