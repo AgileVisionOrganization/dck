@@ -64,8 +64,8 @@ describe("Validators", () => {
       email(incorrectEmail, true).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
-        expect(result.empty).toEqual(false);
-        expect(result.valid).toEqual(false);
+        expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(true);
         done();
       });
     });
@@ -167,8 +167,8 @@ describe("Validators", () => {
       date(incorrectDate, true).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
-        expect(result.empty).toEqual(false);
-        expect(result.valid).toEqual(false);
+        expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(true);
         done();
       });
     });
@@ -290,8 +290,8 @@ describe("Validators", () => {
       phoneNumber(incorrectPhoneNumber, true).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
-        expect(result.empty).toEqual(false);
-        expect(result.valid).toEqual(false);
+        expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(true);
         done();
       });
     });
@@ -346,8 +346,8 @@ describe("Validators", () => {
       gender(incorrectGender, true).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
-        expect(result.empty).toEqual(false);
-        expect(result.valid).toEqual(false);
+        expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(true);
         done();
       });
     });
@@ -413,8 +413,8 @@ describe("Validators", () => {
       float(incorrectFloat, true).then((result: IValidationResult) => {
         expect(result).toHaveProperty("empty");
         expect(result).toHaveProperty("valid");
-        expect(result.empty).toEqual(false);
-        expect(result.valid).toEqual(false);
+        expect(result.empty).toEqual(true);
+        expect(result.valid).toEqual(true);
         done();
       });
     });
