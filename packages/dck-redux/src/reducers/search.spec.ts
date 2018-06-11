@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { search } from "./search";
-import ActionTypes from "../actions/types";
+import { DckActionTypes } from "../actions/types";
 
 const initialState = fromJS({
   term: "",
@@ -11,7 +11,7 @@ describe("SearchReducer", () => {
   describe("Search", () => {
     it("should set a new search term", () => {
       const updated = search(initialState, {
-        type: ActionTypes.SET_SEARCH_TERM,
+        type: DckActionTypes.SET_SEARCH_TERM,
         term: "test"
       });
       expect(updated).toBeDefined();
@@ -20,7 +20,7 @@ describe("SearchReducer", () => {
 
     it("should add a new filter", () => {
       const updated = search(initialState, {
-        type: ActionTypes.ADD_SEARCH_FILTER,
+        type: DckActionTypes.ADD_SEARCH_FILTER,
         filter: "filterA",
         value: "filterValue"
       });
@@ -30,7 +30,7 @@ describe("SearchReducer", () => {
       ]);
 
       const oneMoreFilter = search(updated, {
-        type: ActionTypes.ADD_SEARCH_FILTER,
+        type: DckActionTypes.ADD_SEARCH_FILTER,
         filter: "filterA",
         value: "filterValue2"
       });
@@ -43,7 +43,7 @@ describe("SearchReducer", () => {
 
     it("should not add a duplicate filter", () => {
       const updated = search(initialState, {
-        type: ActionTypes.ADD_SEARCH_FILTER,
+        type: DckActionTypes.ADD_SEARCH_FILTER,
         filter: "filterA",
         value: "filterValue"
       });
@@ -53,7 +53,7 @@ describe("SearchReducer", () => {
       ]);
 
       const oneMoreFilter = search(updated, {
-        type: ActionTypes.ADD_SEARCH_FILTER,
+        type: DckActionTypes.ADD_SEARCH_FILTER,
         filter: "filterA",
         value: "filterValue"
       });
@@ -65,7 +65,7 @@ describe("SearchReducer", () => {
 
     it("should not set duplicate filters", () => {
       const updated = search(initialState, {
-        type: ActionTypes.SET_SEARCH_FILTERS,
+        type: DckActionTypes.SET_SEARCH_FILTERS,
         filter: "filterA",
         values: ["1", "2", "3", "3"]
       });
@@ -79,7 +79,7 @@ describe("SearchReducer", () => {
 
     it("should not fail on empty  filters", () => {
       const updated = search(initialState, {
-        type: ActionTypes.SET_SEARCH_FILTERS,
+        type: DckActionTypes.SET_SEARCH_FILTERS,
         filter: "filterA",
         values: []
       });
@@ -89,7 +89,7 @@ describe("SearchReducer", () => {
 
     it("should not fail on non-existing  filters", () => {
       const updated = search(initialState, {
-        type: ActionTypes.SET_SEARCH_FILTERS,
+        type: DckActionTypes.SET_SEARCH_FILTERS,
         filter: "filterA"
       });
       expect(updated).toBeDefined();
@@ -98,7 +98,7 @@ describe("SearchReducer", () => {
 
     it("should remove a filter", () => {
       const updated = search(initialState, {
-        type: ActionTypes.ADD_SEARCH_FILTER,
+        type: DckActionTypes.ADD_SEARCH_FILTER,
         filter: "filterA",
         value: "filterValue"
       });
@@ -109,7 +109,7 @@ describe("SearchReducer", () => {
       ]);
 
       const removedFilter = search(updated, {
-        type: ActionTypes.REMOVE_SEARCH_FILTER,
+        type: DckActionTypes.REMOVE_SEARCH_FILTER,
         filter: "filterA"
       });
 
@@ -127,7 +127,7 @@ describe("SearchReducer", () => {
           }
         }),
         {
-          type: ActionTypes.CLEAR_SEARCH_FILTERS
+          type: DckActionTypes.CLEAR_SEARCH_FILTERS
         }
       );
 

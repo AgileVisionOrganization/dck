@@ -1,4 +1,4 @@
-import DckActionTypes from "./types";
+import { DckActionTypes } from "./types";
 
 export namespace DckActionCreators {
   /**

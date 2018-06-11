@@ -2,14 +2,13 @@
  * @module dck-redux
  */
 
-import ActionTypes from "./actions/types";
+export { DckActionTypes } from "./actions/types";
 import ActionCreators from "./actions";
 import Selectors from "./selectors";
 import createReducer from "./reducers";
 
 export const createDckReducer = createReducer;
 export const DckActionCreators = { ...ActionCreators };
-export const DckActionTypes = { ...ActionTypes };
 export const DckSelectors = { ...Selectors };
 
 /**

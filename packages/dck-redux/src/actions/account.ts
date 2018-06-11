@@ -1,4 +1,4 @@
-import DckActionTypes from "./types";
+import { DckActionTypes, SignUpWithPasswordCredentials } from "./types";
 
 export namespace DckActionCreators {
   /**
@@ -27,7 +27,7 @@ export namespace DckActionCreators {
    * Sign up with password action.
    * @param credentials user credentials
    */
-  export function signUpWithPassword(credentials: DckActionTypes.SignUpWithPasswordCredentials) {
+  export function signUpWithPassword(credentials: SignUpWithPasswordCredentials) {
     return {
       type: DckActionTypes.SIGN_UP_WITH_PASSWORD,
       credentials

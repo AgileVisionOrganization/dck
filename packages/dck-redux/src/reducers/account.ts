@@ -1,6 +1,6 @@
 import { Map } from "immutable";
 
-import DckActionTypes from "../actions/types";
+import { DckActionTypes } from "../actions/types";
 import { createReducer } from "../utils";
 
 /**

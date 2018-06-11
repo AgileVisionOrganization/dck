@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { stateToPropsMappingsForItem, dispatchToPropsMappingsForItem, createReducer } from "./utils";
-import DckActionTypes from "./actions/types";
+import { DckActionTypes } from "./actions/types";
 import { createStore } from "redux";
 
 const TEST_ITEM_TYPE = "TestItem";
