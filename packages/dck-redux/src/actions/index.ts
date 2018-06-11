@@ -1,36 +1,17 @@
-import * as AccountActions from "./account";
-import * as ProcessesActions from "./processes";
-import * as ItemsActions from "./items";
-import * as SearchActions from "./search";
-import * as SortingActions from "./sorting";
+import AccountActions from "./account";
+import ProcessesActions from "./processes";
+import ItemsActions from "./items";
+import SearchActions from "./search";
+import SortingActions from "./sorting";
 
 /**
  * Action creators.
  */
-export const DckActionCreators = {
-  
-  /**
-   * Account actions.
-   */
+const DckActionCreators = {
   ...AccountActions,
-  
-  /**
-   * Process actions.
-   */
   ...ProcessesActions,
-
-  /**
-   * Items actions.
-   */
   ...ItemsActions,
-
-  /**
-   * Search actions.
-   */
   ...SearchActions,
-
-  /**
-   * Sorting actions.
-   */
   ...SortingActions
 };
+export default DckActionCreators;

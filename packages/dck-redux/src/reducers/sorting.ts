@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 
-import * as types from "../actions/types";
+import DckActionTypes from "../actions/types";
 import { createReducer } from "../utils";
 
 /**
@@ -13,9 +13,10 @@ const initialState = fromJS({
 /**
  * Global sort reducer.
  * Can be used to apply sort options for all items in the system
+ * @hidden
  */
 export const sorting = createReducer(initialState, {
-  [types.SET_SORTING_OPTIONS](state: any, action: any) {
+  [DckActionTypes.SET_SORTING_OPTIONS](state: any, action: any) {
     return state.set("sortingOptions", action.sortingOptions);
   }
 });
