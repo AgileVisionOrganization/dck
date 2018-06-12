@@ -90,10 +90,15 @@ export interface IFieldGroupInputProps {
    */
   onChange?: (e: any) => void;
 
-    /**
+  /**
    * Function which call when component lost focus.
    */
   onBlur?: (e: any) => void;
+
+  /**
+   * Timeout for showing failed validation message after user start input something.
+   */
+  validationDebounceTimeout?: number
 }
 
 /**
@@ -264,14 +269,24 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     input: true,
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
+    validationDebounceTimeout: 1500
   };
+
+  constructor(props: IFieldGroupProps) {
+    super(props);
+
+    this.state = {
+      showValidation: null,
+      validationTimeout: null
+    };
+  }
 
   /**
    * Get element validation state.
    * @param validation current element validation state
    */
   public getValidationState(validation: any) {
-    if (!validation) {
+    if (!validation || this.state.showValidation === false) {
       return null;
     }
 
@@ -282,6 +297,19 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     }
   }
 
+  onChange = (e: any) => {
+    this.setState({showValidation: !!(this.props.validationState && this.props.validationState.valid)});
+
+    if (!this.state.validationTimeout) {
+      let timeout = setTimeout(() => {
+          this.setState({showValidation: true});
+          this.setState({validationTimeout: null});
+      }, this.props.validationDebounceTimeout);
+      this.setState({validationTimeout: timeout});
+    }
+    this.props.onChange(e);
+  };
+
   public render() {
     return (
       <FormGroup
@@ -291,7 +319,8 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         <ControlLabel>{this.props.label}</ControlLabel>
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
-        {this.props.validationMessage &&
+        {this.state.showValidation !== false &&
+        this.props.validationMessage &&
         this.props.validationState &&
         !this.props.validationState.valid ? (
           <HelpBlock>
@@ -341,7 +370,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         searchable={this.props.searchable}
         multi={this.props.multi}
         options={this.props.selectValues}
-        onChange={this.props.onChange}
+        onChange={this.onChange}
         onBlur={this.props.onBlur}
         arrowRenderer={(action): JSX.Element => {
           return (
@@ -403,14 +432,14 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   }
 
   private renderCheckBox() {
-    return <Checkbox value={this.props.value} onChange={this.props.onChange} />;
+    return <Checkbox value={this.props.value} onChange={this.onChange} />;
   }
 
   private renderTextInput() {
     return (
       <FormControl
         onFocus={this.props.onFocus}
-        onChange={this.props.onChange}
+        onChange={this.onChange}
         onBlur={this.props.onBlur}
         type={this.props.type}
         placeholder={this.props.placeholder}
