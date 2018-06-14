@@ -1,7 +1,7 @@
 import { plural } from "pluralize";
 
-import DckSelectors from "./selectors";
-import DckActionCreators from "./actions";
+import { DckSelectors } from "./selectors";
+import { DckActionCreators } from "./actions";
 import * as PropTypes from "prop-types";
 
 function capitalizeFirstLetter(s: string) {
