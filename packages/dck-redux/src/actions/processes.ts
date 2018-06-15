@@ -1,12 +1,13 @@
-import * as types from "./types";
+import { DckActionTypes } from "./types";
 
 /**
  * Async process start action.
  * @param processCode process code/name
+ * @hidden
  */
 export function asyncProcessStart(processCode: string) {
   return {
-    type: types.ASYNC_PROCESS_START,
+    type: DckActionTypes.ASYNC_PROCESS_START,
     processCode
   };
 }
@@ -15,10 +16,11 @@ export function asyncProcessStart(processCode: string) {
  * Async process stop action.
  * @param processCode process code/name
  * @param result proces result
+ * @hidden
  */
 export function asyncProcessStop(processCode: string, result: any) {
   return {
-    type: types.ASYNC_PROCESS_STOP,
+    type: DckActionTypes.ASYNC_PROCESS_STOP,
     processCode,
     result
   };
@@ -27,10 +29,11 @@ export function asyncProcessStop(processCode: string, result: any) {
 /**
  * Reset async process action.
  * @param processCode process code
+ * @hidden
  */
 export function asyncProcessReset(processCode: string) {
   return {
-    type: types.ASYNC_PROCESS_RESET,
+    type: DckActionTypes.ASYNC_PROCESS_RESET,
     processCode
   };
 }

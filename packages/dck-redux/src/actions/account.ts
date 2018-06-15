@@ -1,11 +1,12 @@
-import * as types from "./types";
+import { DckActionTypes, SignUpWithPasswordCredentials } from "./types";
 
 /**
  * Check authenticated action.
+ * @hidden
  */
 export function checkAuthenticated() {
   return {
-    type: types.CHECK_AUTHENTICATED
+    type: DckActionTypes.CHECK_AUTHENTICATED
   };
 }
 
@@ -13,10 +14,11 @@ export function checkAuthenticated() {
  * Sign in action.
  * @param email user email
  * @param password user password
+ * @hidden
  */
 export function signIn(email: string, password: string) {
   return {
-    type: types.SIGN_IN,
+    type: DckActionTypes.SIGN_IN,
     email,
     password
   };
@@ -25,20 +27,22 @@ export function signIn(email: string, password: string) {
 /**
  * Sign up with password action.
  * @param credentials user credentials
+ * @hidden
  */
-export function signUpWithPassword(credentials: types.SignUpWithPasswordCredentials) {
+export function signUpWithPassword(credentials: SignUpWithPasswordCredentials) {
   return {
-    type: types.SIGN_UP_WITH_PASSWORD,
+    type: DckActionTypes.SIGN_UP_WITH_PASSWORD,
     credentials
   };
 }
 
 /**
  * Initialize app action.
+ * @hidden
  */
 export function initializeApp() {
   return {
-    type: types.INITIALIZE_APP
+    type: DckActionTypes.INITIALIZE_APP
   };
 }
 
@@ -46,13 +50,11 @@ export function initializeApp() {
  * Initialize user session action.
  * @param sessionData user data(e.g. the token, roles, permissions etc.)
  * @param authenticated is user authenticated
+ * @hidden
  */
-export function initializeUserSession(
-  sessionData: any,
-  authenticated: boolean
-) {
+export function initializeUserSession(sessionData: any, authenticated: boolean) {
   return {
-    type: types.INITIALIZE_USER_SESSION,
+    type: DckActionTypes.INITIALIZE_USER_SESSION,
     sessionData,
     authenticated
   };
@@ -60,20 +62,22 @@ export function initializeUserSession(
 
 /**
  * Sign out action.
+ * @hidden
  */
 export function signOut() {
   return {
-    type: types.SIGN_OUT
+    type: DckActionTypes.SIGN_OUT
   };
 }
 
 /**
  * Force change password action.
  * @param password password
+ * @hidden
  */
 export function forceChangePassword(password: string) {
   return {
-    type: types.FORCE_CHANGE_PASSWORD,
+    type: DckActionTypes.FORCE_CHANGE_PASSWORD,
     password
   };
 }
@@ -82,10 +86,11 @@ export function forceChangePassword(password: string) {
  * Change password action.
  * @param oldPassword old password
  * @param password new password
+ * @hidden
  */
 export function changePassword(oldPassword: string, password: string) {
   return {
-    type: types.CHANGE_PASSWORD,
+    type: DckActionTypes.CHANGE_PASSWORD,
     oldPassword,
     password
   };
@@ -94,10 +99,11 @@ export function changePassword(oldPassword: string, password: string) {
 /**
  * Forgot password action.
  * @param email user email
+ * @hidden
  */
 export function forgotPassword(email: string) {
   return {
-    type: types.FORGOT_PASSWORD,
+    type: DckActionTypes.FORGOT_PASSWORD,
     email
   };
 }
@@ -105,16 +111,13 @@ export function forgotPassword(email: string) {
 /**
  * Confirm forgot password action.
  * @param email user email
- * @param verificationCode verification code 
+ * @param verificationCode verification code
  * @param password new user password
+ * @hidden
  */
-export function confirmForgotPassword(
-  email: string,
-  verificationCode: string,
-  password: string
-) {
+export function confirmForgotPassword(email: string, verificationCode: string, password: string) {
   return {
-    type: types.CONFIRM_FORGOT_PASSWORD,
+    type: DckActionTypes.CONFIRM_FORGOT_PASSWORD,
     email,
     verificationCode,
     password
@@ -123,9 +126,10 @@ export function confirmForgotPassword(
 
 /**
  * Ensure change password for user is set action.
+ * @hidden
  */
 export function ensureChangePasswordUserIsSet() {
   return {
-    type: types.ENSURE_CHANGE_USER_PASSWORD_IS_SET
+    type: DckActionTypes.ENSURE_CHANGE_USER_PASSWORD_IS_SET
   };
 }

@@ -1,6 +1,6 @@
-import { plural } from 'pluralize';
+import { plural } from "pluralize";
 
-import { selectAllItems, selectActiveItem, selectProcessFailed, selectProcessSuccess, selectProcessRunning, selectProcess } from './selectors';
+import { DckSelectors } from "./selectors";
 import { DckActionCreators } from "./actions";
 import * as PropTypes from "prop-types";
 
@@ -14,8 +14,9 @@ function lowercaseFirstLetter(s: string) {
 
 /**
  * Created reducer.
- * @param initialState reducer initial state 
+ * @param initialState reducer initial state
  * @param handlers reducer handlers
+ * @hidden
  */
 export function createReducer(initialState: any, handlers: any) {
   return function reducer(state = initialState, action: any) {
@@ -28,13 +29,12 @@ export function createReducer(initialState: any, handlers: any) {
 }
 
 /**
- * Get CRUD process status for item with given type. 
+ * Get CRUD process status for item with given type.
  * @param state current state
  * @param itemType item type
- * @returns {any} status of CRUD process for item with given type 
+ * @returns {any} status of CRUD process for item with given type
  */
 export function stateToPropsMappingsForItem(state: any, itemType: string) {
-
   const pluralLowercase = lowercaseFirstLetter(plural(itemType));
   const pluralCapitalized = capitalizeFirstLetter(plural(itemType));
   const singularCapitalized = capitalizeFirstLetter(itemType);
@@ -45,31 +45,29 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   const updateProcessName = `${itemType.toUpperCase()}_UPDATE`;
   const removeProcessName = `${itemType.toUpperCase()}_REMOVE`;
 
-
-
   const mappings: any = {};
-  mappings[pluralLowercase] = selectAllItems(state, itemType);
-  mappings[`current${singularCapitalized}`] = selectActiveItem(state, itemType);
+  mappings[pluralLowercase] = DckSelectors.selectAllItems(state, itemType);
+  mappings[`current${singularCapitalized}`] = DckSelectors.selectActiveItem(state, itemType);
 
-  mappings[`${pluralLowercase}Loading`] = selectProcessRunning(state, loadProcessName);
-  mappings[`${pluralLowercase}LoadingProcess`] = selectProcess(state, loadProcessName);
-  mappings[`${pluralLowercase}LoadFailed`] = selectProcessFailed(state, loadProcessName);
-  mappings[`${pluralLowercase}LoadSuccess`] = selectProcessSuccess(state, loadProcessName);
+  mappings[`${pluralLowercase}Loading`] = DckSelectors.selectProcessRunning(state, loadProcessName);
+  mappings[`${pluralLowercase}LoadingProcess`] = DckSelectors.selectProcess(state, loadProcessName);
+  mappings[`${pluralLowercase}LoadFailed`] = DckSelectors.selectProcessFailed(state, loadProcessName);
+  mappings[`${pluralLowercase}LoadSuccess`] = DckSelectors.selectProcessSuccess(state, loadProcessName);
 
-  mappings[`${singularLowercase}Adding`] = selectProcessRunning(state, addProcessName);
-  mappings[`${singularLowercase}AddingProcess`] = selectProcess(state, addProcessName);
-  mappings[`${singularLowercase}AddFailed`] = selectProcessFailed(state, addProcessName);
-  mappings[`${singularLowercase}AddSuccess`] = selectProcessSuccess(state, addProcessName);
+  mappings[`${singularLowercase}Adding`] = DckSelectors.selectProcessRunning(state, addProcessName);
+  mappings[`${singularLowercase}AddingProcess`] = DckSelectors.selectProcess(state, addProcessName);
+  mappings[`${singularLowercase}AddFailed`] = DckSelectors.selectProcessFailed(state, addProcessName);
+  mappings[`${singularLowercase}AddSuccess`] = DckSelectors.selectProcessSuccess(state, addProcessName);
 
-  mappings[`${singularLowercase}Updating`] = selectProcessRunning(state, updateProcessName);
-  mappings[`${singularLowercase}UpdatingProcess`] = selectProcess(state, updateProcessName);
-  mappings[`${singularLowercase}UpdateFailed`] = selectProcessFailed(state, updateProcessName);
-  mappings[`${singularLowercase}UpdateSuccess`] = selectProcessSuccess(state, updateProcessName);
+  mappings[`${singularLowercase}Updating`] = DckSelectors.selectProcessRunning(state, updateProcessName);
+  mappings[`${singularLowercase}UpdatingProcess`] = DckSelectors.selectProcess(state, updateProcessName);
+  mappings[`${singularLowercase}UpdateFailed`] = DckSelectors.selectProcessFailed(state, updateProcessName);
+  mappings[`${singularLowercase}UpdateSuccess`] = DckSelectors.selectProcessSuccess(state, updateProcessName);
 
-  mappings[`${singularLowercase}Removing`] = selectProcessRunning(state, removeProcessName);
-  mappings[`${singularLowercase}RemovingProcess`] = selectProcess(state, removeProcessName);
-  mappings[`${singularLowercase}RemoveFailed`] = selectProcessFailed(state, removeProcessName);
-  mappings[`${singularLowercase}RemoveSuccess`] = selectProcessSuccess(state, removeProcessName);
+  mappings[`${singularLowercase}Removing`] = DckSelectors.selectProcessRunning(state, removeProcessName);
+  mappings[`${singularLowercase}RemovingProcess`] = DckSelectors.selectProcess(state, removeProcessName);
+  mappings[`${singularLowercase}RemoveFailed`] = DckSelectors.selectProcessFailed(state, removeProcessName);
+  mappings[`${singularLowercase}RemoveSuccess`] = DckSelectors.selectProcessSuccess(state, removeProcessName);
 
   return mappings;
 }
@@ -78,7 +76,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
  * Create mappings by which You can dispatch CRUD actions for given type.
  * @param dispatch dispatch
  * @param itemType item type
- * @returns {any} mapping with dispatch CRUD actions for given type 
+ * @returns {any} mapping with dispatch CRUD actions for given type
  */
 export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) {
   const pluralLowercase = plural(itemType).toLocaleLowerCase();
@@ -87,14 +85,15 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
   const singularLowercase = itemType.toLowerCase();
   const mappings: any = {};
 
-  mappings[`load${pluralCapitalized}`] = (filteringOptions: any) => dispatch(DckActionCreators.itemsLoad(itemType, filteringOptions));
+  mappings[`load${pluralCapitalized}`] = (filteringOptions: any) =>
+    dispatch(DckActionCreators.itemsLoad(itemType, filteringOptions));
   mappings[`add${singularCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemAdd(itemType, data));
-  mappings[`update${singularCapitalized}`] = (id: any, data: any) => dispatch(DckActionCreators.itemSave(itemType, id, data));
+  mappings[`update${singularCapitalized}`] = (id: any, data: any) =>
+    dispatch(DckActionCreators.itemSave(itemType, id, data));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`makeActive${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemMakeActive(itemType, id));
-
 
   return mappings;
 }
@@ -136,6 +135,6 @@ export function getPropTypesForItem(itemType: string) {
   mappings[`remove${singularCapitalized}`] = PropTypes.any;
   mappings[`remove${pluralCapitalized}`] = PropTypes.any;
   mappings[`makeActive${singularCapitalized}`] = PropTypes.any;
-  
+
   return mappings;
 }

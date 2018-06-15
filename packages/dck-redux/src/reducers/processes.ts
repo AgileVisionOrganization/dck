@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 
-import * as types from "../actions/types";
+import { DckActionTypes } from "../actions/types";
 import { createReducer } from "../utils";
 
 /**
@@ -9,7 +9,8 @@ import { createReducer } from "../utils";
  * PROCESS_NAME: {
  *   running: false
  * }
- * @param processTypes all processes in the system 
+ * @param processTypes all processes in the system
+ * @hidden
  */
 export const createProcessesReducer = (processTypes: string[]) => {
   let initialProcessStates: any;
@@ -24,7 +25,7 @@ export const createProcessesReducer = (processTypes: string[]) => {
   const initialState = fromJS(initialProcessStates);
   return {
     processes: createReducer(initialState, {
-      [types.ASYNC_PROCESS_START](state: any, action: any) {
+      [DckActionTypes.ASYNC_PROCESS_START](state: any, action: any) {
         return state.set(
           action.processCode,
           fromJS({
@@ -32,7 +33,7 @@ export const createProcessesReducer = (processTypes: string[]) => {
           })
         );
       },
-      [types.ASYNC_PROCESS_STOP](state: any, action: any) {
+      [DckActionTypes.ASYNC_PROCESS_STOP](state: any, action: any) {
         return state.set(
           action.processCode,
           fromJS({
@@ -43,7 +44,7 @@ export const createProcessesReducer = (processTypes: string[]) => {
           })
         );
       },
-      [types.ASYNC_PROCESS_RESET](state: any, action: any) {
+      [DckActionTypes.ASYNC_PROCESS_RESET](state: any, action: any) {
         return state.set(
           action.processCode,
           fromJS({

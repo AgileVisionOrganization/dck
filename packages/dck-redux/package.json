@@ -1,6 +1,6 @@
 {
   "name": "dck-redux",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "lib/dck-redux.js",
   "types": "lib/index.d.ts",
   "peerDependencies": {
@@ -56,7 +56,7 @@
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "lint:watch": "esw -w lib/**/*.ts",
     "prepublish": "npm run lint && npm run build",
-    "documentation": "typedoc --out doc/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Redux documentations\" --excludePrivate --excludeProtected"
+    "documentation": "typedoc --out doc/ --mode file --target ES6 ./src/index.ts --readme ./README.md --name \"DCK Redux documentations\" --excludePrivate --excludeProtected --excludeNotExported"
   },
   "dependencies": {
     "@types/prop-types": "^15.5.2",

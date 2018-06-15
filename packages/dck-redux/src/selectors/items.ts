@@ -1,10 +1,11 @@
 import { createSelector } from "reselect";
 
 /**
- * Select all items with given types. 
- * @param {object} state state 
+ * Select all items with given types.
+ * @param {object} state state
  * @param {string[]} itemsType items type
  * @returns {object[]} all items with given type
+ * @hidden
  */
 export const selectAllItems = (state: any, itemsType: string[] | string) => {
   return state.dck.items.getIn([itemsType, "items"]).toJS();
@@ -15,6 +16,7 @@ export const selectAllItems = (state: any, itemsType: string[] | string) => {
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {string|number} given type active item id
+ * @hidden
  */
 export const selectActiveItemId = (state: any, itemType: string) => {
   return state.dck.items.getIn([itemType, "active"]);
@@ -25,6 +27,7 @@ export const selectActiveItemId = (state: any, itemType: string) => {
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {object} given type active item
+ * @hidden
  */
 export const selectActiveItem = createSelector(
   [selectActiveItemId, selectAllItems],
@@ -41,6 +44,7 @@ export const selectActiveItem = createSelector(
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {string[]|number[]} given type selected items ids
+ * @hidden
  */
 export const selectSelectedItemsId = (state: any, itemType: string) => {
   return state.dck.items.getIn([itemType, "selected"]);
@@ -51,6 +55,7 @@ export const selectSelectedItemsId = (state: any, itemType: string) => {
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {object[]} given type selected items
+ * @hidden
  */
 export const selectSelectedItems = createSelector(
   [selectSelectedItemsId, selectAllItems],
@@ -68,12 +73,9 @@ export const selectSelectedItems = createSelector(
  * @param {string} itemType item type
  * @param {string|number} itemId item id
  * @returns {object} item with given type and id
+ * @hidden
  */
-export const selectItemById = (
-  state: any,
-  itemType: string,
-  itemId: string | number
-) => {
+export const selectItemById = (state: any, itemType: string, itemId: string | number) => {
   const items = selectAllItems(state, itemType);
 
   const filtered = items.filter((x: any) => x.id === itemId);
@@ -85,6 +87,7 @@ export const selectItemById = (
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {string} search term for given item type
+ * @hidden
  */
 export const selectItemSearchTerm = (state: any, itemType: string) => {
   return state.dck.items.getIn([itemType, "term"]);
@@ -95,6 +98,7 @@ export const selectItemSearchTerm = (state: any, itemType: string) => {
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {object} search filters for given item type
+ * @hidden
  */
 export const selectItemSearchFilters = (state: any, itemType: string) => {
   return state.dck.items.getIn([itemType, "filters"]).toJS();
@@ -105,6 +109,7 @@ export const selectItemSearchFilters = (state: any, itemType: string) => {
  * @param {object} state state
  * @param {string} itemType item type
  * @returns {any[]} sorting options for given item type
+ * @hidden
  */
 export const selectItemSortingOptions = (state: any, itemType: string) => {
   return state.dck.items.getIn([itemType, "sortingOptions"]).toJS();

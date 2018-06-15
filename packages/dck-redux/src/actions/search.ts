@@ -1,12 +1,13 @@
-import * as types from "./types";
+import { DckActionTypes } from "./types";
 
 /**
  * Set global search term action.
  * @param term search term
+ * @hidden
  */
 export function setSearchTerm(term: string) {
   return {
-    type: types.SET_SEARCH_TERM,
+    type: DckActionTypes.SET_SEARCH_TERM,
     term
   };
 }
@@ -15,10 +16,11 @@ export function setSearchTerm(term: string) {
  * Add global search filter action.
  * @param filter filter name
  * @param value filter value
+ * @hidden
  */
 export function addSearchFilter(filter: string, value: string) {
   return {
-    type: types.ADD_SEARCH_FILTER,
+    type: DckActionTypes.ADD_SEARCH_FILTER,
     filter,
     value
   };
@@ -27,10 +29,11 @@ export function addSearchFilter(filter: string, value: string) {
 /**
  * Remove global search filters action.
  * @param filter filter name
+ * @hidden
  */
 export function removeSearchFilter(filter: string) {
   return {
-    type: types.REMOVE_SEARCH_FILTER,
+    type: DckActionTypes.REMOVE_SEARCH_FILTER,
     filter
   };
 }
@@ -39,10 +42,11 @@ export function removeSearchFilter(filter: string) {
  * Set global search filters action.
  * @param filter filter name
  * @param values filter values
+ * @hidden
  */
 export function setSearchFilters(filter: string, values: string[]) {
   return {
-    type: types.SET_SEARCH_FILTERS,
+    type: DckActionTypes.SET_SEARCH_FILTERS,
     filter,
     values
   };
@@ -50,9 +54,10 @@ export function setSearchFilters(filter: string, values: string[]) {
 
 /**
  * Clear global searh filters.
+ * @hidden
  */
 export function clearSearchFilters() {
   return {
-    type: types.CLEAR_SEARCH_FILTERS
+    type: DckActionTypes.CLEAR_SEARCH_FILTERS
   };
 }

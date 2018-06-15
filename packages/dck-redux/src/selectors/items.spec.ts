@@ -1,5 +1,5 @@
 import { fromJS } from "immutable";
-import * as StoreSelectors from "./index";
+import { DckSelectors } from "./index";
 
 describe("Items", () => {
   const state = {
@@ -59,50 +59,41 @@ describe("Items", () => {
   };
 
   it("should get all items by type", () => {
-    const items = StoreSelectors.selectAllItems(state, "ITEM_TYPE_1");
+    const items = DckSelectors.selectAllItems(state, "ITEM_TYPE_1");
     expect(items).toBeDefined();
     expect(items).toHaveLength(3);
 
-    const items2 = StoreSelectors.selectAllItems(state, "ITEM_TYPE_2");
+    const items2 = DckSelectors.selectAllItems(state, "ITEM_TYPE_2");
     expect(items2).toBeDefined();
     expect(items2).toHaveLength(4);
   });
 
   it("should select selected item id", () => {
-    const selectedItems = StoreSelectors.selectSelectedItemsId(
-      state,
-      "ITEM_TYPE_2"
-    );
+    const selectedItems = DckSelectors.selectSelectedItemsId(state, "ITEM_TYPE_2");
     expect(selectedItems).toBeDefined();
     expect(Array.from(selectedItems)).toMatchObject(["23", "22"]);
   });
 
   it("should select active item", () => {
-    const activeItem = StoreSelectors.selectActiveItem(state, "ITEM_TYPE_1");
+    const activeItem = DckSelectors.selectActiveItem(state, "ITEM_TYPE_1");
     expect(activeItem).toBeDefined();
     expect(activeItem.data).toEqual("test item 2");
   });
 
   it("should select selected items", () => {
-    const selectedItems = StoreSelectors.selectSelectedItems(
-      state,
-      "ITEM_TYPE_2"
-    );
+    const selectedItems = DckSelectors.selectSelectedItems(state, "ITEM_TYPE_2");
     expect(selectedItems).toBeDefined();
     expect(selectedItems).toHaveLength(2);
   });
 
   it("should select item by id", () => {
-    const item = StoreSelectors.selectItemById(state, "ITEM_TYPE_2", "24");
+    const item = DckSelectors.selectItemById(state, "ITEM_TYPE_2", "24");
     expect(item).toBeDefined();
     expect(item.data).toEqual("test item 24");
   });
 
   it("should select item filters", () => {
-    const selectedFilters = StoreSelectors.selectItemSearchFilters(
-      state,
-      "ITEM_TYPE_1"
-    );
+    const selectedFilters = DckSelectors.selectItemSearchFilters(state, "ITEM_TYPE_1");
 
     expect(selectedFilters).toBeDefined();
     expect(selectedFilters).toBeInstanceOf(Object);
@@ -113,19 +104,13 @@ describe("Items", () => {
   });
 
   it("should select item search term", () => {
-    const searchTerm = StoreSelectors.selectItemSearchTerm(
-      state,
-      "ITEM_TYPE_2"
-    );
+    const searchTerm = DckSelectors.selectItemSearchTerm(state, "ITEM_TYPE_2");
     expect(searchTerm).toBeDefined();
     expect(searchTerm).toEqual("testTerm");
   });
 
   it("should select item sortingOptions", () => {
-    const sortingOptions = StoreSelectors.selectItemSortingOptions(
-      state,
-      "ITEM_TYPE_2"
-    );
+    const sortingOptions = DckSelectors.selectItemSortingOptions(state, "ITEM_TYPE_2");
     expect(sortingOptions).toBeDefined();
     expect(sortingOptions).toMatchObject(["sort1", "sort2"]);
   });

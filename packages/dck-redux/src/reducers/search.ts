@@ -1,6 +1,6 @@
 import { fromJS, Map, List } from "immutable";
 
-import * as types from "../actions/types";
+import { DckActionTypes } from "../actions/types";
 import { createReducer } from "../utils";
 
 /**
@@ -14,12 +14,13 @@ const initialState = fromJS({
 /**
  * Search reducer.
  * Global search filters can be used to filters value in some generic search field.
+ * @hidden
  */
 export const search = createReducer(initialState, {
-  [types.SET_SEARCH_TERM](state: any, action: any) {
+  [DckActionTypes.SET_SEARCH_TERM](state: any, action: any) {
     return state.set("term", action.term);
   },
-  [types.ADD_SEARCH_FILTER](state: any, action: any) {
+  [DckActionTypes.ADD_SEARCH_FILTER](state: any, action: any) {
     return state.updateIn(["filters", action.filter], List(), (list: any) => {
       if (!list.includes(action.value)) {
         return list.push(action.value);
@@ -28,7 +29,7 @@ export const search = createReducer(initialState, {
       }
     });
   },
-  [types.SET_SEARCH_FILTERS](state: any, action: any) {
+  [DckActionTypes.SET_SEARCH_FILTERS](state: any, action: any) {
     const withoutDuplicates: any = [];
 
     if (action.values) {
@@ -41,10 +42,10 @@ export const search = createReducer(initialState, {
 
     return state.setIn(["filters", action.filter], List(withoutDuplicates));
   },
-  [types.REMOVE_SEARCH_FILTER](state: any, action: any) {
+  [DckActionTypes.REMOVE_SEARCH_FILTER](state: any, action: any) {
     return state.deleteIn(["filters", action.filter]);
   },
-  [types.CLEAR_SEARCH_FILTERS](state: any) {
+  [DckActionTypes.CLEAR_SEARCH_FILTERS](state: any) {
     return state.set("filters", Map());
   }
 });

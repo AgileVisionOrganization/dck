@@ -1,5 +1,5 @@
 import { fromJS } from "immutable";
-import * as StoreSelectors from "./index";
+import { DckSelectors } from "./index";
 
 describe("Search", () => {
   it("should select search term");
@@ -17,7 +17,7 @@ describe("Search", () => {
       }
     };
 
-    const selectedFilters = StoreSelectors.selectSearchFilters(state);
+    const selectedFilters = DckSelectors.selectSearchFilters(state);
     expect(selectedFilters).toBeDefined();
     expect(selectedFilters).toBeInstanceOf(Object);
     expect(selectedFilters).toHaveProperty("a");

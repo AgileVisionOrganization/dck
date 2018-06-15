@@ -1,13 +1,14 @@
-import * as types from "./types";
+import { DckActionTypes } from "./types";
 
 /**
  * Load items action.
  * @param itemType items type
  * @param filteringOptions items filtering options
+ * @hidden
  */
 export function itemsLoad(itemType: string, filteringOptions: any) {
   return {
-    type: types.ITEMS_LOAD,
+    type: DckActionTypes.ITEMS_LOAD,
     itemType,
     filteringOptions
   };
@@ -17,10 +18,11 @@ export function itemsLoad(itemType: string, filteringOptions: any) {
  * Add item action.
  * @param itemType item type
  * @param data item data
+ * @hidden
  */
 export function itemAdd(itemType: string, data: any) {
   return {
-    type: types.ITEM_ADD,
+    type: DckActionTypes.ITEM_ADD,
     itemType,
     data
   };
@@ -31,10 +33,11 @@ export function itemAdd(itemType: string, data: any) {
  * @param itemType item type
  * @param id item id
  * @param data updated item data
+ * @hidden
  */
 export function itemSave(itemType: string, id: string | number, data: any) {
   return {
-    type: types.ITEM_SAVE,
+    type: DckActionTypes.ITEM_SAVE,
     itemType,
     id,
     data
@@ -45,10 +48,11 @@ export function itemSave(itemType: string, id: string | number, data: any) {
  * Reload item with given id action.
  * @param itemType item type
  * @param id item id
+ * @hidden
  */
 export function itemReload(itemType: string, id: string | number) {
   return {
-    type: types.ITEM_RELOAD,
+    type: DckActionTypes.ITEM_RELOAD,
     itemType,
     id
   };
@@ -59,10 +63,11 @@ export function itemReload(itemType: string, id: string | number) {
  * @param itemType item type
  * @param id item id
  * @param data item data
+ * @hidden
  */
 export function itemSet(itemType: string, id: string | number, data: any) {
   return {
-    type: types.ITEM_SET,
+    type: DckActionTypes.ITEM_SET,
     itemType,
     id,
     data
@@ -73,10 +78,11 @@ export function itemSet(itemType: string, id: string | number, data: any) {
  * Set items action.
  * @param itemType items type
  * @param data items
+ * @hidden
  */
 export function itemsSet(itemType: string, data: any) {
   return {
-    type: types.ITEMS_SET,
+    type: DckActionTypes.ITEMS_SET,
     itemType,
     data
   };
@@ -86,10 +92,11 @@ export function itemsSet(itemType: string, data: any) {
  * Make item active action with given id.
  * @param itemType item type
  * @param id item id
+ * @hidden
  */
 export function itemMakeActive(itemType: string, id: string | number) {
   return {
-    type: types.ITEM_MAKE_ACTIVE,
+    type: DckActionTypes.ITEM_MAKE_ACTIVE,
     itemType,
     id
   };
@@ -99,10 +106,11 @@ export function itemMakeActive(itemType: string, id: string | number) {
  * Select item with given id action.
  * @param itemType item type
  * @param id item id
+ * @hidden
  */
 export function itemSelect(itemType: string, id: string | number) {
   return {
-    type: types.ITEM_SELECT,
+    type: DckActionTypes.ITEM_SELECT,
     itemType,
     id
   };
@@ -112,10 +120,11 @@ export function itemSelect(itemType: string, id: string | number) {
  * Remove item with given id action.
  * @param itemType item type
  * @param id item id
+ * @hidden
  */
 export function itemRemove(itemType: string, id: string | number) {
   return {
-    type: types.ITEM_REMOVE,
+    type: DckActionTypes.ITEM_REMOVE,
     itemType,
     id
   };
@@ -125,10 +134,11 @@ export function itemRemove(itemType: string, id: string | number) {
  * Remove items action.
  * @param itemType item type
  * @param ids remove items ids
+ * @hidden
  */
 export function itemsRemove(itemType: string, ids: string[] | number[]) {
   return {
-    type: types.ITEMS_REMOVE,
+    type: DckActionTypes.ITEMS_REMOVE,
     itemType,
     ids
   };
@@ -138,10 +148,11 @@ export function itemsRemove(itemType: string, ids: string[] | number[]) {
  * Select items with given ids action.
  * @param itemType items type
  * @param ids items ids
+ * @hidden
  */
 export function itemsSelect(itemType: string, ids: string[] | number[]) {
   return {
-    type: types.ITEMS_SELECT,
+    type: DckActionTypes.ITEMS_SELECT,
     itemType,
     ids
   };
@@ -151,10 +162,11 @@ export function itemsSelect(itemType: string, ids: string[] | number[]) {
  * Set item search term action.
  * @param itemType item type
  * @param term item search term
+ * @hidden
  */
 export function setItemSearchTerm(itemType: string, term: string) {
   return {
-    type: types.SET_ITEM_SEARCH_TERM,
+    type: DckActionTypes.SET_ITEM_SEARCH_TERM,
     itemType,
     term
   };
@@ -165,10 +177,11 @@ export function setItemSearchTerm(itemType: string, term: string) {
  * @param itemType item type
  * @param filter filter name
  * @param value new filter value
+ * @hidden
  */
 export function addItemSearchFilter(itemType: string, filter: any, value: any) {
   return {
-    type: types.ADD_ITEM_SEARCH_FILTER,
+    type: DckActionTypes.ADD_ITEM_SEARCH_FILTER,
     itemType,
     filter,
     value
@@ -179,10 +192,11 @@ export function addItemSearchFilter(itemType: string, filter: any, value: any) {
  * Remove item search filter action.
  * @param itemType item type
  * @param filter filter name
+ * @hidden
  */
 export function removeItemSearchFilter(itemType: string, filter: any) {
   return {
-    type: types.REMOVE_ITEM_SEARCH_FILTER,
+    type: DckActionTypes.REMOVE_ITEM_SEARCH_FILTER,
     itemType,
     filter
   };
@@ -193,14 +207,11 @@ export function removeItemSearchFilter(itemType: string, filter: any) {
  * @param itemType item type
  * @param filter filter name
  * @param values filter values
+ * @hidden
  */
-export function setItemSearchFilters(
-  itemType: string,
-  filter: any,
-  values: any
-) {
+export function setItemSearchFilters(itemType: string, filter: any, values: any) {
   return {
-    type: types.SET_ITEM_SEARCH_FILTERS,
+    type: DckActionTypes.SET_ITEM_SEARCH_FILTERS,
     itemType,
     filter,
     values
@@ -210,10 +221,11 @@ export function setItemSearchFilters(
 /**
  * Clear item search filters action.
  * @param itemType item type
+ * @hidden
  */
 export function clearItemSearchFilters(itemType: string) {
   return {
-    type: types.CLEAR_ITEM_SEARCH_FILTERS,
+    type: DckActionTypes.CLEAR_ITEM_SEARCH_FILTERS,
     itemType
   };
 }
@@ -222,10 +234,11 @@ export function clearItemSearchFilters(itemType: string) {
  * Set item sorting options action.
  * @param itemType item type
  * @param sortingOptions sorting options
+ * @hidden
  */
 export function setItemSortingOptions(itemType: string, sortingOptions: any) {
   return {
-    type: types.SET_ITEM_SORTING_OPTIONS,
+    type: DckActionTypes.SET_ITEM_SORTING_OPTIONS,
     itemType,
     sortingOptions
   };
@@ -233,7 +246,7 @@ export function setItemSortingOptions(itemType: string, sortingOptions: any) {
 
 /**
  * Standard action flow for items
- * 
+ *
  * User action => ITEMS_LOAD => ... async call ... => ITEMS_SET
  * User action => ITEM_ADD => ...async call ... => ITEMS_LOAD
  * User action => ITEM_SAVE => ...async call... => ITEM_RELOAD

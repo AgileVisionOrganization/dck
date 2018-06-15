@@ -1,5 +1,5 @@
 import { Map } from "immutable";
-import * as StoreSelectors from "./index";
+import { DckSelectors } from "./index";
 
 describe("Selectors", () => {
   describe("Account", () => {
@@ -14,7 +14,7 @@ describe("Selectors", () => {
         }
       };
 
-      const result = StoreSelectors.selectSessionData(state);
+      const result = DckSelectors.selectSessionData(state);
       expect(result).toBeDefined();
       expect(result.idToken).toEqual("test");
     });
@@ -26,7 +26,7 @@ describe("Selectors", () => {
         }
       };
 
-      const result = StoreSelectors.selectSessionData(state);
+      const result = DckSelectors.selectSessionData(state);
       expect(result).toBeFalsy();
     });
   });
