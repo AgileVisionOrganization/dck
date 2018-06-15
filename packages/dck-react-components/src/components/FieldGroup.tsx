@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  ControlLabel,
-  FormControl,
-  Checkbox,
-  FormGroup,
-  HelpBlock,
-  InputGroup,
-} from "react-bootstrap";
+import { ControlLabel, FormControl, Checkbox, FormGroup, HelpBlock, InputGroup } from "react-bootstrap";
 import * as FontAwesome from "react-fontawesome";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
@@ -90,10 +83,15 @@ export interface IFieldGroupInputProps {
    */
   onChange?: (e: any) => void;
 
-    /**
+  /**
    * Function which call when component lost focus.
    */
   onBlur?: (e: any) => void;
+
+  /**
+   * Timeout for showing failed validation message after user start input something.
+   */
+  validationDebounceTimeout?: number;
 }
 
 /**
@@ -239,10 +237,7 @@ export interface IFieldGroupDateTimeProps {
 /**
  * Combined props.
  */
-export interface IFieldGroupProps
-  extends IFieldGroupInputProps,
-    IFieldGroupSelectProps,
-    IFieldGroupDateTimeProps {}
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps {}
 
 /**
  * Field group component.
@@ -264,14 +259,24 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     input: true,
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
+    validationDebounceTimeout: 1500,
   };
+
+  constructor(props: IFieldGroupProps) {
+    super(props);
+
+    this.state = {
+      showValidation: null,
+      validationTimeout: null,
+    };
+  }
 
   /**
    * Get element validation state.
    * @param validation current element validation state
    */
   public getValidationState(validation: any) {
-    if (!validation) {
+    if (!validation || this.state.showValidation === false) {
       return null;
     }
 
@@ -284,14 +289,12 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
 
   public render() {
     return (
-      <FormGroup
-        controlId={this.props.id}
-        validationState={this.getValidationState(this.props.validationState)}
-      >
+      <FormGroup controlId={this.props.id} validationState={this.getValidationState(this.props.validationState)}>
         <ControlLabel>{this.props.label}</ControlLabel>
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
-        {this.props.validationMessage &&
+        {this.state.showValidation !== false &&
+        this.props.validationMessage &&
         this.props.validationState &&
         !this.props.validationState.valid ? (
           <HelpBlock>
@@ -303,6 +306,19 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         )}
       </FormGroup>
     );
+  }
+
+  private onChange = (e: any) => {
+    this.setState({ showValidation: !!(this.props.validationState && this.props.validationState.valid) });
+
+    if (!this.state.validationTimeout) {
+      const timeout = setTimeout(() => {
+        this.setState({ showValidation: true });
+        this.setState({ validationTimeout: null });
+      }, this.props.validationDebounceTimeout);
+      this.setState({ validationTimeout: timeout });
+    }
+    this.props.onChange(e);
   }
 
   private getCurrentRender() {
@@ -341,7 +357,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         searchable={this.props.searchable}
         multi={this.props.multi}
         options={this.props.selectValues}
-        onChange={this.props.onChange}
+        onChange={this.onChange}
         onBlur={this.props.onBlur}
         arrowRenderer={(action): JSX.Element => {
           return (
@@ -380,11 +396,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     const { dateFormat, timeFormat, ...otherProps } = this.props;
     return (
       <div className={this.props.dateTimeClass}>
-        <ReactDatetime
-          dateFormat={dateFormat ? dateFormat : true}
-          timeFormat={false}
-          {...otherProps}
-        />
+        <ReactDatetime dateFormat={dateFormat ? dateFormat : true} timeFormat={false} {...otherProps} />
       </div>
     );
   }
@@ -393,24 +405,20 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     const { dateFormat, timeFormat, ...otherProps } = this.props;
     return (
       <div className={this.props.dateTimeClass}>
-        <ReactDatetime
-          dateFormat={false}
-          timeFormat={timeFormat ? timeFormat : true}
-          {...otherProps}
-        />
+        <ReactDatetime dateFormat={false} timeFormat={timeFormat ? timeFormat : true} {...otherProps} />
       </div>
     );
   }
 
   private renderCheckBox() {
-    return <Checkbox value={this.props.value} onChange={this.props.onChange} />;
+    return <Checkbox value={this.props.value} onChange={this.onChange} />;
   }
 
   private renderTextInput() {
     return (
       <FormControl
         onFocus={this.props.onFocus}
-        onChange={this.props.onChange}
+        onChange={this.onChange}
         onBlur={this.props.onBlur}
         type={this.props.type}
         placeholder={this.props.placeholder}
