@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  ControlLabel,
-  FormControl,
-  Checkbox,
-  FormGroup,
-  HelpBlock,
-  InputGroup,
-} from "react-bootstrap";
+import { ControlLabel, FormControl, Checkbox, FormGroup, HelpBlock, InputGroup } from "react-bootstrap";
 import * as FontAwesome from "react-fontawesome";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
@@ -98,7 +91,7 @@ export interface IFieldGroupInputProps {
   /**
    * Timeout for showing failed validation message after user start input something.
    */
-  validationDebounceTimeout?: number
+  validationDebounceTimeout?: number;
 }
 
 /**
@@ -244,10 +237,7 @@ export interface IFieldGroupDateTimeProps {
 /**
  * Combined props.
  */
-export interface IFieldGroupProps
-  extends IFieldGroupInputProps,
-    IFieldGroupSelectProps,
-    IFieldGroupDateTimeProps {}
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps {}
 
 /**
  * Field group component.
@@ -269,7 +259,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     input: true,
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
-    validationDebounceTimeout: 1500
+    validationDebounceTimeout: 1500,
   };
 
   constructor(props: IFieldGroupProps) {
@@ -277,7 +267,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
 
     this.state = {
       showValidation: null,
-      validationTimeout: null
+      validationTimeout: null,
     };
   }
 
@@ -297,25 +287,9 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     }
   }
 
-  onChange = (e: any) => {
-    this.setState({showValidation: !!(this.props.validationState && this.props.validationState.valid)});
-
-    if (!this.state.validationTimeout) {
-      let timeout = setTimeout(() => {
-          this.setState({showValidation: true});
-          this.setState({validationTimeout: null});
-      }, this.props.validationDebounceTimeout);
-      this.setState({validationTimeout: timeout});
-    }
-    this.props.onChange(e);
-  };
-
   public render() {
     return (
-      <FormGroup
-        controlId={this.props.id}
-        validationState={this.getValidationState(this.props.validationState)}
-      >
+      <FormGroup controlId={this.props.id} validationState={this.getValidationState(this.props.validationState)}>
         <ControlLabel>{this.props.label}</ControlLabel>
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
@@ -332,6 +306,19 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         )}
       </FormGroup>
     );
+  }
+
+  private onChange = (e: any) => {
+    this.setState({ showValidation: !!(this.props.validationState && this.props.validationState.valid) });
+
+    if (!this.state.validationTimeout) {
+      const timeout = setTimeout(() => {
+        this.setState({ showValidation: true });
+        this.setState({ validationTimeout: null });
+      }, this.props.validationDebounceTimeout);
+      this.setState({ validationTimeout: timeout });
+    }
+    this.props.onChange(e);
   }
 
   private getCurrentRender() {
@@ -409,11 +396,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     const { dateFormat, timeFormat, ...otherProps } = this.props;
     return (
       <div className={this.props.dateTimeClass}>
-        <ReactDatetime
-          dateFormat={dateFormat ? dateFormat : true}
-          timeFormat={false}
-          {...otherProps}
-        />
+        <ReactDatetime dateFormat={dateFormat ? dateFormat : true} timeFormat={false} {...otherProps} />
       </div>
     );
   }
@@ -422,11 +405,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     const { dateFormat, timeFormat, ...otherProps } = this.props;
     return (
       <div className={this.props.dateTimeClass}>
-        <ReactDatetime
-          dateFormat={false}
-          timeFormat={timeFormat ? timeFormat : true}
-          {...otherProps}
-        />
+        <ReactDatetime dateFormat={false} timeFormat={timeFormat ? timeFormat : true} {...otherProps} />
       </div>
     );
   }
