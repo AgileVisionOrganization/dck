@@ -18,7 +18,8 @@
                         <li class="state failure">The search index is not available</li>
                     </ul>
 
-                    <a href="{{relativeURL " index.html "}}" class="title">{{project.name}}</a>
+                    <a href="javascript:{const baseRegexp=/(^.+\/dck-[^\/]+\/)/; const basePath=location.href.match(baseRegexp)?baseRegexp.exec(location.href)[1]+'index.html':location.href.includes('/dck/')?location.origin+'/dck':location.origin; location.assign(basePath);}"
+                        class="title">{{project.name}}</a>
                 </div>
 
                 <div class="table-cell" id="tsd-widgets">
