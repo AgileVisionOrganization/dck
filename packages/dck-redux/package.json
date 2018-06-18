@@ -56,7 +56,7 @@
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "lint:watch": "esw -w lib/**/*.ts",
     "prepublish": "npm run lint && npm run build",
-    "documentation": "typedoc --out doc/ --mode file --target ES6 ./src/index.ts --readme ./README.md --name \"DCK Redux documentations\" --excludePrivate --excludeProtected --excludeNotExported"
+    "documentation": "typedoc --out ../../docs/modules/dck-redux/ --mode file --target ES6 ./src/index.ts --readme ./README.md --name \"DCK Redux documentations\" --excludePrivate --excludeProtected --excludeNotExported"
   },
   "dependencies": {
     "@types/prop-types": "^15.5.2",
