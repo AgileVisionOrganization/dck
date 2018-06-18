@@ -6,8 +6,7 @@
                     <a href="javascript:{const basePath=location.href.includes('/dck/')?location.origin+'/dck':location.origin; location.assign(basePath);}">
                         < Back to DCK</a>
                 </div>
-                <div class="table-cell" id="tsd-search" data-index="{{relativeURL " assets/js/search.js "}}" data-base="{{relativeURL " ./
-                    "}}">
+                <div class="table-cell" id="tsd-search" data-index="{{relativeURL "assets/js/search.js"}}" data-base="{{relativeURL "./"}}">
                     <div class="field">
                         <label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
                         <input id="tsd-search-field" type="text" />
@@ -18,8 +17,7 @@
                         <li class="state failure">The search index is not available</li>
                     </ul>
 
-                    <a href="javascript:{const baseRegexp=/(^.+\/dck-[^\/]+\/)/; const basePath=location.href.match(baseRegexp)?baseRegexp.exec(location.href)[1]+'index.html':location.href.includes('/dck/')?location.origin+'/dck':location.origin; location.assign(basePath);}"
-                        class="title">{{project.name}}</a>
+                    <a href="{{relativeURL "index.html"}}" class="title">{{project.name}}</a>
                 </div>
 
                 <div class="table-cell" id="tsd-widgets">
