@@ -47,6 +47,6 @@
     "prepublish": "npm run build",
     "install-dynamo-localdb": "./install_dynamodb_local.sh",
     "start-dynamo-localdb": "java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -inMemory -port 8118",
-    "documentation": "typedoc --out ../../docs/modules/dck-lambda-utils/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Lambda Utils documentations\" --excludePrivate --excludeProtected"
+    "documentation": "typedoc --out ../../docs/modules/dck-lambda-utils/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Lambda Utils documentations\" --excludePrivate --excludeProtected --theme ../../docs/typedoc-theme"
   }
 }
