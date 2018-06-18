@@ -4,4 +4,7 @@ description: ""
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
-github: [metadata]
+#github: [metadata]
+repository: agilevisioncompany/dck
+gems:
+  - 'jekyll-github-metadata'
