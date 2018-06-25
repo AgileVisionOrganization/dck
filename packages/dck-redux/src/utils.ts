@@ -44,6 +44,7 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   const addProcessName = `${itemType.toUpperCase()}_ADD`;
   const updateProcessName = `${itemType.toUpperCase()}_UPDATE`;
   const removeProcessName = `${itemType.toUpperCase()}_REMOVE`;
+  const importProcessName = `${itemType.toUpperCase()}_IMPORT`;
 
   const mappings: any = {};
   mappings[pluralLowercase] = DckSelectors.selectAllItems(state, itemType);
@@ -69,6 +70,11 @@ export function stateToPropsMappingsForItem(state: any, itemType: string) {
   mappings[`${singularLowercase}RemoveFailed`] = DckSelectors.selectProcessFailed(state, removeProcessName);
   mappings[`${singularLowercase}RemoveSuccess`] = DckSelectors.selectProcessSuccess(state, removeProcessName);
 
+  mappings[`${pluralLowercase}Importing`] = DckSelectors.selectProcessRunning(state, importProcessName);
+  mappings[`${pluralLowercase}ImportingProcess`] = DckSelectors.selectProcess(state, importProcessName);
+  mappings[`${pluralLowercase}ImportFailed`] = DckSelectors.selectProcessFailed(state, importProcessName);
+  mappings[`${pluralLowercase}ImportSuccess`] = DckSelectors.selectProcessSuccess(state, importProcessName);
+
   return mappings;
 }
 
@@ -90,10 +96,13 @@ export function dispatchToPropsMappingsForItem(dispatch: any, itemType: string) 
   mappings[`add${singularCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemAdd(itemType, data));
   mappings[`update${singularCapitalized}`] = (id: any, data: any) =>
     dispatch(DckActionCreators.itemSave(itemType, id, data));
+  mappings[`update${pluralCapitalized}`] = (data: any) =>
+    dispatch(DckActionCreators.itemsSave(itemType, data));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`remove${pluralCapitalized}`] = (ids: any[]) => dispatch(DckActionCreators.itemsRemove(itemType, ids));
   mappings[`remove${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemRemove(itemType, id));
   mappings[`makeActive${singularCapitalized}`] = (id: any) => dispatch(DckActionCreators.itemMakeActive(itemType, id));
+  mappings[`import${pluralCapitalized}`] = (data: any) => dispatch(DckActionCreators.itemsImport(itemType, data));
 
   return mappings;
 }
@@ -114,10 +123,12 @@ export function getPropTypesForItem(itemType: string) {
   mappings[`current${singularCapitalized}`] = PropTypes.object;
 
   mappings[`${pluralLowercase}Loading`] = PropTypes.bool;
+  mappings[`${pluralLowercase}LoadingProcess`] = PropTypes.any;
   mappings[`${pluralLowercase}LoadFailed`] = PropTypes.bool;
   mappings[`${pluralLowercase}LoadSuccess`] = PropTypes.bool;
 
   mappings[`${singularLowercase}Adding`] = PropTypes.bool;
+  mappings[`${singularLowercase}AddingProcess`] = PropTypes.any;
   mappings[`${singularLowercase}AddFailed`] = PropTypes.bool;
   mappings[`${singularLowercase}AddSuccess`] = PropTypes.bool;
 
@@ -129,12 +140,19 @@ export function getPropTypesForItem(itemType: string) {
   mappings[`${singularLowercase}RemoveFailed`] = PropTypes.bool;
   mappings[`${singularLowercase}RemoveSuccess`] = PropTypes.bool;
 
+  mappings[`${pluralLowercase}Importing`] = PropTypes.bool;
+  mappings[`${pluralLowercase}ImportingProcess`] = PropTypes.any;
+  mappings[`${pluralLowercase}ImportFailed`] = PropTypes.bool;
+  mappings[`${pluralLowercase}ImportSuccess`] = PropTypes.bool;
+
   mappings[`load${pluralCapitalized}`] = PropTypes.any;
   mappings[`add${singularCapitalized}`] = PropTypes.any;
   mappings[`update${singularCapitalized}`] = PropTypes.any;
+  mappings[`update${pluralCapitalized}`] = PropTypes.any;
   mappings[`remove${singularCapitalized}`] = PropTypes.any;
   mappings[`remove${pluralCapitalized}`] = PropTypes.any;
   mappings[`makeActive${singularCapitalized}`] = PropTypes.any;
+  mappings[`import${pluralCapitalized}`] = PropTypes.any;
 
   return mappings;
 }

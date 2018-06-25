@@ -45,6 +45,21 @@ export function itemSave(itemType: string, id: string | number, data: any) {
 }
 
 /**
+ * Save/Update items action.
+ * @param itemType item type
+ * @param id item id
+ * @param data updated item data
+ * @hidden
+ */
+export function itemsSave(itemType: string, data: any) {
+  return {
+    type: DckActionTypes.ITEMS_SAVE,
+    itemType,
+    data
+  };
+}
+
+/**
  * Reload item with given id action.
  * @param itemType item type
  * @param id item id
@@ -241,6 +256,14 @@ export function setItemSortingOptions(itemType: string, sortingOptions: any) {
     type: DckActionTypes.SET_ITEM_SORTING_OPTIONS,
     itemType,
     sortingOptions
+  };
+}
+
+export function itemsImport(itemType: string, data: any) {
+  return {
+    type: DckActionTypes.ITEMS_IMPORT,
+    itemType,
+    data
   };
 }
 

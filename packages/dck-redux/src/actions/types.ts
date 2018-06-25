@@ -120,6 +120,11 @@ export class DckActionTypes {
   public static ITEM_SAVE = "ITEM_SAVE";
 
   /**
+   * Save items action type, e.g. after editing
+   */
+  public static ITEMS_SAVE = "ITEMS_SAVE";
+
+  /**
    * Remove item action type
    */
   public static ITEM_REMOVE = "ITEM_REMOVE";
@@ -177,7 +182,7 @@ export class DckActionTypes {
   public static REMOVE_ITEM_SEARCH_FILTER = "REMOVE_ITEM_SEARCH_FILTER";
 
   /**
-   * SEt item search filters action type
+   * Set item search filters action type
    */
   public static SET_ITEM_SEARCH_FILTERS = "SET_ITEM_SEARCH_FILTERS";
 
@@ -190,6 +195,11 @@ export class DckActionTypes {
    * Set item sorting options action type
    */
   public static SET_ITEM_SORTING_OPTIONS = "SET_ITEM_SORTING_OPTIONS";
+
+  /**
+   * Import items from file, e.g. from csv
+   */
+  public static ITEMS_IMPORT = "ITEMS_IMPORT";
 }
 
 /**

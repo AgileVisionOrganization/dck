@@ -199,6 +199,15 @@ export class DckActionCreators {
   }
 
   /**
+   * Save/Update items action.
+   * @param itemType item type
+   * @param data updated items array
+   */
+  public static itemsSave(itemType: string, data: any) {
+    return ItemsActionCreators.itemsSave(itemType, data);
+  }
+
+  /**
    * Reload item with given id action.
    * @param itemType item type
    * @param id item id
@@ -333,5 +342,14 @@ export class DckActionCreators {
    */
   public static setSortingOptions(sortingOptions: any) {
     return SortingActionCreators.setSortingOptions(sortingOptions);
+  }
+
+  /**
+   * Import items action.
+   * @param itemType item type
+   * @param data object contained import data
+   */
+  public static itemsImport(itemType: string, data: any) {
+    return ItemsActionCreators.itemsImport(itemType, data);
   }
 }
