@@ -4,9 +4,6 @@ import * as FontAwesome from "react-fontawesome";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
 
-import "../../node_modules/react-datetime/css/react-datetime.css";
-import "../../node_modules/react-select/dist/react-select.css";
-
 /**
  * Field group input types.
  */
