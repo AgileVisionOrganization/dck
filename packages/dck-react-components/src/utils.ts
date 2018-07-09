@@ -52,9 +52,7 @@ export function initField(
         fieldState.validation = result;
         const updatedState: any = {};
         updatedState[name] = fieldState;
-        that.setState(updatedState, () => {
-          callback();
-        });
+        that.setState(updatedState, callback);
       });
     },
     setValue: (value: any, callback: any) => {
@@ -70,7 +68,7 @@ export function initField(
         fieldState.validation = result;
         const updatedState: any = {};
         updatedState[name] = fieldState;
-        that.setState(updatedState, () => {callback(); });
+        that.setState(updatedState, callback);
       });
     },
     validation: existingRecord ? {empty: !!initialValue, valid: true} : null ,
