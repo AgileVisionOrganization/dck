@@ -24,7 +24,7 @@ export function initField(
   const field: any = {};
 
   field[name] = {
-    onChange: (e: React.FormEvent<HTMLInputElement>) => {
+    onChange: (e: React.FormEvent<HTMLInputElement>, callback?: any) => {
 
       const updatedField = { ...that.state[name] };
       updatedField.value = isCheckbox ? e.currentTarget.checked : isDateTimePiker ? e : e.currentTarget.value;
@@ -37,10 +37,10 @@ export function initField(
         fieldState.validation = result;
         const updatedState: any = {};
         updatedState[name] = fieldState;
-        that.setState(updatedState);
+        that.setState(updatedState, callback);
       });
     },
-    validationCurrentValue: (callback: any) => {
+    validationCurrentValue: (callback?: any) => {
       const updatedField = { ...that.state[name] };
 
       const newState: any = {};
@@ -55,7 +55,7 @@ export function initField(
         that.setState(updatedState, callback);
       });
     },
-    setValue: (value: any, callback: any) => {
+    setValue: (value: any, callback?: any) => {
       const updatedField = { ...that.state[name] };
       updatedField.value = value;
 

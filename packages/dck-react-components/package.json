@@ -1,6 +1,6 @@
 {
   "name": "dck-react-components",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
