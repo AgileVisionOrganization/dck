@@ -89,6 +89,11 @@ export interface IFieldGroupInputProps {
    * Timeout for showing failed validation message after user start input something.
    */
   validationDebounceTimeout?: number;
+
+  /**
+   * Fuction for get ref from input
+   */
+  refFunc?: (instance: any) => void;
 }
 
 /**
@@ -144,6 +149,11 @@ export interface IFieldGroupSelectProps {
    * Values for select component.
    */
   selectValues?: ISelectValue[];
+
+  /**
+   * Autofocus the select component on mount
+   */
+  autoFocus?: boolean;
 }
 
 /**
@@ -356,6 +366,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         options={this.props.selectValues}
         onChange={this.onChange}
         onBlur={this.props.onBlur}
+        autoFocus={this.props.autoFocus}
         arrowRenderer={(action): JSX.Element => {
           return (
             <span className={this.props.arrowContainerClass}>
@@ -420,6 +431,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         type={this.props.type}
         placeholder={this.props.placeholder}
         value={this.props.value}
+        inputRef={this.props.refFunc}
       />
     );
   }
