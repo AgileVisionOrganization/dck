@@ -1,10 +1,10 @@
 {
   "name": "dck-react-components",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "dck-validators": "^2.1.4",
+    "dck-validators": "^2.1.10",
     "moment": "^2.22.1",
     "react": "^15.6.1",
     "react-bootstrap": "0.31.0",
@@ -63,7 +63,6 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "prepublish": "npm run build",
-    "documentation":
-      "typedoc --out ../../docs/modules/dck-react-components/ --mode file --target ES6 ./src/index.ts --readme ./README.md --name \"DCK React Components documentation \" --excludePrivate --excludeProtected --theme ../../docs/typedoc-theme"
+    "documentation": "typedoc --out ../../docs/modules/dck-react-components/ --mode file --target ES6 ./src/index.ts --readme ./README.md --name \"DCK React Components documentation \" --excludePrivate --excludeProtected --theme ../../docs/typedoc-theme"
   }
 }
