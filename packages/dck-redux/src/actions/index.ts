@@ -352,4 +352,23 @@ export class DckActionCreators {
   public static itemsImport(itemType: string, data: any) {
     return ItemsActionCreators.itemsImport(itemType, data);
   }
+
+  /**
+   * Get object for redux bindings.
+   * @returns object with class methods for redux bindActionCreators method
+   */
+  public static getBindObject() {
+    const DckActions: any = DckActionCreators;
+    const keys: string[] = Object.keys(DckActionCreators);
+    const object: any = {};
+    if (keys && keys.length) {
+      keys.forEach((key: string) => {
+        if (key && key !== "getBindObject" && DckActions[key] && typeof DckActions[key] === "function") {
+          object[key] = DckActions[key];
+        }
+      });
+    }
+
+    return object;
+  }
 }
