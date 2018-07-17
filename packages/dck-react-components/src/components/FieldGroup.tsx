@@ -94,6 +94,11 @@ export interface IFieldGroupInputProps {
    * Fuction for get ref from input
    */
   refFunc?: (instance: any) => void;
+
+  /**
+   * Input component props.
+   */
+  inputProps?: object;
 }
 
 /**
@@ -214,11 +219,6 @@ export interface IFieldGroupDateTimeProps {
    * function which call on element blur.
    */
   onBlur?: (e: any) => void;
-
-  /**
-   * Input component props.
-   */
-  inputProps?: object;
 
   /**
    * Strict parsing?
@@ -432,6 +432,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         placeholder={this.props.placeholder}
         value={this.props.value}
         inputRef={this.props.refFunc}
+        {...this.props.inputProps}
       />
     );
   }
