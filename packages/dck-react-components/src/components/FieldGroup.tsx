@@ -9,6 +9,7 @@ import Select from "react-select";
  */
 export type FieldInputType =
   | "text"
+  | "number"
   | "password"
   | "email"
   | "checkbox"
@@ -22,6 +23,7 @@ export type FieldInputType =
  */
 export const InputTypes = Object.freeze({
   text: "text",
+  number: "number",
   password: "password",
   email: "email",
   checkbox: "checkbox",
@@ -267,6 +269,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
     validationDebounceTimeout: 1500,
+    inputProps:{}
   };
 
   constructor(props: IFieldGroupProps) {
@@ -425,6 +428,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   private renderTextInput() {
     return (
       <FormControl
+        {...this.props.inputProps}
         onFocus={this.props.onFocus}
         onChange={this.onChange}
         onBlur={this.props.onBlur}
@@ -432,7 +436,6 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         placeholder={this.props.placeholder}
         value={this.props.value}
         inputRef={this.props.refFunc}
-        {...this.props.inputProps}
       />
     );
   }
