@@ -269,7 +269,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
     validationDebounceTimeout: 1500,
-    inputProps:{}
+    inputProps: {},
   };
 
   constructor(props: IFieldGroupProps) {
