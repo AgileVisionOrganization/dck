@@ -32,7 +32,13 @@
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
   },
   "scripts": {
     "build": "webpack --env build",
@@ -41,7 +47,6 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint-fix": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
     "prepublish": "npm run lint && npm run build",
-    "documentation":
-      "typedoc --out ../../docs/modules/dck-validators/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Validators documentations\" --excludePrivate --excludeProtected --theme ../../docs/typedoc-theme"
+    "documentation": "typedoc --out ../../docs/modules/dck-validators/ --mode file --target ES2015 ./src/index.ts --readme ./README.md --name \"DCK Validators documentations\" --excludePrivate --excludeProtected --theme ../../docs/typedoc-theme"
   }
 }
