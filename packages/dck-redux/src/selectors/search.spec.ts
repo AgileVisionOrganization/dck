@@ -2,8 +2,6 @@ import { fromJS } from "immutable";
 import { DckSelectors } from "./index";
 
 describe("Search", () => {
-  it("should select search term");
-  it("should select empty string if search term is not specified");
   it("should select search filters", () => {
     const state = {
       dck: {

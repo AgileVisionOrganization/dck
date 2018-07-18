@@ -9,6 +9,7 @@ import Select from "react-select";
  */
 export type FieldInputType =
   | "text"
+  | "number"
   | "password"
   | "email"
   | "checkbox"
@@ -22,6 +23,7 @@ export type FieldInputType =
  */
 export const InputTypes = Object.freeze({
   text: "text",
+  number: "number",
   password: "password",
   email: "email",
   checkbox: "checkbox",
@@ -94,6 +96,11 @@ export interface IFieldGroupInputProps {
    * Fuction for get ref from input
    */
   refFunc?: (instance: any) => void;
+
+  /**
+   * Input component props.
+   */
+  inputProps?: object;
 }
 
 /**
@@ -216,11 +223,6 @@ export interface IFieldGroupDateTimeProps {
   onBlur?: (e: any) => void;
 
   /**
-   * Input component props.
-   */
-  inputProps?: object;
-
-  /**
    * Strict parsing?
    */
   strictParsing?: boolean;
@@ -267,6 +269,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
     validationDebounceTimeout: 1500,
+    inputProps: {},
   };
 
   constructor(props: IFieldGroupProps) {
@@ -425,6 +428,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   private renderTextInput() {
     return (
       <FormControl
+        {...this.props.inputProps}
         onFocus={this.props.onFocus}
         onChange={this.onChange}
         onBlur={this.props.onBlur}
