@@ -37,4 +37,11 @@ describe("FieldGroup tests", () => {
     );
     expect(component.first().props().type).toEqual(InputTypes.datepicker);
   });
+
+  it("Test input props for field group", () => {
+    const component = mount(
+      <FieldGroup inputProps={{min: 0}} type={InputTypes.number as FieldInputType} />,
+    );
+    expect(component.first().props().type).toEqual(InputTypes.number);
+  });
 });
