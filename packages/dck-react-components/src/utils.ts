@@ -20,6 +20,7 @@ export function initField(
   isCheckbox?: boolean,
   isDateTimePiker?: boolean,
   optional?: boolean,
+  dependentFields?: Array<String>,
 ) {
   const field: any = {};
 
@@ -32,6 +33,7 @@ export function initField(
       const newState: any = {};
       newState[name] = updatedField;
       that.setState(newState);
+      that.state[name].validateDependentFields();
       validator(updatedField.value, optional).then((result) => {
         const fieldState = that.state[name];
         fieldState.validation = result;
@@ -70,6 +72,15 @@ export function initField(
         updatedState[name] = fieldState;
         that.setState(updatedState, callback);
       });
+    },
+    validateDependentFields: () => {
+      if (dependentFields) {
+        dependentFields.forEach((dependentField: string) => {
+         if (that.state[dependentField]) {
+          that.state[dependentField].validationCurrentValue();
+         }
+        });
+      }
     },
     validation: existingRecord ? {empty: !!initialValue, valid: true} : null ,
     validator,
