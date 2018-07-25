@@ -3,9 +3,9 @@ VERSION=`cat package.json | underscore select '.version' --outfmt text`
 PACK_NAME=`cat package.json | underscore select '.name' --outfmt text`
 NPM_VERSION=`npm view $PACK_NAME version`
 
-if [ "$VERSION" = "$NPM_VERSION" ] || [ "$TRAVIS_BRANCH" -ne "master" ] || [ "$TRAVIS_EVENT_TYPE" -ne "push" ]
+if [ $VERSION -gt $NPM_VERSION ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_EVENT_TYPE" != "push" ]
 then
-    echo "Package $PACK_NAME does not need to be updated"
-else 
     npm publish
+else 
+    echo "Package $PACK_NAME does not need to be updated"
 fi
