@@ -1,6 +1,6 @@
 {
   "name": "dck-redux",
-  "version": "2.1.14",
+  "version": "2.1.15",
   "main": "lib/dck-redux.js",
   "types": "lib/index.d.ts",
   "peerDependencies": {

@@ -69,7 +69,7 @@ export const createItemsReducer = (itemTypes: string[]) => {
         const previousFilters = state.getIn([action.itemType, "filters"]);
         const previousSortingOptions = state.getIn([action.itemType, "sortingOptions"]);
         const newItems = (action.data && action.id) 
-                          ? state.getIn([action.itemType, "items"]).toJS().filter((item: any) => item.id !== action.id).push({...action.data, id: action.id})
+                          ? state.getIn([action.itemType, "items"]).toJS().filter((item: any) => item.id !== action.id).concat([{...action.data, id: action.id}])
                           : state.getIn([action.itemType, "items"]).toJS();
         return state.set(
           action.itemType,
