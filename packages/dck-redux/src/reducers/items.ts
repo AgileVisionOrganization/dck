@@ -63,6 +63,26 @@ export const createItemsReducer = (itemTypes: string[]) => {
           })
         );
       },
+      [DckActionTypes.ITEM_SET](state: any, action: any) {
+        const previousActive = state.getIn([action.itemType, "active"]);
+        const previousTerm = state.getIn([action.itemType, "term"]);
+        const previousFilters = state.getIn([action.itemType, "filters"]);
+        const previousSortingOptions = state.getIn([action.itemType, "sortingOptions"]);
+        const newItems = (action.data && action.id) 
+                          ? state.getIn([action.itemType, "items"]).toJS().filter((item: any) => item.id !== action.id).push({...action.data, id: action.id})
+                          : state.getIn([action.itemType, "items"]).toJS();
+        return state.set(
+          action.itemType,
+          fromJS({
+            items: newItems,
+            selected: [],
+            active: previousActive,
+            term: previousTerm,
+            filters: previousFilters,
+            sortingOptions: previousSortingOptions
+          })
+        );
+      },
       [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
         return state.setIn([action.itemType, "active"], action.id);
       },
