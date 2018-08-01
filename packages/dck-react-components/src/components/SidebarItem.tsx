@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router";
-import * as FontAwesome from "react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
+import * as icons from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Sidebar item props.
@@ -29,7 +31,7 @@ export interface ISidebarItemProps {
   /**
    * Sidebar item FontAwesome icon.
    */
-  icon?: string;
+  icon?: FontAwesomeProps.IconProp;
 
   /**
    * Icon container class.
@@ -39,7 +41,7 @@ export interface ISidebarItemProps {
   /**
    * FownAwesome icon size.
    */
-  iconSize?: FontAwesome.FontAwesomeSize;
+  iconSize?: FontAwesomeProps.SizeProp;
 
   /**
    * Sidebar item text.
@@ -76,7 +78,7 @@ export class SidebarItem extends React.Component<ISidebarItemProps, any> {
   private renderInternalLink() {
     return (<Link to={this.props.to} activeClassName={this.props.activeClass}>
       <div className={this.props.iconContainerClass}>
-        <FontAwesome name={this.props.icon} size={this.props.iconSize} />
+        <FontAwesomeIcon icon={this.props.icon} size={this.props.iconSize} />
       </div>
       <span className={this.props.textClass}>{this.props.children}</span>
     </Link>);
@@ -85,7 +87,7 @@ export class SidebarItem extends React.Component<ISidebarItemProps, any> {
   private renderExternalLink() {
     return (<a href={this.props.to}>
       <div className={this.props.iconContainerClass}>
-        <FontAwesome name={this.props.icon} size={this.props.iconSize} />
+        <FontAwesomeIcon icon={this.props.icon} size={this.props.iconSize} />
       </div>
       <span className={this.props.textClass}>{this.props.children}</span>
     </a>);

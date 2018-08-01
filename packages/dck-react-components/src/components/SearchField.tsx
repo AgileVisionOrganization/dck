@@ -1,6 +1,7 @@
 import * as React from "react";
 import {FormGroup, InputGroup, FormControl} from "react-bootstrap";
-import * as FontAwesome from "react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
 
 /**
  * Search field input type.
@@ -44,7 +45,7 @@ export interface ISearchFieldProps {
   /**
    * FontAwesome icon for search field.
    */
-  icon?: string;
+  icon?: FontAwesomeProps.IconProp;
 
   /**
    * Input id.
@@ -107,7 +108,7 @@ export class SearchField extends React.Component<
       >
         <InputGroup>
           <InputGroup.Addon className={this.props.addonClass}>
-            <FontAwesome name={this.props.icon} />
+            <FontAwesomeIcon icon={this.props.icon} />
           </InputGroup.Addon>
           <FormControl
             bsClass={`form-control ${this.props.inputClass}`}
