@@ -1,6 +1,6 @@
 {
   "name": "dck-react-components",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
@@ -8,7 +8,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.1.0-11",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "0.1.0-11",
-    "dck-validators": "^2.2.0",
+    "dck-validators": "^3.0.0",
     "moment": "^2.22.1",
     "react": "^15.6.1",
     "react-bootstrap": "0.31.0",
