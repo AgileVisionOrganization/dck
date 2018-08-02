@@ -1,4 +1,5 @@
 import * as React from "react";
+import 'jsdom-global/register';
 import * as Adapter from "enzyme-adapter-react-15";
 import { mount, configure } from "enzyme";
 import { ModalDialog } from "./ModalDialog";

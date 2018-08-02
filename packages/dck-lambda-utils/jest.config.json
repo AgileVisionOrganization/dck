@@ -7,5 +7,6 @@
     "\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
   },
   "testRegex": ".*\\.spec\\.(ts|js)$",
-  "testResultsProcessor": "./node_modules/jest-junit-reporter"
+  "testResultsProcessor": "./node_modules/jest-junit-reporter",
+  "testEnvironment": "node"
 }

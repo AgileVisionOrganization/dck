@@ -1,8 +1,16 @@
 import * as React from "react";
+import 'jsdom-global/register';
 import * as Adapter from "enzyme-adapter-react-15";
 import { mount, configure } from "enzyme";
 import { FieldGroup, InputTypes, FieldInputType } from "./FieldGroup";
 import * as ReactDatetime from "react-datetime";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fab, fas);
 
 configure({ adapter: new Adapter() });
 describe("FieldGroup tests", () => {

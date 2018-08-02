@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ControlLabel, FormControl, Checkbox, FormGroup, HelpBlock, InputGroup } from "react-bootstrap";
-import * as FontAwesome from "react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
 
@@ -120,17 +121,17 @@ export interface IFieldGroupSelectProps {
   /**
    * FontAwesome icon name for close list button.
    */
-  arrowIconUp?: string;
+  arrowIconUp?: FontAwesomeProps.IconProp;
 
   /**
    * FontAwesome icon name for open list button.
    */
-  arrowIconDown?: string;
+  arrowIconDown?: FontAwesomeProps.IconProp;
 
   /**
    * FontAwesome icon size for open/close list buttons.
    */
-  arrowsSize?: FontAwesome.FontAwesomeSize;
+  arrowsSize?: FontAwesomeProps.SizeProp;
 
   /**
    * Arrow container class.
@@ -308,7 +309,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         this.props.validationState &&
         !this.props.validationState.valid ? (
           <HelpBlock>
-            <FontAwesome name="exclamation-circle" />&nbsp;
+            <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
             {this.props.validationMessage}
           </HelpBlock>
         ) : (
@@ -374,15 +375,15 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
           return (
             <span className={this.props.arrowContainerClass}>
               {action && action.isOpen ? (
-                <FontAwesome
-                  name={this.props.arrowIconUp}
+                <FontAwesomeIcon
+                  icon={this.props.arrowIconUp}
                   {...this.props.arrowsSize && {
                     size: this.props.arrowsSize,
                   }}
                 />
               ) : (
-                <FontAwesome
-                  name={this.props.arrowIconDown}
+                <FontAwesomeIcon
+                icon={this.props.arrowIconDown}
                   {...this.props.arrowsSize && {
                     size: this.props.arrowsSize,
                   }}

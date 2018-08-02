@@ -7,5 +7,6 @@ module.exports = {
     "\\.(css|less)$": "identity-obj-proxy"
   },
   testRegex: ".*\\.spec\\.(ts|tsx|js)$",
-  testResultsProcessor: "./node_modules/jest-junit-reporter"
+  testResultsProcessor: "./node_modules/jest-junit-reporter",
+  testEnvironment: "node"
 };
