@@ -1,5 +1,5 @@
 import * as React from "react";
-import 'jsdom-global/register';
+import "jsdom-global/register";
 import * as Adapter from "enzyme-adapter-react-15";
 import { mount, configure } from "enzyme";
 import { FieldGroup, InputTypes, FieldInputType } from "./FieldGroup";
