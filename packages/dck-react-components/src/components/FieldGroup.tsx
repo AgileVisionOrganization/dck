@@ -301,7 +301,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public render() {
     return (
       <FormGroup controlId={this.props.id} validationState={this.getValidationState(this.props.validationState)}>
-        <ControlLabel>{this.props.label}</ControlLabel>
+        {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
         {this.state.showValidation !== false &&
