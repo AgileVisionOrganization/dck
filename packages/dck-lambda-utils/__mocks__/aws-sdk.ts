@@ -8,6 +8,7 @@ const AWSError = class extends Error {
     }
 };
 
+// tslint:disable-next-line:max-classes-per-file
 export class CognitoIdentityServiceProvider{
 
     private users = [ 
@@ -29,7 +30,7 @@ export class CognitoIdentityServiceProvider{
            ]
         }
      ]
-    private checkUserPool(params, callback) : boolean
+    private checkUserPool(params: any, callback: any) : boolean
     {
         if(params.UserPoolId!=="COGNITO_USER_POOL"){
             callback(new AWSError("Resource not found", "InvalidParameterValue"), null);

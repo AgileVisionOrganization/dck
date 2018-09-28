@@ -261,6 +261,50 @@ describe("DynamoDbDataSource Tests", () => {
       );
     });
 
+    it("should execute query when the method is called with a hash key and the limit", (
+      done: () => void,
+    ) => {
+      const scanSpy = (dataSource.scanItems = jest.fn(dataSource.scanItems));
+      const querySpy = (dataSource.queryItems = jest.fn(dataSource.queryItems));
+      dataSource.getItems(
+        ChildEntity,
+        {
+          query: { parent_id: "TEST_PARENT", limit: 1 },
+        },
+        (error: Error, data: any) => {
+          expect(error).toBeFalsy();
+          expect(data).toBeInstanceOf(Array);
+          expect(data).toHaveLength(1);
+          expect(data[0].id).not.toBe(null);
+          expect(scanSpy).not.toBeCalled();
+          expect(querySpy).toBeCalled();
+          done();
+        },
+      );
+    });
+
+    it("should execute query when the method is called with a hash key and the descending order", (
+      done: () => void,
+    ) => {
+      const scanSpy = (dataSource.scanItems = jest.fn(dataSource.scanItems));
+      const querySpy = (dataSource.queryItems = jest.fn(dataSource.queryItems));
+      dataSource.getItems(
+        ChildEntity,
+        {
+          query: { parent_id: "TEST_PARENT", descending: true },
+        },
+        (error: Error, data: any) => {
+          expect(error).toBeFalsy();
+          expect(data).toBeInstanceOf(Array);
+          expect(data).toHaveLength(1);
+          expect(data[0].id).not.toBe(null);
+          expect(scanSpy).not.toBeCalled();
+          expect(querySpy).toBeCalled();
+          done();
+        },
+      );
+    });
+
     it("should execute query and not fail when the method is called with a hash key that's not in the table", (
       done: () => void,
     ) => {

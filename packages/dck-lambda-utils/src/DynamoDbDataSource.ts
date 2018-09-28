@@ -87,6 +87,15 @@ export class DynamoDbDataSource implements IDckDataSource {
           if (filterExpression && filterExpression.length > 0) {
             query.FilterExpression = filterExpression;
           }
+
+          if (queryOptions.limit && queryOptions.limit > 0){
+            query.Limit = queryOptions.limit;
+          }
+
+          if (queryOptions.descending) {
+            query.ScanIndexForward = false;
+          }
+
           this.dynamo.query(query, next);
         },
         (data: any, next: IDckCallback) => {
@@ -135,6 +144,10 @@ export class DynamoDbDataSource implements IDckDataSource {
             query.FilterExpression = filterExpression;
             query.ExpressionAttributeNames = expressionAttributeNames;
             query.ExpressionAttributeValues = expressionAttributeValues;
+          }
+
+          if (queryOptions.limit && queryOptions.limit > 0) {
+            query.Limit = queryOptions.limit;
           }
           this.dynamo.scan(query, next);
         },

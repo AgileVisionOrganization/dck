@@ -36,6 +36,7 @@ export interface IQueryOptions {
   query?: any;
   data?: any;
   comparisonOperators?: any;
+  descending?: boolean;
 }
 
 /**
