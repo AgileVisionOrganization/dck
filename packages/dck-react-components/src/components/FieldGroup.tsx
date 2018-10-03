@@ -361,6 +361,7 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   private renderSelect() {
     return (
       <Select
+        {...this.props.inputProps}
         className={this.props.selectClass}
         placeholder={this.props.placeholder}
         value={this.props.value}
