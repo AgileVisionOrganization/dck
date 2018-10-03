@@ -7,7 +7,7 @@ before_install:
 - unzip -u dynamodb_local_latest.zip
 - chmod +x npm-publish.sh
 install:
-- npm install lerna
+- npm install lerna@3.3.0
 - npm install underscore-cli
 - lerna bootstrap
 before_script:
