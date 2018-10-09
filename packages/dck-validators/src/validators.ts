@@ -197,7 +197,7 @@ export function nonEmpty(value: string) {
 
     let valid = false;
 
-    if (!value || value.trim().length === 0) {
+    if (!value || !String(value).trim()) {
       empty = true;
     } else {
       valid = true;
@@ -215,10 +215,10 @@ export function regexpValidator(regExp: RegExp) {
         return new Promise((resolve, reject) => {
             let empty = false;
             let valid = false;
-            if (!value || value.trim().length === 0) {
+            if (value === "" || !String(value).trim()) {
                 empty = true;
             }
-            if (regExp.test(value)) {
+            if (regExp.test(String(value))) {
                 valid = true;
             }
             resolve({valid, empty});

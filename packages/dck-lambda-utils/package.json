@@ -1,6 +1,6 @@
 {
   "name": "dck-lambda-utils",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "main": "lib/dck-lambda-utils.js",
   "types": "lib/index.d.ts",
   "dependencies": {
