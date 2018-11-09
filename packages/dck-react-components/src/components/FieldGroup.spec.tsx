@@ -46,6 +46,13 @@ describe("FieldGroup tests", () => {
     expect(component.first().props().type).toEqual(InputTypes.datepicker);
   });
 
+  it("Autocomplete type", () => {
+    const component = mount(
+      <FieldGroup type={InputTypes.autocomplete as FieldInputType} selectValues={[{label: "test", value: ""}]} value={"test"} />,
+    );
+    expect(component.first().props().type).toEqual(InputTypes.autocomplete);
+  });
+
   it("Test input props for field group", () => {
     const component = mount(
       <FieldGroup inputProps={{min: 0}} type={InputTypes.number as FieldInputType} />,

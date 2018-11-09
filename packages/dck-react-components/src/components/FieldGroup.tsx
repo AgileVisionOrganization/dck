@@ -18,7 +18,9 @@ export type FieldInputType =
   | "select"
   | "datetimepicker"
   | "datepicker"
-  | "timepicker";
+  | "timepicker"
+  | "autocomplete"
+  ;
 
 /**
  * Field group input types map.
