@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
+import * as Autocomplete from "react-autocomplete";
 
 /**
  * Field group input types.
@@ -32,6 +33,7 @@ export const InputTypes = Object.freeze({
   datetimepicker: "datetimepicker",
   datepicker: "datepicker",
   timepicker: "timepicker",
+  autocomplete: "autocomplete",
 });
 
 /**
@@ -247,7 +249,7 @@ export interface IFieldGroupDateTimeProps {
 /**
  * Combined props.
  */
-export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps {}
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps { }
 
 /**
  * Field group component.
@@ -305,16 +307,16 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
         {this.state.showValidation !== false &&
-        this.props.validationMessage &&
-        this.props.validationState &&
-        !this.props.validationState.valid ? (
-          <HelpBlock>
-            <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
+          this.props.validationMessage &&
+          this.props.validationState &&
+          !this.props.validationState.valid ? (
+            <HelpBlock>
+              <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
             {this.props.validationMessage}
-          </HelpBlock>
-        ) : (
-          <HelpBlock>&nbsp;</HelpBlock>
-        )}
+            </HelpBlock>
+          ) : (
+            <HelpBlock>&nbsp;</HelpBlock>
+          )}
       </FormGroup>
     );
   }
@@ -350,6 +352,9 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
       case InputTypes.timepicker:
         render = this.renderTimePicker();
         break;
+      case InputTypes.autocomplete:
+        render = this.renderAutocomplete();
+        break;
       default:
         render = this.renderTextInput();
         break;
@@ -383,13 +388,13 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
                   }}
                 />
               ) : (
-                <FontAwesomeIcon
-                icon={this.props.arrowIconDown}
-                  {...this.props.arrowsSize && {
-                    size: this.props.arrowsSize,
-                  }}
-                />
-              )}
+                  <FontAwesomeIcon
+                    icon={this.props.arrowIconDown}
+                    {...this.props.arrowsSize && {
+                      size: this.props.arrowsSize,
+                    }}
+                  />
+                )}
             </span>
           );
         }}
@@ -438,6 +443,24 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         placeholder={this.props.placeholder}
         value={this.props.value}
         inputRef={this.props.refFunc}
+      />
+    );
+  }
+  private renderAutocomplete() {
+    return (
+      <Autocomplete
+        items={this.props.selectValues}
+        value={this.props.value}
+        getItemValue={(item) => item.label}
+        renderItem={(item, isHighlighted) => (
+          <div
+            className={`autocomplete-item ${isHighlighted ? "autocomplete-item-highlighted" : ""}`}
+            key={item.label}
+          >
+            {item.label}
+          </div>
+        )}
+        {...this.props.inputProps}
       />
     );
   }
