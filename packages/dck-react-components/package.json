@@ -1,6 +1,6 @@
 {
   "name": "dck-react-components",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "main": "lib/dck-react-components.js",
   "types": "lib/index.d.ts",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@fortawesome/react-fontawesome": "0.1.0-11",
     "@types/react-autocomplete": "^1.8.4",
-    "dck-validators": "^3.0.5",
+    "dck-validators": "^3.0.6",
     "moment": "^2.22.1",
     "react": "^15.6.1",
     "react-autocomplete": "^1.8.1",
