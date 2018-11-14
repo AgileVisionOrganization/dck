@@ -7,7 +7,9 @@
     "object-literal-sort-keys": false,
     "no-implicit-dependencies": [true, "dev"],
     "no-submodule-imports": false,
-    "no-empty-interface": false
+    "no-empty-interface": false,
+    "jsdoc-format": true,
+    "no-empty": false
   },
   "rulesDirectory": []
 }

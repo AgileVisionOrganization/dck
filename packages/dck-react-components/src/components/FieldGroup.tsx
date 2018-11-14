@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
-import * as Autocomplete from "react-autocomplete";
+import * as Autosuggest from "react-autosuggest";
+import "./styles.css";
 
 /**
  * Field group input types.
@@ -248,10 +249,63 @@ export interface IFieldGroupDateTimeProps {
   disableOnClickOutside?: boolean;
 }
 
+export interface IFieldGroupAutocompleteProps {
+  /**
+   * A function that returns input value for autocomplete
+   */
+  getAutocompleteValue?: (obj: ISelectValue) => string;
+
+  /**
+   * Values for autocomplete component.
+   */
+  autocompleteValues?: ISelectValue[];
+
+  /**
+   * This function will be called every time you might need to update autocomplete
+   */
+  onAutocompleteUpdateRequested?: Autosuggest.SuggestionsFetchRequested;
+
+  /**
+   * Will be called every time you need to set suggestions to []
+   */
+  onAutocompleteClearRequested?: () => void;
+
+  /**
+   * Autocomplete render
+   */
+  renderAutocomplete?: (suggestion: ISelectValue, props: object) => any;
+
+  /**
+   * Current input value
+   */
+  autocompleteInputValue?: string;
+
+  /**
+   * Input change event handler
+   */
+  onAutocompleteInputChange?: (event: React.FormEvent<any>, params: Autosuggest.ChangeEvent) => void;
+
+  /**
+   * Autocomplete input props
+   */
+  autocompleteInputProps?: any;
+
+  /**
+   * Css class for html input
+   */
+  autocompleteInputClass?: string,
+  
+  /**
+   * Css class for autocomplete container
+   */
+  autocompleteContainerOpenClass?: string
+}
+
 /**
  * Combined props.
  */
-export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps { }
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps,
+ IFieldGroupDateTimeProps, IFieldGroupAutocompleteProps { }
 
 /**
  * Field group component.
@@ -259,7 +313,7 @@ export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSele
 export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
     type: "text",
-    selectClass: "select-class",
+    selectClass: "select-class", 
     clearable: false,
     multi: false,
     searchable: false,
@@ -275,6 +329,14 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     selectValues: [] as ISelectValue[],
     validationDebounceTimeout: 1500,
     inputProps: {},
+    getAutocompleteValue: (obj: ISelectValue) => obj.label,
+    autocompleteValues: [] as ISelectValue[],
+    onAutocompleteUpdateRequested: (request: Autosuggest.SuggestionsFetchRequestedParams) => {},
+    onAutocompleteClearRequested: () => {},
+    autocompleteInputValue: '',
+    autocompleteInputProps: {},
+    onAutocompleteInputChange: (event: React.FormEvent<any>, params: Autosuggest.ChangeEvent) => {},
+    renderAutocomplete: (suggestion: ISelectValue, props: object) => (<span>{suggestion.label}</span>),
   };
 
   constructor(props: IFieldGroupProps) {
@@ -430,6 +492,36 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     );
   }
 
+  private renderAutocomplete() {
+    const { autocompleteInputValue, onAutocompleteInputChange, autocompleteInputProps, autocompleteInputClass, autocompleteContainerOpenClass, ...otherProps } = this.props;
+    const theme = {
+      container:                'react-autosuggest__container',
+      containerOpen:            'react-autosuggest__container--open',
+      input:                    autocompleteInputClass || 'form-control',
+      inputOpen:                'react-autosuggest__input--open',
+      inputFocused:             'react-autosuggest__input--focused',
+      suggestionsContainer:     'react-autosuggest__suggestions-container',
+      suggestionsContainerOpen: autocompleteContainerOpenClass || 'react-autosuggest__suggestions-container--open',
+      suggestionsList:          'react-autosuggest__suggestions-list',
+      suggestion:               'react-autosuggest__suggestion',
+      suggestionFirst:          'react-autosuggest__suggestion--first',
+      suggestionHighlighted:    'react-autosuggest__suggestion--highlighted',
+      sectionContainer:         'react-autosuggest__section-container',
+      sectionContainerFirst:    'react-autosuggest__section-container--first',
+      sectionTitle:             'react-autosuggest__section-title'
+    };
+    return <Autosuggest
+    { ...otherProps}
+    suggestions={this.props.autocompleteValues}
+    onSuggestionsFetchRequested = {this.props.onAutocompleteUpdateRequested}
+    onSuggestionsClearRequested= {this.props.onAutocompleteClearRequested}
+    renderSuggestion={this.props.renderAutocomplete}
+    getSuggestionValue = {this.props.getAutocompleteValue}
+    theme={theme}
+    inputProps={Object.assign(autocompleteInputProps, {value: autocompleteInputValue, onChange: onAutocompleteInputChange})}
+    />;
+  }
+
   private renderCheckBox() {
     return <Checkbox value={this.props.value} onChange={this.onChange} />;
   }
@@ -445,24 +537,6 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         placeholder={this.props.placeholder}
         value={this.props.value}
         inputRef={this.props.refFunc}
-      />
-    );
-  }
-  private renderAutocomplete() {
-    return (
-      <Autocomplete
-        items={this.props.selectValues}
-        value={this.props.value}
-        getItemValue={(item) => item.label}
-        renderItem={(item, isHighlighted) => (
-          <div
-            className={`autocomplete-item ${isHighlighted ? "autocomplete-item-highlighted" : ""}`}
-            key={item.label}
-          >
-            {item.label}
-          </div>
-        )}
-        {...this.props.inputProps}
       />
     );
   }

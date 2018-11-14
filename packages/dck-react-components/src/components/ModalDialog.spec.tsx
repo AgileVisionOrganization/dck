@@ -1,6 +1,6 @@
 import * as React from "react";
 import "jsdom-global/register";
-import * as Adapter from "enzyme-adapter-react-15";
+import * as Adapter from "enzyme-adapter-react-16";
 import { mount, configure } from "enzyme";
 import { ModalDialog } from "./ModalDialog";
 import * as ReactDatetime from "react-datetime";

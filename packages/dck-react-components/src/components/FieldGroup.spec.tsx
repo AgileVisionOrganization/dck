@@ -1,6 +1,6 @@
 import * as React from "react";
 import "jsdom-global/register";
-import * as Adapter from "enzyme-adapter-react-15";
+import * as Adapter from "enzyme-adapter-react-16";
 import { mount, configure } from "enzyme";
 import { FieldGroup, InputTypes, FieldInputType } from "./FieldGroup";
 import * as ReactDatetime from "react-datetime";
@@ -48,7 +48,7 @@ describe("FieldGroup tests", () => {
 
   it("Autocomplete type", () => {
     const component = mount(
-      <FieldGroup type={InputTypes.autocomplete as FieldInputType} selectValues={[{label: "test", value: ""}]} value={"test"} />,
+      <FieldGroup type={InputTypes.autocomplete as FieldInputType} />,
     );
     expect(component.first().props().type).toEqual(InputTypes.autocomplete);
   });
