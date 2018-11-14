@@ -371,16 +371,16 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
         {this.state.showValidation !== false &&
-        this.props.validationMessage &&
-        this.props.validationState &&
-        !this.props.validationState.valid ? (
-          <HelpBlock>
-            <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
+          this.props.validationMessage &&
+          this.props.validationState &&
+          !this.props.validationState.valid ? (
+            <HelpBlock>
+              <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
             {this.props.validationMessage}
-          </HelpBlock>
-        ) : (
-          <HelpBlock>&nbsp;</HelpBlock>
-        )}
+            </HelpBlock>
+          ) : (
+            <HelpBlock>&nbsp;</HelpBlock>
+          )}
       </FormGroup>
     );
   }
@@ -452,13 +452,13 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
                   }}
                 />
               ) : (
-                <FontAwesomeIcon
-                icon={this.props.arrowIconDown}
-                  {...this.props.arrowsSize && {
-                    size: this.props.arrowsSize,
-                  }}
-                />
-              )}
+                  <FontAwesomeIcon
+                    icon={this.props.arrowIconDown}
+                    {...this.props.arrowsSize && {
+                      size: this.props.arrowsSize,
+                    }}
+                  />
+                )}
             </span>
           );
         }}
