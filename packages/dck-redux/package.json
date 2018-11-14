@@ -1,6 +1,6 @@
 {
   "name": "dck-redux",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "main": "lib/dck-redux.js",
   "types": "lib/index.d.ts",
   "peerDependencies": {
@@ -19,7 +19,7 @@
     "extract-text-webpack-plugin": "2.1.2",
     "faker": "^4.1.0",
     "immutable": "^3.8.2",
-    "jest-cli": "^23.4.1",
+    "jest-cli": "^23.6.0",
     "jest-junit-reporter": "^1.1.0",
     "redux": "^3.7.2",
     "redux-mock-store": "^1.2.3",
@@ -30,7 +30,7 @@
     "typedoc": "^0.11.1",
     "typescript": "^2.5.3",
     "webpack": "2.6.1",
-    "webpack-dev-server": "2.5.0",
+    "webpack-dev-server": "^3.1.10",
     "webpack-node-externals": "^1.6.0",
     "yargs": "7.1.0"
   },

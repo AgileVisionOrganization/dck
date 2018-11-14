@@ -4,7 +4,12 @@
   "jsRules": {},
   "rules": {
     "ordered-imports": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-implicit-dependencies": [true, "dev"],
+    "no-submodule-imports": false,
+    "no-empty-interface": false,
+    "jsdoc-format": true,
+    "no-empty": false
   },
   "rulesDirectory": []
 }

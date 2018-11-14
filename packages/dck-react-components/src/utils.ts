@@ -20,7 +20,7 @@ export function initField(
   isCheckbox?: boolean,
   isDateTimePiker?: boolean,
   optional?: boolean,
-  dependentFields?: String[],
+  dependentFields?: string[],
 ) {
   const field: any = {};
 
