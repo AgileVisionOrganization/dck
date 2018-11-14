@@ -540,22 +540,4 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
       />
     );
   }
-  private renderAutocomplete() {
-    return (
-      <Autocomplete
-        items={this.props.selectValues}
-        value={this.props.value}
-        getItemValue={(item) => item.label}
-        renderItem={(item, isHighlighted) => (
-          <div
-            className={`autocomplete-item ${isHighlighted ? "autocomplete-item-highlighted" : ""}`}
-            key={item.label}
-          >
-            {item.label}
-          </div>
-        )}
-        {...this.props.inputProps}
-      />
-    );
-  }
 }
