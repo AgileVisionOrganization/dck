@@ -323,7 +323,6 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     dateTimeClass: "date-time-class",
     closeOnSelect: true,
     disableOnClickOutside: false,
-    open: false,
     input: true,
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
