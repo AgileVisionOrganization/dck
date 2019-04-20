@@ -90,6 +90,20 @@ export function itemSet(itemType: string, id: string | number, data: any) {
 }
 
 /**
+ * Set items action.
+ * @param itemType items type
+ * @param data items
+ * @hidden
+ */
+export function itemsSet(itemType: string, data: any) {
+  return {
+    type: DckActionTypes.ITEMS_SET,
+    itemType,
+    data
+  };
+}
+
+/**
  * Set item data by field name action.
  * @param itemType item type
  * @param field item field
@@ -101,20 +115,6 @@ export function setItemData(itemType: string, field: string, data: any) {
     type: DckActionTypes.SET_ITEM_DATA,
     itemType,
     field,
-    data
-  };
-}
-
-/**
- * Set items action.
- * @param itemType items type
- * @param data items
- * @hidden
- */
-export function itemsSet(itemType: string, data: any) {
-  return {
-    type: DckActionTypes.ITEMS_SET,
-    itemType,
     data
   };
 }

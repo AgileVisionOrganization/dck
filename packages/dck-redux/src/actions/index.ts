@@ -115,8 +115,14 @@ export class DckActionCreators {
    * @param sessionData user data(e.g. the token, roles, permissions etc.)
    * @param authenticated is user authenticated
    */
-  public static initializeUserSession(sessionData: any, authenticated: boolean) {
-    return AccountActionCreators.initializeUserSession(sessionData, authenticated);
+  public static initializeUserSession(
+    sessionData: any,
+    authenticated: boolean
+  ) {
+    return AccountActionCreators.initializeUserSession(
+      sessionData,
+      authenticated
+    );
   }
 
   /**
@@ -157,8 +163,16 @@ export class DckActionCreators {
    * @param verificationCode verification code
    * @param password new user password
    */
-  public static confirmForgotPassword(email: string, verificationCode: string, password: string) {
-    return AccountActionCreators.confirmForgotPassword(email, verificationCode, password);
+  public static confirmForgotPassword(
+    email: string,
+    verificationCode: string,
+    password: string
+  ) {
+    return AccountActionCreators.confirmForgotPassword(
+      email,
+      verificationCode,
+      password
+    );
   }
 
   /**
@@ -233,6 +247,17 @@ export class DckActionCreators {
    */
   public static itemsSet(itemType: string, data: any) {
     return ItemsActionCreators.itemsSet(itemType, data);
+  }
+
+  /**
+   * Set item data by field name action.
+   * @param itemType item type
+   * @param field item field
+   * @param data item data
+   * @hidden
+   */
+  public static setItemData(itemType: string, field: string, data: any) {
+    return ItemsActionCreators.setItemData(itemType, field, data);
   }
 
   /**
@@ -314,7 +339,11 @@ export class DckActionCreators {
    * @param filter filter name
    * @param values filter values
    */
-  public static setItemSearchFilters(itemType: string, filter: any, values: any) {
+  public static setItemSearchFilters(
+    itemType: string,
+    filter: any,
+    values: any
+  ) {
     return ItemsActionCreators.setItemSearchFilters(itemType, filter, values);
   }
 
@@ -363,7 +392,12 @@ export class DckActionCreators {
     const object: any = {};
     if (keys && keys.length) {
       keys.forEach((key: string) => {
-        if (key && key !== "getBindObject" && DckActions[key] && typeof DckActions[key] === "function") {
+        if (
+          key &&
+          key !== "getBindObject" &&
+          DckActions[key] &&
+          typeof DckActions[key] === "function"
+        ) {
           object[key] = DckActions[key];
         }
       });
