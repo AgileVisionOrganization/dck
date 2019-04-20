@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "lerna": "3.4.0"
+    "lerna": "3.13.2"
   },
   "scripts": {
     "documentation": "lerna exec -- npm run-script documentation"
