@@ -50,6 +50,7 @@
     ]
   },
   "scripts": {
+    "prebuild": "npm run test",
     "build": "webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "jest -c jest.config.json",
