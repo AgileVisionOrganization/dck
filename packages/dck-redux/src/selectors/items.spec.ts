@@ -48,6 +48,7 @@ describe("Items", () => {
               data: "test item 24"
             }
           ],
+          dataField: "itemData",
           selected: ["23", "22"],
           active: null,
           term: "testTerm",
@@ -69,7 +70,10 @@ describe("Items", () => {
   });
 
   it("should select selected item id", () => {
-    const selectedItems = DckSelectors.selectSelectedItemsId(state, "ITEM_TYPE_2");
+    const selectedItems = DckSelectors.selectSelectedItemsId(
+      state,
+      "ITEM_TYPE_2"
+    );
     expect(selectedItems).toBeDefined();
     expect(Array.from(selectedItems)).toMatchObject(["23", "22"]);
   });
@@ -81,7 +85,10 @@ describe("Items", () => {
   });
 
   it("should select selected items", () => {
-    const selectedItems = DckSelectors.selectSelectedItems(state, "ITEM_TYPE_2");
+    const selectedItems = DckSelectors.selectSelectedItems(
+      state,
+      "ITEM_TYPE_2"
+    );
     expect(selectedItems).toBeDefined();
     expect(selectedItems).toHaveLength(2);
   });
@@ -93,7 +100,10 @@ describe("Items", () => {
   });
 
   it("should select item filters", () => {
-    const selectedFilters = DckSelectors.selectItemSearchFilters(state, "ITEM_TYPE_1");
+    const selectedFilters = DckSelectors.selectItemSearchFilters(
+      state,
+      "ITEM_TYPE_1"
+    );
 
     expect(selectedFilters).toBeDefined();
     expect(selectedFilters).toBeInstanceOf(Object);
@@ -110,8 +120,35 @@ describe("Items", () => {
   });
 
   it("should select item sortingOptions", () => {
-    const sortingOptions = DckSelectors.selectItemSortingOptions(state, "ITEM_TYPE_2");
+    const sortingOptions = DckSelectors.selectItemSortingOptions(
+      state,
+      "ITEM_TYPE_2"
+    );
     expect(sortingOptions).toBeDefined();
     expect(sortingOptions).toMatchObject(["sort1", "sort2"]);
+  });
+
+  it("should select undefined item data by empty field name", () => {
+    const itemData = DckSelectors.getItemData(state, "ITEM_TYPE_1", "");
+    expect(itemData).toBeUndefined();
+  });
+
+  it("should select undefined item data if field data is not set", () => {
+    const itemData = DckSelectors.getItemData(
+      state,
+      "ITEM_TYPE_1",
+      "dataField"
+    );
+    expect(itemData).toBeUndefined();
+  });
+
+  it("should select item data by field name", () => {
+    const itemData = DckSelectors.getItemData(
+      state,
+      "ITEM_TYPE_2",
+      "dataField"
+    );
+    expect(itemData).toBeDefined();
+    expect(itemData).toMatch("itemData");
   });
 });

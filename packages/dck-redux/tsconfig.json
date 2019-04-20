@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "*": ["types/*", "node_modules/@types"] },
     "outDir": "./dist/",
     /* Basic Options */
     "target": "es5",

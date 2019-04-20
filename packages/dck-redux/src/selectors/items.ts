@@ -75,11 +75,27 @@ export const selectSelectedItems = createSelector(
  * @returns {object} item with given type and id
  * @hidden
  */
-export const selectItemById = (state: any, itemType: string, itemId: string | number) => {
+export const selectItemById = (
+  state: any,
+  itemType: string,
+  itemId: string | number
+) => {
   const items = selectAllItems(state, itemType);
 
   const filtered = items.filter((x: any) => x.id === itemId);
   return filtered.length === 0 ? null : filtered[0];
+};
+
+/**
+ * Get item data by field name
+ * @param {object} state state
+ * @param {string} itemType item type
+ * @param {string} field field name
+ * @returns {any} item data by field name
+ * @hidden
+ */
+export const getItemData = (state: any, itemType: string, field: string) => {
+  return state.dck.items.getIn([itemType, field]);
 };
 
 /**

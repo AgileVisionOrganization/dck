@@ -53,7 +53,8 @@ export class DckActionTypes {
   /**
    * Ensure changed user password is set action type.
    */
-  public static ENSURE_CHANGE_USER_PASSWORD_IS_SET = "ENSURE_CHANGE_USER_PASSWORD_IS_SET";
+  public static ENSURE_CHANGE_USER_PASSWORD_IS_SET =
+    "ENSURE_CHANGE_USER_PASSWORD_IS_SET";
 
   /** Async processes */
 
@@ -93,6 +94,11 @@ export class DckActionTypes {
    * Set value for the given item action type, e.g. after it was reloaded via the REST API.
    */
   public static ITEM_SET = "ITEM_SET";
+
+  /**
+   * Set item specific data by field name e.g. "totalPages", "currentPage", "validateStatus" etc.
+   */
+  public static SET_ITEM_DATA = "SET_ITEM_DATA";
 
   /**
    * Mark the given item as active action type, for example when it was opened for editing

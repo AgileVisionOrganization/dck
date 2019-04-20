@@ -57,6 +57,17 @@ export class DckSelectors {
   }
 
   /**
+   * Get item data by field name
+   * @param {object} state state
+   * @param {string} itemType item type
+   * @param {string} field field name
+   * @returns {any} item data by field name
+   * @hidden
+   */
+  public static getItemData = (state: any, itemType: string, field: string) => {
+    return ItemsSelectors.getItemData(state, itemType, field);
+  };
+  /**
    * Selects selected items.
    * @param {object} state state
    * @param {string} itemType item type
@@ -73,7 +84,11 @@ export class DckSelectors {
    * @param {string|number} itemId item id
    * @returns {object} item with given type and id
    */
-  public static selectItemById(state: any, itemType: string, itemId: string | number) {
+  public static selectItemById(
+    state: any,
+    itemType: string,
+    itemId: string | number
+  ) {
     return ItemsSelectors.selectItemById(state, itemType, itemId);
   }
 

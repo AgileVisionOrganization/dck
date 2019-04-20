@@ -50,7 +50,10 @@ export const createItemsReducer = (itemTypes: string[]) => {
         const previousActive = state.getIn([action.itemType, "active"]);
         const previousTerm = state.getIn([action.itemType, "term"]);
         const previousFilters = state.getIn([action.itemType, "filters"]);
-        const previousSortingOptions = state.getIn([action.itemType, "sortingOptions"]);
+        const previousSortingOptions = state.getIn([
+          action.itemType,
+          "sortingOptions"
+        ]);
         return state.set(
           action.itemType,
           fromJS({
@@ -67,10 +70,18 @@ export const createItemsReducer = (itemTypes: string[]) => {
         const previousActive = state.getIn([action.itemType, "active"]);
         const previousTerm = state.getIn([action.itemType, "term"]);
         const previousFilters = state.getIn([action.itemType, "filters"]);
-        const previousSortingOptions = state.getIn([action.itemType, "sortingOptions"]);
-        const newItems = (action.data && action.id) 
-                          ? state.getIn([action.itemType, "items"]).toJS().filter((item: any) => item.id !== action.id).concat([{...action.data, id: action.id}])
-                          : state.getIn([action.itemType, "items"]).toJS();
+        const previousSortingOptions = state.getIn([
+          action.itemType,
+          "sortingOptions"
+        ]);
+        const newItems =
+          action.data && action.id
+            ? state
+                .getIn([action.itemType, "items"])
+                .toJS()
+                .filter((item: any) => item.id !== action.id)
+                .concat([{ ...action.data, id: action.id }])
+            : state.getIn([action.itemType, "items"]).toJS();
         return state.set(
           action.itemType,
           fromJS({
@@ -83,6 +94,9 @@ export const createItemsReducer = (itemTypes: string[]) => {
           })
         );
       },
+      [DckActionTypes.SET_ITEM_DATA](state: any, action: any) {
+        return state.setIn([action.itemType, action.field], action.data);
+      },
       [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
         return state.setIn([action.itemType, "active"], action.id);
       },
@@ -90,13 +104,17 @@ export const createItemsReducer = (itemTypes: string[]) => {
         return state.setIn([action.itemType, "term"], action.term);
       },
       [DckActionTypes.ADD_ITEM_SEARCH_FILTER](state: any, action: any) {
-        return state.updateIn([action.itemType, "filters", action.filter], List(), (list: any) => {
-          if (!list.includes(action.value)) {
-            return list.push(action.value);
-          } else {
-            return list;
+        return state.updateIn(
+          [action.itemType, "filters", action.filter],
+          List(),
+          (list: any) => {
+            if (!list.includes(action.value)) {
+              return list.push(action.value);
+            } else {
+              return list;
+            }
           }
-        });
+        );
       },
       [DckActionTypes.SET_ITEM_SEARCH_FILTERS](state: any, action: any) {
         const withoutDuplicates: any = [];
@@ -108,16 +126,25 @@ export const createItemsReducer = (itemTypes: string[]) => {
             }
           });
         }
-        return state.setIn([action.itemType, "filters", action.filter], List(withoutDuplicates));
+        return state.setIn(
+          [action.itemType, "filters", action.filter],
+          List(withoutDuplicates)
+        );
       },
       [DckActionTypes.REMOVE_ITEM_SEARCH_FILTER](state: any, action: any) {
-        return state.deleteIn([action.itemType, "filters", action.filter], action.filter);
+        return state.deleteIn(
+          [action.itemType, "filters", action.filter],
+          action.filter
+        );
       },
       [DckActionTypes.CLEAR_ITEM_SEARCH_FILTERS](state: any, action: any) {
         return state.setIn([action.itemType, "filters"], Map());
       },
       [DckActionTypes.SET_ITEM_SORTING_OPTIONS](state: any, action: any) {
-        return state.setIn([action.itemType, "sortingOptions"], action.sortingOptions);
+        return state.setIn(
+          [action.itemType, "sortingOptions"],
+          action.sortingOptions
+        );
       }
     })
   };
@@ -135,7 +162,10 @@ export const items = createReducer(initialState, {
     const previousActive = state.getIn([action.itemType, "active"]);
     const previousTerm = state.getIn([action.itemType, "term"]);
     const previousFilters = state.getIn([action.itemType, "filters"]);
-    const previousSortingOptions = state.getIn([action.itemType, "sortingOptions"]);
+    const previousSortingOptions = state.getIn([
+      action.itemType,
+      "sortingOptions"
+    ]);
     return state.set(
       action.itemType,
       fromJS({
@@ -148,6 +178,9 @@ export const items = createReducer(initialState, {
       })
     );
   },
+  [DckActionTypes.SET_ITEM_DATA](state: any, action: any) {
+    return state.setIn([action.itemType, action.field], action.data);
+  },
   [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
     return state.setIn([action.itemType, "active"], action.id);
   },
@@ -155,13 +188,17 @@ export const items = createReducer(initialState, {
     return state.setIn([action.itemType, "term"], action.term);
   },
   [DckActionTypes.ADD_ITEM_SEARCH_FILTER](state: any, action: any) {
-    return state.updateIn([action.itemType, "filters", action.filter], List(), (list: any) => {
-      if (!list.includes(action.value)) {
-        return list.push(action.value);
-      } else {
-        return list;
+    return state.updateIn(
+      [action.itemType, "filters", action.filter],
+      List(),
+      (list: any) => {
+        if (!list.includes(action.value)) {
+          return list.push(action.value);
+        } else {
+          return list;
+        }
       }
-    });
+    );
   },
   [DckActionTypes.SET_ITEM_SEARCH_FILTERS](state: any, action: any) {
     const withoutDuplicates: any = [];
@@ -173,15 +210,24 @@ export const items = createReducer(initialState, {
         }
       });
     }
-    return state.setIn([action.itemType, "filters", action.filter], List(withoutDuplicates));
+    return state.setIn(
+      [action.itemType, "filters", action.filter],
+      List(withoutDuplicates)
+    );
   },
   [DckActionTypes.REMOVE_ITEM_SEARCH_FILTER](state: any, action: any) {
-    return state.deleteIn([action.itemType, "filters", action.filter], action.filter);
+    return state.deleteIn(
+      [action.itemType, "filters", action.filter],
+      action.filter
+    );
   },
   [DckActionTypes.CLEAR_ITEM_SEARCH_FILTERS](state: any, action: any) {
     return state.setIn([action.itemType, "filters"], Map());
   },
   [DckActionTypes.SET_ITEM_SORTING_OPTIONS](state: any, action: any) {
-    return state.setIn([action.itemType, "sortingOptions"], action.sortingOptions);
+    return state.setIn(
+      [action.itemType, "sortingOptions"],
+      action.sortingOptions
+    );
   }
 });

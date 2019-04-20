@@ -90,6 +90,22 @@ export function itemSet(itemType: string, id: string | number, data: any) {
 }
 
 /**
+ * Set item data by field name action.
+ * @param itemType item type
+ * @param field item field
+ * @param data item data
+ * @hidden
+ */
+export function setItemData(itemType: string, field: string, data: any) {
+  return {
+    type: DckActionTypes.SET_ITEM_DATA,
+    itemType,
+    field,
+    data
+  };
+}
+
+/**
  * Set items action.
  * @param itemType items type
  * @param data items
@@ -224,7 +240,11 @@ export function removeItemSearchFilter(itemType: string, filter: any) {
  * @param values filter values
  * @hidden
  */
-export function setItemSearchFilters(itemType: string, filter: any, values: any) {
+export function setItemSearchFilters(
+  itemType: string,
+  filter: any,
+  values: any
+) {
   return {
     type: DckActionTypes.SET_ITEM_SEARCH_FILTERS,
     itemType,
