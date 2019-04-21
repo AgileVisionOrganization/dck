@@ -48,6 +48,7 @@ describe("Items", () => {
               data: "test item 24"
             }
           ],
+          dataField: "itemData",
           selected: ["23", "22"],
           active: null,
           term: "testTerm",
@@ -113,5 +114,29 @@ describe("Items", () => {
     const sortingOptions = DckSelectors.selectItemSortingOptions(state, "ITEM_TYPE_2");
     expect(sortingOptions).toBeDefined();
     expect(sortingOptions).toMatchObject(["sort1", "sort2"]);
+  });
+
+  it("should select undefined item data by empty field name", () => {
+    const itemData = DckSelectors.getItemData(state, "ITEM_TYPE_1", "");
+    expect(itemData).toBeUndefined();
+  });
+
+  it("should select undefined item data if field data is not set", () => {
+    const itemData = DckSelectors.getItemData(
+      state,
+      "ITEM_TYPE_1",
+      "dataField"
+    );
+    expect(itemData).toBeUndefined();
+  });
+
+  it("should select item data by field name", () => {
+    const itemData = DckSelectors.getItemData(
+      state,
+      "ITEM_TYPE_2",
+      "dataField"
+    );
+    expect(itemData).toBeDefined();
+    expect(itemData).toMatch("itemData");
   });
 });
