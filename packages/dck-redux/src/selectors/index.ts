@@ -62,7 +62,6 @@ export class DckSelectors {
    * @param {string} itemType item type
    * @param {string} field field name
    * @returns {any} item data by field name
-   * @hidden
    */
   public static getItemData = (state: any, itemType: string, field: string) => {
     return ItemsSelectors.getItemData(state, itemType, field);

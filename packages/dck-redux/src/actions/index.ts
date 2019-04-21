@@ -240,7 +240,6 @@ export class DckActionCreators {
    * @param itemType item type
    * @param field item field
    * @param data item data
-   * @hidden
    */
   public static setItemData(itemType: string, field: string, data: any) {
     return ItemsActionCreators.setItemData(itemType, field, data);
