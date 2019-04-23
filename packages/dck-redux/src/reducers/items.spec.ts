@@ -42,6 +42,33 @@ describe("ItemsReducer", () => {
       expect(updated.getIn(["ItemType1", "term"])).toEqual("test");
     });
 
+    it("should set item data by field name", () => {
+      const updated = items(
+        initialState,
+        ItemActionCreators.setItemData("ItemType1", "dataField", "itemData")
+      );
+
+      expect(updated.getIn(["ItemType1", "dataField"])).toEqual("itemData");
+    });
+
+    it("should set undefined item data by empty field name", () => {
+      const updated = items(
+        initialState,
+        ItemActionCreators.setItemData("ItemType1", "", "itemData")
+      );
+
+      expect(updated.getIn(["ItemType1", "dataField"])).toBeUndefined();
+    });
+
+    it("should set undefined item data", () => {
+      const updated = items(
+        initialState,
+        ItemActionCreators.setItemData("ItemType1", "dataField", undefined)
+      );
+
+      expect(updated.getIn(["ItemType1", "dataField"])).toBeUndefined();
+    });
+
     it("should add a new filter", () => {
       const updated = items(
         initialState,

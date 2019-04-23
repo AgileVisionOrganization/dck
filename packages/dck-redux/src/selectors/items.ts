@@ -83,6 +83,18 @@ export const selectItemById = (state: any, itemType: string, itemId: string | nu
 };
 
 /**
+ * Get item data by field name
+ * @param {object} state state
+ * @param {string} itemType item type
+ * @param {string} field field name
+ * @returns {any} item data by field name
+ * @hidden
+ */
+export const getItemData = (state: any, itemType: string, field: string) => {
+  return state.dck.items.getIn([itemType, field]);
+};
+
+/**
  * Selects item current search term
  * @param {object} state state
  * @param {string} itemType item type

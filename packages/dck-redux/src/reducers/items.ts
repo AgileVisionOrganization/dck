@@ -83,6 +83,9 @@ export const createItemsReducer = (itemTypes: string[]) => {
           })
         );
       },
+      [DckActionTypes.SET_ITEM_DATA](state: any, action: any) {
+        return state.setIn([action.itemType, action.field], action.data);
+      },
       [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
         return state.setIn([action.itemType, "active"], action.id);
       },
@@ -147,6 +150,9 @@ export const items = createReducer(initialState, {
         sortingOptions: previousSortingOptions
       })
     );
+  },
+  [DckActionTypes.SET_ITEM_DATA](state: any, action: any) {
+    return state.setIn([action.itemType, action.field], action.data);
   },
   [DckActionTypes.ITEM_MAKE_ACTIVE](state: any, action: any) {
     return state.setIn([action.itemType, "active"], action.id);

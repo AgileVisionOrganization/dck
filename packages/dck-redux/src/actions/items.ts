@@ -104,6 +104,22 @@ export function itemsSet(itemType: string, data: any) {
 }
 
 /**
+ * Set item data by field name action.
+ * @param itemType item type
+ * @param field item field
+ * @param data item data
+ * @hidden
+ */
+export function setItemData(itemType: string, field: string, data: any) {
+  return {
+    type: DckActionTypes.SET_ITEM_DATA,
+    itemType,
+    field,
+    data
+  };
+}
+
+/**
  * Make item active action with given id.
  * @param itemType item type
  * @param id item id

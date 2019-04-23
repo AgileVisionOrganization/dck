@@ -236,6 +236,16 @@ export class DckActionCreators {
   }
 
   /**
+   * Set item data by field name action.
+   * @param itemType item type
+   * @param field item field
+   * @param data item data
+   */
+  public static setItemData(itemType: string, field: string, data: any) {
+    return ItemsActionCreators.setItemData(itemType, field, data);
+  }
+
+  /**
    * Make item active action with given id.
    * @param itemType item type
    * @param id item id
