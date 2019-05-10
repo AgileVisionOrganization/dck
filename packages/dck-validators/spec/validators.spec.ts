@@ -9,7 +9,7 @@ import {
   phoneNumber,
   serverSideValidator,
   regexpValidator,
-} from "./validators";
+} from "../src/validators";
 
 describe("Validators", () => {
   describe("email", () => {
