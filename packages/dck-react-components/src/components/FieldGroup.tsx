@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as FontAwesomeProps from "@fortawesome/fontawesome-svg-core";
 import * as ReactDatetime from "react-datetime";
 import Select from "react-select";
+import * as Autosuggest from "react-autosuggest";
+import "./styles.css";
 
 /**
  * Field group input types.
@@ -17,7 +19,9 @@ export type FieldInputType =
   | "select"
   | "datetimepicker"
   | "datepicker"
-  | "timepicker";
+  | "timepicker"
+  | "autocomplete"
+  ;
 
 /**
  * Field group input types map.
@@ -32,6 +36,7 @@ export const InputTypes = Object.freeze({
   datetimepicker: "datetimepicker",
   datepicker: "datepicker",
   timepicker: "timepicker",
+  autocomplete: "autocomplete",
 });
 
 /**
@@ -244,10 +249,63 @@ export interface IFieldGroupDateTimeProps {
   disableOnClickOutside?: boolean;
 }
 
+export interface IFieldGroupAutocompleteProps {
+  /**
+   * A function that returns input value for autocomplete
+   */
+  getAutocompleteValue?: (obj: ISelectValue) => string;
+
+  /**
+   * Values for autocomplete component.
+   */
+  autocompleteValues?: ISelectValue[];
+
+  /**
+   * This function will be called every time you might need to update autocomplete
+   */
+  onAutocompleteUpdateRequested?: Autosuggest.SuggestionsFetchRequested;
+
+  /**
+   * Will be called every time you need to set suggestions to []
+   */
+  onAutocompleteClearRequested?: () => void;
+
+  /**
+   * Autocomplete render
+   */
+  renderAutocomplete?: (suggestion: ISelectValue, props: object) => any;
+
+  /**
+   * Current input value
+   */
+  autocompleteInputValue?: string;
+
+  /**
+   * Input change event handler
+   */
+  onAutocompleteInputChange?: (event: React.FormEvent<any>, params: Autosuggest.ChangeEvent) => void;
+
+  /**
+   * Autocomplete input props
+   */
+  autocompleteInputProps?: any;
+
+  /**
+   * Css class for html input
+   */
+  autocompleteInputClass?: string,
+  
+  /**
+   * Css class for autocomplete container
+   */
+  autocompleteContainerOpenClass?: string
+}
+
 /**
  * Combined props.
  */
-export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps, IFieldGroupDateTimeProps {}
+export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSelectProps,
+ IFieldGroupDateTimeProps, IFieldGroupAutocompleteProps { }
 
 /**
  * Field group component.
@@ -255,7 +313,7 @@ export interface IFieldGroupProps extends IFieldGroupInputProps, IFieldGroupSele
 export class FieldGroup extends React.Component<IFieldGroupProps, any> {
   public static defaultProps = {
     type: "text",
-    selectClass: "select-class",
+    selectClass: "select-class", 
     clearable: false,
     multi: false,
     searchable: false,
@@ -265,12 +323,19 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
     dateTimeClass: "date-time-class",
     closeOnSelect: true,
     disableOnClickOutside: false,
-    open: false,
     input: true,
     defaultValue: new Date(),
     selectValues: [] as ISelectValue[],
     validationDebounceTimeout: 1500,
     inputProps: {},
+    getAutocompleteValue: (obj: ISelectValue) => obj.label,
+    autocompleteValues: [] as ISelectValue[],
+    onAutocompleteUpdateRequested: (request: Autosuggest.SuggestionsFetchRequestedParams) => {},
+    onAutocompleteClearRequested: () => {},
+    autocompleteInputValue: '',
+    autocompleteInputProps: {},
+    onAutocompleteInputChange: (event: React.FormEvent<any>, params: Autosuggest.ChangeEvent) => {},
+    renderAutocomplete: (suggestion: ISelectValue, props: object) => (<span>{suggestion.label}</span>),
   };
 
   constructor(props: IFieldGroupProps) {
@@ -305,16 +370,16 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         {this.getCurrentRender()}
         {this.props.help && <HelpBlock>{this.props.help}</HelpBlock>}
         {this.state.showValidation !== false &&
-        this.props.validationMessage &&
-        this.props.validationState &&
-        !this.props.validationState.valid ? (
-          <HelpBlock>
-            <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
+          this.props.validationMessage &&
+          this.props.validationState &&
+          !this.props.validationState.valid ? (
+            <HelpBlock>
+              <FontAwesomeIcon icon="exclamation-circle" />&nbsp;
             {this.props.validationMessage}
-          </HelpBlock>
-        ) : (
-          <HelpBlock>&nbsp;</HelpBlock>
-        )}
+            </HelpBlock>
+          ) : (
+            <HelpBlock>&nbsp;</HelpBlock>
+          )}
       </FormGroup>
     );
   }
@@ -350,6 +415,9 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
       case InputTypes.timepicker:
         render = this.renderTimePicker();
         break;
+      case InputTypes.autocomplete:
+        render = this.renderAutocomplete();
+        break;
       default:
         render = this.renderTextInput();
         break;
@@ -383,13 +451,13 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
                   }}
                 />
               ) : (
-                <FontAwesomeIcon
-                icon={this.props.arrowIconDown}
-                  {...this.props.arrowsSize && {
-                    size: this.props.arrowsSize,
-                  }}
-                />
-              )}
+                  <FontAwesomeIcon
+                    icon={this.props.arrowIconDown}
+                    {...this.props.arrowsSize && {
+                      size: this.props.arrowsSize,
+                    }}
+                  />
+                )}
             </span>
           );
         }}
@@ -421,6 +489,36 @@ export class FieldGroup extends React.Component<IFieldGroupProps, any> {
         <ReactDatetime dateFormat={false} timeFormat={timeFormat ? timeFormat : true} {...otherProps} />
       </div>
     );
+  }
+
+  private renderAutocomplete() {
+    const { autocompleteInputValue, onAutocompleteInputChange, autocompleteInputProps, autocompleteInputClass, autocompleteContainerOpenClass, ...otherProps } = this.props;
+    const theme = {
+      container:                'react-autosuggest__container',
+      containerOpen:            'react-autosuggest__container--open',
+      input:                    autocompleteInputClass || 'form-control',
+      inputOpen:                'react-autosuggest__input--open',
+      inputFocused:             'react-autosuggest__input--focused',
+      suggestionsContainer:     'react-autosuggest__suggestions-container',
+      suggestionsContainerOpen: autocompleteContainerOpenClass || 'react-autosuggest__suggestions-container--open',
+      suggestionsList:          'react-autosuggest__suggestions-list',
+      suggestion:               'react-autosuggest__suggestion',
+      suggestionFirst:          'react-autosuggest__suggestion--first',
+      suggestionHighlighted:    'react-autosuggest__suggestion--highlighted',
+      sectionContainer:         'react-autosuggest__section-container',
+      sectionContainerFirst:    'react-autosuggest__section-container--first',
+      sectionTitle:             'react-autosuggest__section-title'
+    };
+    return <Autosuggest
+    { ...otherProps}
+    suggestions={this.props.autocompleteValues}
+    onSuggestionsFetchRequested = {this.props.onAutocompleteUpdateRequested}
+    onSuggestionsClearRequested= {this.props.onAutocompleteClearRequested}
+    renderSuggestion={this.props.renderAutocomplete}
+    getSuggestionValue = {this.props.getAutocompleteValue}
+    theme={theme}
+    inputProps={Object.assign(autocompleteInputProps, {value: autocompleteInputValue, onChange: onAutocompleteInputChange})}
+    />;
   }
 
   private renderCheckBox() {

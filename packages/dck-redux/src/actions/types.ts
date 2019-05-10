@@ -95,6 +95,11 @@ export class DckActionTypes {
   public static ITEM_SET = "ITEM_SET";
 
   /**
+   * Set item specific data by field name e.g. "totalPages", "currentPage", "validateStatus" etc.
+   */
+  public static SET_ITEM_DATA = "SET_ITEM_DATA";
+
+  /**
    * Mark the given item as active action type, for example when it was opened for editing
    */
   public static ITEM_MAKE_ACTIVE = "ITEM_MAKE_ACTIVE";
