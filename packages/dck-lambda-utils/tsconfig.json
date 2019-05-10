@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "es2015",
@@ -8,5 +9,6 @@
     "declaration": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["**/*.spec.ts"]
 }
