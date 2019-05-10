@@ -10,10 +10,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
-    "@types/yargs": "^13.0.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
-    "dts-bundle": "^0.7.3",
-    "extract-text-webpack-plugin": "2.1.2",
     "faker": "^4.1.0",
     "jest": "^24.8.0",
     "jest-junit-reporter": "^1.1.0",
@@ -23,13 +20,7 @@
     "tslint": "^5.7.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.4.5",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1",
-    "webpack-node-externals": "^1.6.0",
-    "yargs": "13.2.2",
-    "uglifyjs-webpack-plugin": "^2.1.2",
-    "dts-bundle-webpack": "^1.0.2"
+    "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
     "build": "webpack --env build",

@@ -1,6 +1,13 @@
 {
   "devDependencies": {
-    "lerna": "3.13.0"
+    "@types/yargs": "^13.0.0",
+    "dts-bundle-webpack": "^1.0.2",
+    "lerna": "3.13.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "4.31.0",
+    "webpack-node-externals": "^1.7.2",
+    "yargs": "^13.2.2",
+    "underscore-cli": "0.2.19"
   },
   "scripts": {
     "documentation": "lerna exec -- npm run-script documentation"
