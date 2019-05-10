@@ -30,11 +30,10 @@
     "typescript": "3.4.5",
     "webpack-dev-server": "^3.3.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-es2016": "6.24.1",
-    "webpack-cli": "3.3.2"
+    "babel-preset-es2016": "6.24.1"
   },
   "scripts": {
-    "build": "webpack --env build",
+    "build": "webpack --env build -y",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "jest -c jest.config.json",
     "test:watch": "jest -c jest.config.json --watchAll",

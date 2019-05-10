@@ -5,7 +5,7 @@ before_install:
 - echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
 - wget https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/dynamodb_local_latest.zip
 - unzip -u dynamodb_local_latest.zip
-- chmod +x npm-publish.sh
+- chmod 755 npm-publish.sh
 install:
 - npm install
 - npm install -g webpack@4.31.0 webpack-cli@3.3.2

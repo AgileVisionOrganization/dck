@@ -57,11 +57,10 @@
     "tslint": "^5.7.0",
     "typedoc": "^0.14.2",
     "typescript": "3.4.5",
-    "webpack-dev-server": "^3.3.1",
-    "webpack-cli": "3.3.2"
+    "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
-    "build": "webpack --env build",
+    "build": "webpack --env build -y",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
