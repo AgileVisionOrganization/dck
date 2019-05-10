@@ -1,9 +1,9 @@
 {
   "moduleFileExtensions": ["ts", "js"],
   "transform": {
-    "\\.(ts)$": "./node_modules/ts-jest/preprocessor.js"
+    "\\.(ts)$": "ts-jest"
   },
-  "testRegex": ".*\\.spec\\.(ts|js)$",
+  "testRegex": "/spec/.*\\.spec\\.(ts|js)$",
   "testResultsProcessor": "./node_modules/jest-junit-reporter",
   "testEnvironment": "node"
 }

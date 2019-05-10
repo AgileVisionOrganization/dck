@@ -1,3 +1,4 @@
 .eslintrc
 .babelrc
 lib
+dist

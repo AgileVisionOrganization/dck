@@ -1,7 +1,7 @@
 module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js"],
   transform: {
-    "\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+    "\\.(ts|tsx)$": "ts-jest"
   },
   moduleNameMapper: {
     "\\.(css|less)$": "identity-obj-proxy"

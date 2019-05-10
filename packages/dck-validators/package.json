@@ -1,6 +1,6 @@
 {
   "name": "dck-validators",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "lib/dck-validators.js",
   "types": "lib/index.d.ts",
   "dependencies": {
@@ -9,36 +9,18 @@
     "moment": "^2.22.1"
   },
   "devDependencies": {
-    "@types/jest": "^20.0.8",
+    "@types/jest": "^24.0.12",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
-    "dts-bundle": "^0.7.3",
-    "extract-text-webpack-plugin": "2.1.2",
     "faker": "^4.1.0",
-    "jest": "^23.4.1",
+    "jest": "^24.8.0",
     "jest-junit-reporter": "^1.1.0",
     "prettier": "^1.5.3",
-    "ts-jest": "^23.0.1",
-    "ts-loader": "^2.3.7",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.0",
     "tslint": "^5.7.0",
-    "typedoc": "^0.11.1",
-    "typescript": "2.8.3",
-    "webpack": "2.6.1",
-    "webpack-dev-server": "^3.1.10",
-    "webpack-node-externals": "^1.6.0",
-    "yargs": "7.1.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ]
+    "typedoc": "^0.14.2",
+    "typescript": "^3.4.5",
+    "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
     "build": "webpack --env build",
