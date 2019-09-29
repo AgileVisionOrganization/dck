@@ -9,8 +9,8 @@
     "sourceMap": true,
     "noImplicitAny": true /* Enable all strict type-checking options. */,
     "declaration": true,
+    "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/**/*"],
-  "exclude": ["**/*.spec.ts"]
+  "include": ["./src/**/*"]
 }

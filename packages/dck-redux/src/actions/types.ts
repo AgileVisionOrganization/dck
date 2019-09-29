@@ -105,15 +105,35 @@ export class DckActionTypes {
   public static ITEM_MAKE_ACTIVE = "ITEM_MAKE_ACTIVE";
 
   /**
+   * Select item action type, e.g. by using the checkbox in the table
+   */
+  public static ITEM_SELECT = "ITEM_SELECT";
+
+  /**
+   * Unselect item action type, e.g. by using the checkbox in the table
+   */
+  public static ITEM_UNSELECT = "ITEM_UNSELECT";
+
+  /**
    * Select items action type, e.g. by using the checkbox in the table
    */
   public static ITEMS_SELECT = "ITEMS_SELECT";
 
   /**
-   * Select item action type, e.g. by using the checkbox in the table
+   * Unselect items action type, e.g. by using the checkbox in the table
    */
-  public static ITEM_SELECT = "ITEM_SELECT";
+  public static ITEMS_UNSELECT = "ITEMS_UNSELECT";
 
+  /**
+   * Select all items action type, e.g. by using the checkbox in the table
+   */
+  public static ITEMS_SELECT_ALL = "ITEMS_SELECT_ALL";
+
+  /**
+   * Unselect items action type, e.g. by using the checkbox in the table
+   */
+  public static ITEMS_UNSELECT_ALL = "ITEMS_UNSELECT_ALL";
+  
   /**
    * Add new item action type
    */

@@ -7,7 +7,8 @@ import * as ItemActionCreators from "../actions/items";
 const initialState = fromJS({
   ItemType1: {
     items: ["item1", "item2", "item3"],
-    selected: [],
+    selected: {},
+    data: {},
     active: null,
     term: "",
     filters: {},
@@ -15,7 +16,8 @@ const initialState = fromJS({
   },
   ItemType2: {
     items: ["item4", "item5", "item6"],
-    selected: [],
+    selected: {},
+    data: {},
     active: null,
     term: "",
     filters: {},
@@ -23,7 +25,8 @@ const initialState = fromJS({
   },
   ItemType3: {
     items: ["item7", "item8", "item9"],
-    selected: [],
+    selected: {},
+    data: {},
     active: null,
     term: "",
     filters: {},
@@ -32,7 +35,7 @@ const initialState = fromJS({
 });
 
 describe("ItemsReducer", () => {
-  describe("Search", () => {
+  describe("Items", () => {
     it("should set a new search term", () => {
       const updated = items(
         initialState,
@@ -48,7 +51,7 @@ describe("ItemsReducer", () => {
         ItemActionCreators.setItemData("ItemType1", "dataField", "itemData")
       );
 
-      expect(updated.getIn(["ItemType1", "dataField"])).toEqual("itemData");
+      expect(updated.getIn(["ItemType1", "data", "dataField"])).toEqual("itemData");
     });
 
     it("should set undefined item data by empty field name", () => {
@@ -57,7 +60,7 @@ describe("ItemsReducer", () => {
         ItemActionCreators.setItemData("ItemType1", "", "itemData")
       );
 
-      expect(updated.getIn(["ItemType1", "dataField"])).toBeUndefined();
+      expect(updated.getIn(["ItemType1", "data", "dataField"])).toBeUndefined();
     });
 
     it("should set undefined item data", () => {
@@ -66,7 +69,7 @@ describe("ItemsReducer", () => {
         ItemActionCreators.setItemData("ItemType1", "dataField", undefined)
       );
 
-      expect(updated.getIn(["ItemType1", "dataField"])).toBeUndefined();
+      expect(updated.getIn(["ItemType1", "data", "dataField"])).toBeUndefined();
     });
 
     it("should add a new filter", () => {

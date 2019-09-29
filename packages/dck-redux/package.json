@@ -1,11 +1,11 @@
 {
   "name": "dck-redux",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "main": "lib/dck-redux.js",
   "types": "lib/index.d.ts",
   "peerDependencies": {
     "immutable": "^3.8.1",
-    "redux": "^3.7.1",
+    "redux": "^4.0.4",
     "reselect": "^3.0.1"
   },
   "devDependencies": {
@@ -20,7 +20,7 @@
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "jest-junit-reporter": "^1.1.0",
-    "redux": "^3.7.2",
+    "redux": "^4.0.4",
     "redux-mock-store": "^1.2.3",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.0",
