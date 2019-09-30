@@ -134,6 +134,20 @@ export function itemMakeActive(itemType: string, id: string | number) {
 }
 
 /**
+ * Select item with given id action.
+ * @param itemType item type
+ * @param id item id
+ * @hidden
+ */
+export function itemSelect(itemType: string, id: string | number) {
+  return {
+    type: DckActionTypes.ITEM_SELECT,
+    itemType,
+    id
+  };
+}
+
+/**
  * Remove item with given id action.
  * @param itemType item type
  * @param id item id
@@ -162,16 +176,16 @@ export function itemsRemove(itemType: string, ids: string[] | number[]) {
 }
 
 /**
- * Select item with given id action.
- * @param itemType item type
- * @param id item id
+ * Select items with given ids action.
+ * @param itemType items type
+ * @param ids items ids
  * @hidden
  */
-export function itemSelect(itemType: string, id: string | number) {
+export function itemsSelect(itemType: string, ids: string[] | number[]) {
   return {
-    type: DckActionTypes.ITEM_SELECT,
+    type: DckActionTypes.ITEMS_SELECT,
     itemType,
-    id
+    ids
   };
 }
 
@@ -186,20 +200,6 @@ export function itemUnselect(itemType: string, id: string | number) {
     type: DckActionTypes.ITEM_UNSELECT,
     itemType,
     id
-  };
-}
-
-/**
- * Select items with given ids action.
- * @param itemType items type
- * @param ids items ids
- * @hidden
- */
-export function itemsSelect(itemType: string, ids: string[] | number[]) {
-  return {
-    type: DckActionTypes.ITEMS_SELECT,
-    itemType,
-    ids
   };
 }
 

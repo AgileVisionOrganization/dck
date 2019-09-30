@@ -9,21 +9,19 @@ const getItemsIds = (state: any, itemType: string) => {
 
 const updateStateSelected = (state: any, itemType: string, ids: string[] | number[], select: boolean) => {
   let selected = state.getIn([itemType, "selected"]);
-  const updateSelected = (id: string) => select ? selected.set(id, true) : selected.delete(id) 
+  const updateSelected = (id: string) => select ? selected.set(id, true) : selected.delete(id);
   (ids || []).forEach((id: any) => selected = updateSelected(String(id)));
   return state.setIn([itemType, "selected"], selected);
 }
 
 const reducers = {
   [DckActionTypes.ITEMS_SET](state: any, action: any) {
-    const items = Array.isArray(action.data) ? action.data : [];
-    return state.setIn([action.itemType, "items"], items);
+    return state.setIn([action.itemType, "items"], Array.isArray(action.data) ? action.data : []);
   },
   [DckActionTypes.ITEM_SET](state: any, action: any) {
     const thisItem = (item: any) => Number(item.id) === Number(action.id);
     const itemIndex = state.getIn([action.itemType, "items"]).findIndex(thisItem); 
-    if (itemIndex === -1) return state;
-    return state.setIn([action.itemType, "items", itemIndex], action.data);
+    return itemIndex === -1 ? state : state.setIn([action.itemType, "items", itemIndex], action.data);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {
     return state.setIn([action.itemType, "selected", String(action.id)], true);
