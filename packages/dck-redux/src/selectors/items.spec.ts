@@ -21,7 +21,7 @@ describe("Items", () => {
             }
           ],
           data: {},
-          selected: {},
+          selected: [],
           active: "2",
           term: "",
           filters: {
@@ -50,7 +50,7 @@ describe("Items", () => {
             }
           ],
           data: { dataField: "itemData" },
-          selected: { "23": true, "22": true },
+          selected: ["23", "22"],
           active: null,
           term: "testTerm",
           filters: {},
@@ -73,8 +73,7 @@ describe("Items", () => {
   it("should select selected item id", () => {
     const selectedItems = DckSelectors.selectSelectedItemsId(state, "ITEM_TYPE_2");
     expect(selectedItems).toBeDefined();
-    expect(selectedItems.includes("22")).toEqual(true);
-    expect(selectedItems.includes("23")).toEqual(true);
+    expect(selectedItems).toMatchObject(["23", "22"]);
   });
 
   it("should select active item", () => {

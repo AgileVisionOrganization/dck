@@ -47,7 +47,7 @@ export const selectActiveItem = createSelector(
  * @hidden
  */
 export const selectSelectedItemsId = (state: any, itemType: string) => {
-  return Array.from(state.dck.items.getIn([itemType, "selected"]).keys());
+  return state.dck.items.getIn([itemType, "selected"]).toJS();
 };
 
 /**
@@ -61,7 +61,7 @@ export const selectSelectedItems = createSelector(
   [selectSelectedItemsId, selectAllItems],
   (selectedItemsId: any, items: any) => {
     const filtered = items.filter((x: any) => {
-      return selectedItemsId.indexOf(String(x.id)) > -1;
+      return selectedItemsId.indexOf(x.id) > -1;
     });
     return filtered.length === 0 ? null : filtered;
   }

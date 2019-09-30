@@ -4,43 +4,54 @@ import { DckActionTypes } from "../actions/types";
 import { createReducer } from "../utils";
 
 const getItemsIds = (state: any, itemType: string) => {
-  return state.getIn([itemType, "items"]).map((item: any) => item.id);
+  return state.getIn([itemType, "items"]).toJS().map((item: any) => item.id);
 }
 
-const updateStateSelected = (state: any, itemType: string, ids: string[] | number[], select: boolean) => {
-  let selected = state.getIn([itemType, "selected"]);
-  const updateSelected = (id: string) => select ? selected.set(id, true) : selected.delete(id);
-  (ids || []).forEach((id: any) => selected = updateSelected(String(id)));
-  return state.setIn([itemType, "selected"], selected);
-}
+const updateSelected = (selected: any, id: string | number, select: boolean) => {
+  const selectedIndex = selected.findIndex(id);
+  if (select) {
+    return selectedIndex !== -1 ? selected : selected.push(id);
+  }
+  return selectedIndex === -1 ? selected : selected.delete(selectedIndex);
+};
+
+const updateSelectedIds = (selected: any, ids: string[] | number[], select: boolean) => {
+  let updated = selected;
+  ids.forEach((id: any) => updated = updateSelected(updated, id, select)); 
+  return updated;
+};
 
 const reducers = {
   [DckActionTypes.ITEMS_SET](state: any, action: any) {
     return state.setIn([action.itemType, "items"], Array.isArray(action.data) ? action.data : []);
   },
   [DckActionTypes.ITEM_SET](state: any, action: any) {
-    const thisItem = (item: any) => Number(item.id) === Number(action.id);
+    const thisItem = (item: any) => String(item.id) === String(action.id);
     const itemIndex = state.getIn([action.itemType, "items"]).findIndex(thisItem); 
     return itemIndex === -1 ? state : state.setIn([action.itemType, "items", itemIndex], action.data);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {
-    return state.setIn([action.itemType, "selected", String(action.id)], true);
+    const selected = state.getIn([action.itemType, "selected"]);
+    return state.setIn([action.itemType, "selected"], updateSelected(selected, action.id, true));
   },
   [DckActionTypes.ITEM_UNSELECT](state: any, action: any) {
-    return state.deleteIn([action.itemType, "selected", String(action.id)]);
+    const selected = state.getIn([action.itemType, "selected"]);
+    return state.setIn([action.itemType, "selected"], updateSelected(selected, action.id, false));
   },
   [DckActionTypes.ITEMS_SELECT](state: any, action: any) {
-    return updateStateSelected(state, action.itemType, action.ids, true);
+    const selected = state.getIn([action.itemType, "selected"]);
+    return state.setIn([action.itemType, "selected"], updateSelectedIds(selected, action.ids, true));
   },
   [DckActionTypes.ITEMS_UNSELECT](state: any, action: any) {
-    return updateStateSelected(state, action.itemType, action.ids, false);
+    const selected = state.getIn([action.itemType, "selected"]);
+    return state.setIn([action.itemType, "selected"], updateSelectedIds(selected, action.ids, false));
   },
   [DckActionTypes.ITEMS_SELECT_ALL](state: any, action: any) {
     const ids = getItemsIds(state, action.itemType);
-    return updateStateSelected(state, action.itemType, ids, true);
+    return state.setIn([action.itemType, "selected"], fromJS(ids));
   },
   [DckActionTypes.ITEMS_UNSELECT_ALL](state: any, action: any) {
-    return state.setIn([action.itemType, "selected"], Map());
+    return state.setIn([action.itemType, "selected"], List());
   },
   [DckActionTypes.SET_ITEM_DATA](state: any, action: any) {
     return state.setIn([action.itemType, "data", action.field], action.data);
@@ -112,7 +123,7 @@ export const createItemsReducer = (itemTypes: string[]) => {
   availableItemTypes.forEach(element => {
     initialItemStates[element] = {
       items: [],
-      selected: {},
+      selected: [],
       active: null,
       term: "",
       data: {},
