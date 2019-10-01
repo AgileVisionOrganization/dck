@@ -6,8 +6,8 @@ import * as ItemActionCreators from "../actions/items";
 
 const initialState = fromJS({
   ItemType1: {
-    items: ["item1", "item2", "item3"],
-    selected: {},
+    items: [],
+    selected: [],
     data: {},
     active: null,
     term: "",
@@ -15,8 +15,8 @@ const initialState = fromJS({
     sortingOptions: []
   },
   ItemType2: {
-    items: ["item4", "item5", "item6"],
-    selected: {},
+    items: [],
+    selected: [],
     data: {},
     active: null,
     term: "",
@@ -24,8 +24,8 @@ const initialState = fromJS({
     sortingOptions: []
   },
   ItemType3: {
-    items: ["item7", "item8", "item9"],
-    selected: {},
+    items: [],
+    selected: [],
     data: {},
     active: null,
     term: "",
@@ -34,23 +34,228 @@ const initialState = fromJS({
   }
 });
 
-describe("ItemsReducer", () => {
-  describe("Items", () => {
-    it("should set a new search term", () => {
-      const updated = items(
-        initialState,
-        ItemActionCreators.setItemSearchTerm("ItemType1", "test")
-      );
+const finalState = {
+  ItemType1: {
+    items: [
+      { id: 1, field1: "updatedData" },
+      { id: 2, field2: "data2" },
+    ],
+    selected: [1, 2],
+    data: { dataField: "itemData" },
+    active: null,
+    term: "test",
+    filters: { filterA: ["filterValue"] },
+    sortingOptions: [
+      "option1",
+      "option2"
+    ]
+  },
+  ItemType2: {
+    items: [],
+    selected: [],
+    data: {},
+    active: null,
+    term: "",
+    filters: {},
+    sortingOptions: []
+  },
+  ItemType3: {
+    items: [],
+    selected: [],
+    data: {},
+    active: null,
+    term: "",
+    filters: {},
+    sortingOptions: []
+  }
+};
 
-      expect(updated.getIn(["ItemType1", "term"])).toEqual("test");
+describe("Items reducer", () => {
+
+  describe("Set items", () => {
+    const should = (desc: string, input: any, output: any): void => {
+      it(desc, () => {
+        const updated = items(
+          initialState,
+          ItemActionCreators.itemsSet("ItemType1", input)
+        );
+        expect(updated).toBeDefined();
+        expect(updated.getIn(["ItemType1", "items"])).toMatchObject(output);
+      });
+    };
+  
+    const itemsArray = [
+      { id: 1, field1: "data1" },
+      { id: 2, field2: "data2" },
+    ];
+
+    should("set array", itemsArray, itemsArray);
+    should("set wrong data type: object", {}, []);
+    should("set wrong data type: undefined", undefined, []);
+  });
+
+  describe("Set one item", () => {
+    it("should not set item for initial state", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "data1" })
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "items"]).toJS()).toMatchObject([]);
     });
 
+    it("should update item if item with id exists in items", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemsSet("ItemType1", [
+          { id: 1, field1: "data1" },
+          { id: 2, field2: "data2" },
+        ])
+      );
+      expect(updated).toBeDefined();
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "updatedData" })
+      );
+
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "items"])).toMatchObject([
+        { id: 1, field1: "updatedData" },
+        { id: 2, field2: "data2" },
+      ]);
+    });
+
+    it("should not update item if item with id does not exist in items", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemsSet("ItemType1", [
+          { id: 1, field1: "data1" },
+          { id: 2, field2: "data2" },
+        ])
+      );
+      expect(updated).toBeDefined();
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemSet("ItemType1", 0, {})
+      );
+
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "items"])).toMatchObject([
+        { id: 1, field1: "data1" },
+        { id: 2, field2: "data2" },
+      ]);
+    });
+  });
+
+  describe("Select items", () => {
+    it("should select/unselect one item", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemSelect("ItemType1", 1)
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([1]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemSelect("ItemType1", 1)
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([1]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemUnselect("ItemType1", 1)
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemUnselect("ItemType1", 2)
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+    });
+
+    it("should select/unselect items", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemsSelect("ItemType1", [1, 2])
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([1, 2]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemsSelect("ItemType1", [2, 3])
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([1, 2, 3]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemsUnselect("ItemType1", [1, 2])
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([3]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemsUnselect("ItemType1", [1, 2, 3])
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+    });
+
+    it("should select/unselect all items", () => {
+      let updated = items(
+        initialState,
+        ItemActionCreators.itemsSelectAll("ItemType1")
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemsUnselectAll("ItemType1")
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+
+      updated = items(updated,
+        ItemActionCreators.itemsSet("ItemType1", [
+          { id: 1 },
+          "incorrectItem",
+          { id: 2 }
+        ])
+      );
+      updated = items(
+        updated,
+        ItemActionCreators.itemsSelectAll("ItemType1")
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([1, 2]);
+
+      updated = items(
+        updated,
+        ItemActionCreators.itemsUnselectAll("ItemType1")
+      );
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "selected"]).toJS()).toMatchObject([]);
+    });
+  });
+
+  describe("Set item data", () => {
     it("should set item data by field name", () => {
       const updated = items(
         initialState,
         ItemActionCreators.setItemData("ItemType1", "dataField", "itemData")
       );
 
+      expect(updated).toBeDefined();
       expect(updated.getIn(["ItemType1", "data", "dataField"])).toEqual("itemData");
     });
 
@@ -60,6 +265,7 @@ describe("ItemsReducer", () => {
         ItemActionCreators.setItemData("ItemType1", "", "itemData")
       );
 
+      expect(updated).toBeDefined();
       expect(updated.getIn(["ItemType1", "data", "dataField"])).toBeUndefined();
     });
 
@@ -69,9 +275,21 @@ describe("ItemsReducer", () => {
         ItemActionCreators.setItemData("ItemType1", "dataField", undefined)
       );
 
+      expect(updated).toBeDefined();
       expect(updated.getIn(["ItemType1", "data", "dataField"])).toBeUndefined();
     });
+  });
+  
+  describe("Set item filters & sorting", () => {
+    it("should set a new search term", () => {
+      const updated = items(
+        initialState,
+        ItemActionCreators.setItemSearchTerm("ItemType1", "test")
+      );
 
+      expect(updated).toBeDefined();
+      expect(updated.getIn(["ItemType1", "term"])).toEqual("test");
+    });
     it("should add a new filter", () => {
       const updated = items(
         initialState,
@@ -248,4 +466,49 @@ describe("ItemsReducer", () => {
       ]);
     });
   });
+
+  describe("All reducers together", () => {
+    it("each reducer should update corresponding part of state and do not change others", () => {
+      let updated = items(initialState,
+        ItemActionCreators.itemsSet("ItemType1", [])
+      );
+      updated = items(updated,
+        ItemActionCreators.setItemData("ItemType1", "dataField", "itemData")
+      );
+      updated = items(updated,
+        ItemActionCreators.setItemSearchTerm("ItemType1", "test")
+      );
+      updated = items(updated,
+        ItemActionCreators.setItemSortingOptions("ItemType1", [
+          "option1",
+          "option2"
+        ])
+      );
+      updated = items(updated,
+        ItemActionCreators.addItemSearchFilter(
+          "ItemType1",
+          "filterA",
+          "filterValue"
+        )
+      );
+      updated = items(updated,
+        ItemActionCreators.itemsSet("ItemType1", [
+          { id: 1, field1: "data1" },
+          { id: 2, field2: "data2" },
+        ])
+      );
+      updated = items(updated,
+        ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "updatedData" })
+      );
+      updated = items(updated,
+        ItemActionCreators.itemsSelectAll("ItemType1")
+      );
+
+      expect(updated).toBeDefined();
+      expect(updated.toJS()).toMatchObject(finalState);
+    });
+
+  });
+
+
 });

@@ -3,14 +3,18 @@ import { fromJS, Map, List } from "immutable";
 import { DckActionTypes } from "../actions/types";
 import { createReducer } from "../utils";
 
+const isObject = (obj: any): boolean =>
+  Boolean(obj) && typeof obj === "object" && obj.constructor === Object;
+
 const getItemsIds = (state: any, itemType: string) => {
-  return state.getIn([itemType, "items"]).toJS().map((item: any) => item.id);
+  const items = Array.from(state.getIn([itemType, "items"]));
+  return items.filter(isObject).map((item: any) => item.id);
 }
 
 const updateSelected = (selected: any, id: string | number, select: boolean) => {
-  const selectedIndex = selected.findIndex(id);
+  const selectedIndex = selected.findIndex((el: any) => String(el) === String(id));
   if (select) {
-    return selectedIndex !== -1 ? selected : selected.push(id);
+    return selectedIndex > -1 ? selected : selected.push(id);
   }
   return selectedIndex === -1 ? selected : selected.delete(selectedIndex);
 };
@@ -26,9 +30,13 @@ const reducers = {
     return state.setIn([action.itemType, "items"], Array.isArray(action.data) ? action.data : []);
   },
   [DckActionTypes.ITEM_SET](state: any, action: any) {
-    const thisItem = (item: any) => String(item.id) === String(action.id);
-    const itemIndex = state.getIn([action.itemType, "items"]).findIndex(thisItem); 
-    return itemIndex === -1 ? state : state.setIn([action.itemType, "items", itemIndex], action.data);
+    const items = state.getIn([action.itemType, "items"]);
+    const itemIndex = items.findIndex((item: any) => String(item.id) === String(action.id)); 
+    if (itemIndex === -1) {
+      return state;
+    }
+    items[itemIndex] = action.data;
+    return state.setIn([action.itemType, "items"], items);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {
     const selected = state.getIn([action.itemType, "selected"]);
