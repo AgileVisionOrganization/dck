@@ -30,12 +30,13 @@ const reducers = {
     return state.setIn([action.itemType, "items"], Array.isArray(action.data) ? action.data : []);
   },
   [DckActionTypes.ITEM_SET](state: any, action: any) {
-    const itemsArray: any[] = state.getIn([action.itemType, "items"]);
+    const itemsArray: any[] = Array.from(state.getIn([action.itemType, "items"]));
     const itemIndex = itemsArray.findIndex((item: any) => String(item.id) === String(action.id)); 
     if (itemIndex === -1) {
-      return state;
+      itemsArray.push(action.data);
+    } else {
+      itemsArray[itemIndex] = action.data;
     }
-    itemsArray[itemIndex] = action.data;
     return state.setIn([action.itemType, "items"], itemsArray);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {

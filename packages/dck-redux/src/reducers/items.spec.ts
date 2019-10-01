@@ -95,13 +95,13 @@ describe("Items reducer", () => {
   });
 
   describe("Set one item", () => {
-    it("should not set item for initial state", () => {
+    it("should append item for initial state", () => {
       const updated = items(
         initialState,
         ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "data1" })
       );
       expect(updated).toBeDefined();
-      expect(updated.getIn(["ItemType1", "items"]).toJS()).toMatchObject([]);
+      expect(updated.getIn(["ItemType1", "items"])).toMatchObject([{ id: 1, field1: "data1" }]);
     });
 
     it("should update item if item with id exists in items", () => {
@@ -109,7 +109,7 @@ describe("Items reducer", () => {
         initialState,
         ItemActionCreators.itemsSet("ItemType1", [
           { id: 1, field1: "data1" },
-          { id: 2, field2: "data2" },
+          { id: 2, field2: "data2" }
         ])
       );
       expect(updated).toBeDefined();
@@ -118,33 +118,32 @@ describe("Items reducer", () => {
         updated,
         ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "updatedData" })
       );
-
       expect(updated).toBeDefined();
       expect(updated.getIn(["ItemType1", "items"])).toMatchObject([
         { id: 1, field1: "updatedData" },
-        { id: 2, field2: "data2" },
+        { id: 2, field2: "data2" }
       ]);
     });
 
-    it("should not update item if item with id does not exist in items", () => {
+    it("should append item if item with id does not exist in items", () => {
       let updated = items(
         initialState,
         ItemActionCreators.itemsSet("ItemType1", [
           { id: 1, field1: "data1" },
-          { id: 2, field2: "data2" },
+          { id: 2, field2: "data2" }
         ])
       );
       expect(updated).toBeDefined();
 
       updated = items(
         updated,
-        ItemActionCreators.itemSet("ItemType1", 0, {})
+        ItemActionCreators.itemSet("ItemType1", 3, { id: 3, field2: "data3" })
       );
-
       expect(updated).toBeDefined();
       expect(updated.getIn(["ItemType1", "items"])).toMatchObject([
         { id: 1, field1: "data1" },
         { id: 2, field2: "data2" },
+        { id: 3, field2: "data3" }
       ]);
     });
   });
