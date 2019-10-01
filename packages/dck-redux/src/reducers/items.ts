@@ -36,7 +36,7 @@ const reducers = {
       return state;
     }
     itemsArray[itemIndex] = action.data;
-    return state.setIn([action.itemType, "items"], items);
+    return state.setIn([action.itemType, "items"], itemsArray);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {
     const selected = state.getIn([action.itemType, "selected"]);
