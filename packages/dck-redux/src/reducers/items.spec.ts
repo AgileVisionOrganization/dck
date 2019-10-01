@@ -96,7 +96,7 @@ describe("Items reducer", () => {
 
   describe("Set one item", () => {
     it("should not set item for initial state", () => {
-      let updated = items(
+      const updated = items(
         initialState,
         ItemActionCreators.itemSet("ItemType1", 1, { id: 1, field1: "data1" })
       );

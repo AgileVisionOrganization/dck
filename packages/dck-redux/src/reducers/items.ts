@@ -7,8 +7,8 @@ const isObject = (obj: any): boolean =>
   Boolean(obj) && typeof obj === "object" && obj.constructor === Object;
 
 const getItemsIds = (state: any, itemType: string) => {
-  const items = Array.from(state.getIn([itemType, "items"]));
-  return items.filter(isObject).map((item: any) => item.id);
+  const itemsArray: any[] = Array.from(state.getIn([itemType, "items"]));
+  return itemsArray.filter(isObject).map((item: any) => item.id);
 }
 
 const updateSelected = (selected: any, id: string | number, select: boolean) => {
@@ -30,12 +30,12 @@ const reducers = {
     return state.setIn([action.itemType, "items"], Array.isArray(action.data) ? action.data : []);
   },
   [DckActionTypes.ITEM_SET](state: any, action: any) {
-    const items = state.getIn([action.itemType, "items"]);
-    const itemIndex = items.findIndex((item: any) => String(item.id) === String(action.id)); 
+    const itemsArray: any[] = state.getIn([action.itemType, "items"]);
+    const itemIndex = itemsArray.findIndex((item: any) => String(item.id) === String(action.id)); 
     if (itemIndex === -1) {
       return state;
     }
-    items[itemIndex] = action.data;
+    itemsArray[itemIndex] = action.data;
     return state.setIn([action.itemType, "items"], items);
   },
   [DckActionTypes.ITEM_SELECT](state: any, action: any) {
