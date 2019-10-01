@@ -19,7 +19,7 @@ const updateSelected = (selected: any, id: string | number, select: boolean) => 
   return selectedIndex === -1 ? selected : selected.delete(selectedIndex);
 };
 
-const updateSelectedIds = (selected: any, ids: string[] | number[], select: boolean) => {
+const updateSelectedIds = (selected: any, ids: any[], select: boolean) => {
   let updated = selected;
   ids.forEach((id: any) => updated = updateSelected(updated, id, select)); 
   return updated;
