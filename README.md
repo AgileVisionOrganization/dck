@@ -31,4 +31,6 @@ The project is a  monorepo managed by the Lerna tool, that contains four subproj
 
 * **dck-react-components** &mdash; some components you might find usefull while developing dashboards and other data-driver applications.
 
-## Examples
+## Documentation
+
+https://agilevisioncompany.github.io/dck
