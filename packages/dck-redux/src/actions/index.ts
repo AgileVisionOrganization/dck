@@ -71,7 +71,7 @@ export class DckActionCreators {
   }
 
   /**
-   * Clear global searh filters.
+   * Clear global search filters.
    */
   public static clearSearchFilters() {
     return SearchActionCreators.clearSearchFilters();
@@ -288,6 +288,40 @@ export class DckActionCreators {
    */
   public static itemsSelect(itemType: string, ids: string[] | number[]) {
     return ItemsActionCreators.itemsSelect(itemType, ids);
+  }
+
+  /**
+   * Unselect item with given id action.
+   * @param itemType item type
+   * @param id item id
+   */
+  public static itemUnselect(itemType: string, id: string | number) {
+    return ItemsActionCreators.itemUnselect(itemType, id);
+  }
+
+  /**
+   * Unselect items with given ids action.
+   * @param itemType items type
+   * @param ids items ids
+   */
+  public static itemsUnselect(itemType: string, ids: string[] | number[]) {
+    return ItemsActionCreators.itemsUnselect(itemType, ids);
+  }
+
+  /**
+   * Select all items action.
+   * @param itemType items type
+   */
+  public static itemsSelectAll(itemType: string) {
+    return ItemsActionCreators.itemsSelectAll(itemType);
+  }
+
+  /**
+   * Unselect all items action.
+   * @param itemType items type
+   */
+  public static itemsUnselectAll(itemType: string) {
+    return ItemsActionCreators.itemsUnselectAll(itemType);
   }
 
   /**

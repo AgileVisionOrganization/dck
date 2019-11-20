@@ -190,6 +190,58 @@ export function itemsSelect(itemType: string, ids: string[] | number[]) {
 }
 
 /**
+ * Unselect item with given id action.
+ * @param itemType item type
+ * @param id item id
+ * @hidden
+ */
+export function itemUnselect(itemType: string, id: string | number) {
+  return {
+    type: DckActionTypes.ITEM_UNSELECT,
+    itemType,
+    id
+  };
+}
+
+/**
+ * Unselect items with given ids action.
+ * @param itemType items type
+ * @param ids items ids
+ * @hidden
+ */
+export function itemsUnselect(itemType: string, ids: string[] | number[]) {
+  return {
+    type: DckActionTypes.ITEMS_UNSELECT,
+    itemType,
+    ids
+  };
+}
+
+/**
+ * Select all items action.
+ * @param itemType items type
+ * @hidden
+ */
+export function itemsSelectAll(itemType: string) {
+  return {
+    type: DckActionTypes.ITEMS_SELECT_ALL,
+    itemType
+  };
+}
+
+/**
+ * Unselect all items action.
+ * @param itemType items type
+ * @hidden
+ */
+export function itemsUnselectAll(itemType: string) {
+  return {
+    type: DckActionTypes.ITEMS_UNSELECT_ALL,
+    itemType
+  };
+}
+
+/**
  * Set item search term action.
  * @param itemType item type
  * @param term item search term

@@ -32,10 +32,10 @@ export const selectActiveItemId = (state: any, itemType: string) => {
 export const selectActiveItem = createSelector(
   [selectActiveItemId, selectAllItems],
   (activeItemId: string | number, items: any) => {
-    const filtered = items.filter((x: any) => {
-      return x.id === activeItemId;
+    const found = items.find((x: any) => {
+      return String(x.id) === String(activeItemId);
     });
-    return filtered.length === 0 ? null : filtered[0];
+    return found || null;
   }
 );
 
@@ -47,7 +47,7 @@ export const selectActiveItem = createSelector(
  * @hidden
  */
 export const selectSelectedItemsId = (state: any, itemType: string) => {
-  return state.dck.items.getIn([itemType, "selected"]);
+  return state.dck.items.getIn([itemType, "selected"]).toJS();
 };
 
 /**
@@ -78,7 +78,7 @@ export const selectSelectedItems = createSelector(
 export const selectItemById = (state: any, itemType: string, itemId: string | number) => {
   const items = selectAllItems(state, itemType);
 
-  const filtered = items.filter((x: any) => x.id === itemId);
+  const filtered = items.filter((x: any) => String(x.id) === String(itemId));
   return filtered.length === 0 ? null : filtered[0];
 };
 
@@ -91,7 +91,7 @@ export const selectItemById = (state: any, itemType: string, itemId: string | nu
  * @hidden
  */
 export const getItemData = (state: any, itemType: string, field: string) => {
-  return state.dck.items.getIn([itemType, field]);
+  return state.dck.items.getIn([itemType, "data", field]);
 };
 
 /**
