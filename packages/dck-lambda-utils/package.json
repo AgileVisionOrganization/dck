@@ -4,7 +4,7 @@
   "main": "lib/dck-lambda-utils.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "async": "^2.2.0",
+    "async": "^2.6.4",
     "moment": "^2.22.1",
     "shortid": "^2.2.8",
     "slug": "^0.9.2"
